@@ -1,0 +1,4760 @@
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      0 Page =       1
+
+ This source code includes the following optional modules or capabilities:
+      1 - 64-bit executable.
+      2 - No additional optional modules present. This is base CASMO5. (Includes: MxN, FSS/FSC, and Pn-scattering)
+
+       List of User Files
+       ------------------
+ Executable File               /opt/cms/C5/v2.03.00L/Linux/c5.exe
+ Neutron Data Library File     /opt/cms/CasLib/library/e7r1.201.586.bin
+ Input File                    c4.pwru240c00.inp
+ Output List File              c4.pwru240c00.out
+ Card Image File               c4.pwru240c00.cax
+ Host and Working Directory    ubuntu-lab-02 /home/lab/UROPs
+ Input Data from Include File  c4.general.inc
+ Input Data from Include File  c4.nobp.inc
+
+       List of CASMO5 Input Cards (120 Cols Max.)
+       ------------------------------------------
+
+
+                1         2         3         4         5         6         7         8         9         0         1         2
+       123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+       * -----------------------------------------------------*
+       *              BEAVRS PWR MODEL                        *
+       * -----------------------------------------------------*
+       
+       TTL  * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+       
+       ***** Details from DRAFT rev. 0.2.5
+       ***** Source of info indicated by [page number] in comments
+       
+       **     Input data from include file   :c4.general.inc
+       *  All_data_on_file
+       * -----------------------------------------------------*
+       *              BEAVRS PWR MODEL                        *
+       * -----------------------------------------------------*
+       
+       
+       ***** General details of operating design
+       ***** Details from DRAFT rev. 0.2.5
+       ***** Source of info indicated by [page number] in comments
+       
+       ************ INVARIANT DATA **************
+       PDE 0.0001
+       PRE 155.13      * pressure [3]
+       TFU 566.5       * approximate fuel temperature
+       TMO 566.5       * moderator temperature - 560 K
+       BOR 975.00      * average boron
+       PWR 17 1.26     * geometric parameters [12]
+       CAN 6.55/304=100.0
+       BOX 6.55/304=100.0
+       CRS 7.90/347=100.0
+       PIN 1  0.39218   0.40005   0.45720 * FUEL PIN [19]
+       PIN 2  0.56134   0.60198 /  'MOD'    'BOX'  * INSTR TUBE [71]
+       PIN 3  0.56134   0.60198 /  'MOD'    'BOX'  * GUIDE TUBE [71]
+       GRP 2 2
+       DEB 'KXS'
+       
+       * 2, 4, and 8 groups
+                                                                                      (to be continued)
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      0 Page =       2
+
+       List of CASMO5 Input Cards               (Continued)
+       --------------------------
+                1         2         3         4         5         6         7         8         9         0         1         2
+       123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+       * GRP 95[70] XX
+       * with and without CRD (explicit)
+       * run 24 BP case, no BP case and compare fuel XS
+       ******************************************
+       ** End of input data from include file:c4.general.inc
+       * INC 'c4.general.inc'
+       **     Input data from include file   :c4.nobp.inc
+       *  All_data_on_file
+       * -----------------------------------------------------*
+       *              BEAVRS PWR MODEL                        *
+       * -----------------------------------------------------*
+       
+       ***** Configurations without burnable poisons
+       ***** Details from DRAFT rev. 0.2.5
+       ***** Source of info indicated by [page number] in comments
+       
+       
+       ***** STANDARD MECHANICAL DESIGN SPECIFIC *********
+       PIN 3  0.4331 0.43688  0.48387  0.56134   0.60198  /
+               'AIC'  'AIR' 'CRS'   'MOD'   'BOX'
+               // 1  'CR1' 'ROD'                * RCCA [11]
+       ****************************************************
+       ** End of input data from include file:c4.nobp.inc
+       * INC 'c4.nobp.inc'
+       *
+       * ***** SEGMENT SPECIFIC
+       FUE 1, 10.29769 / 2.40 * Fuel enrichment [94]
+       
+       LPI
+       2
+       1  1
+       1  1  1
+       3  1  1  3
+       1  1  1  1  1
+       1  1  1  1  1  3
+       3  1  1  3  1  1  1
+       1  1  1  1  1  1  1  1
+       1  1  1  1  1  1  1  1  1
+       
+       *  No BP [13]
+       *****
+       END
+
+       List of CASMO5 Input Cards Complete
+
+ [Warning] in SCANIN              Input card STA is missing before END card  -  STA card added.
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       3
+ * 
+ * Burnup =     0.000                                                                                 
+ TTL  * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES                                                                   Input
+                                                                                                                               Input
+ ***** Details from DRAFT rev. 0.2.5                                                                                           Input
+ ***** Source of info indicated by [page number] in comments                                                                   Input
+                                                                                                                               Input
+ **     Input data from include file   :c4.general.inc                                                                         Input
+ *  All_data_on_file                                                                                                           Input
+ * -----------------------------------------------------*                                                                      Input
+ *              BEAVRS PWR MODEL                        *                                                                      Input
+ * -----------------------------------------------------*                                                                      Input
+                                                                                                                               Input
+                                                                                                                               Input
+ ***** General details of operating design                                                                                     Input
+ ***** Details from DRAFT rev. 0.2.5                                                                                           Input
+ ***** Source of info indicated by [page number] in comments                                                                   Input
+                                                                                                                               Input
+ ************ INVARIANT DATA **************                                                                                    Input
+ PDE 0.0001                                                                                                                    Input
+ PRE 155.13      * pressure [3]                                                                                                Input
+ TFU 566.5       * approximate fuel temperature                                                                                Input
+ TMO 566.5       * moderator temperature - 560 K                                                                               Input
+ BOR 975.00      * average boron                                                                                               Input
+ PWR 17 1.26     * geometric parameters [12]                                                                                   Input
+ CAN 6.55/304=100.0                                                                                                            Input
+ BOX 6.55/304=100.0                                                                                                            Input
+ CRS 7.90/347=100.0                                                                                                            Input
+ PIN 1  0.39218   0.40005   0.45720 * FUEL PIN [19]                                                                            Input
+ PIN 2  0.56134   0.60198 /  'MOD'    'BOX'  * INSTR TUBE [71]                                                                 Input
+ PIN 3  0.56134   0.60198 /  'MOD'    'BOX'  * GUIDE TUBE [71]                                                                 Input
+ GRP 2 2                                                                                                                       Input
+ [Usage Note] in INP_GRP          Using 2 group 2D neutron group structure (set by GRP input).
+ DEB 'KXS'                                                                                                                     Input
+                                                                                                                               Input
+ * 2, 4, and 8 groups                                                                                                          Input
+ * GRP 95[70] XX                                                                                                               Input
+ * with and without CRD (explicit)                                                                                             Input
+ * run 24 BP case, no BP case and compare fuel XS                                                                              Input
+ ******************************************                                                                                    Input
+ ** End of input data from include file:c4.general.inc                                                                         Input
+ * INC 'c4.general.inc'                                                                                                        Input
+ **     Input data from include file   :c4.nobp.inc                                                                            Input
+ *  All_data_on_file                                                                                                           Input
+ * -----------------------------------------------------*                                                                      Input
+ *              BEAVRS PWR MODEL                        *                                                                      Input
+ * -----------------------------------------------------*                                                                      Input
+                                                                                                                               Input
+ ***** Configurations without burnable poisons                                                                                 Input
+ ***** Details from DRAFT rev. 0.2.5                                                                                           Input
+ ***** Source of info indicated by [page number] in comments                                                                   Input
+                                                                                                                               Input
+                                                                                                                               Input
+ ***** STANDARD MECHANICAL DESIGN SPECIFIC *********                                                                           Input
+ [Caution] in INP_DEB             Debug edit of 2D cross sections requested.
+ PIN 3  0.4331 0.43688  0.48387  0.56134   0.60198  /                                                                          Input
+         'AIC'  'AIR' 'CRS'   'MOD'   'BOX'                                                                                    Input
+         // 1  'CR1' 'ROD'                * RCCA [11]                                                                          Input
+ ****************************************************                                                                          Input
+ ** End of input data from include file:c4.nobp.inc                                                                            Input
+ * INC 'c4.nobp.inc'                                                                                                           Input
+ *                                                                                                                             Input
+ * ***** SEGMENT SPECIFIC                                                                                                      Input
+ FUE 1, 10.29769 / 2.40 * Fuel enrichment [94]                                                                                 Input
+                                                                                                                               Input
+ LPI                                                                                                                           Input
+ 2                                                                                                                             Input
+ 1  1                                                                                                                          Input
+ 1  1  1                                                                                                                       Input
+ 3  1  1  3                                                                                                                    Input
+ 1  1  1  1  1                                                                                                                 Input
+ 1  1  1  1  1  3                                                                                                              Input
+ 3  1  1  3  1  1  1                                                                                                           Input
+ 1  1  1  1  1  1  1  1                                                                                                        Input
+ 1  1  1  1  1  1  1  1  1                                                                                                     Input
+                                                                                                                               Input
+ *  No BP [13]                                                                                                                 Input
+ *****                                                                                                                         Input
+ [Usage Note] in INIT_MGD         Multigroup data (MGD) for SIMULATE5 will be added to the Card Image File (with micros).
+ [Warning] in GRPDEF              Edit-B group structure reset from: 8 to 2 groups (# Edit-B groups must be <= # 2D groups).
+
+      2 Warning(s) detected so far.
+
+ Execution Continued.
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       4
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ File Trail Data For Incoming Data Libraries
+ -------------------------------------------
+  Execution     CASMO5    2.03.00  2012/11/19  2013/11/21  13:29:38    SSP       P        
+
+  Neutron Data  5004     120114 586
+            E7R1LIB UPDATE F,VERSION=E7R1.201-121003                                        
+                CASLIB       4.05  12/01/14    12/10/19    10:00:29    Linux     
+  Neutron Library File:/opt/cms/CasLib/library/e7r1.201.586.bin
+
+  Gamma Data       8 080606      18
+  GAMLIB, UPDATE B VERSION=E7.1.00-080606  18 GAM GRP, 70 NEU GRP (EMBEDDED)
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       5
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ Input Echo
+ ----------
+        Density  Th.Exp.     Temp   Weight
+ Comp   (g/cm3)  Coeff.       (K)   (g/cm)  Tot Wt%  Nuclide Wt%
+ ----   -------  -------     ----   ------  -------  -----------
+ SPA      6.5125  7.000E-06  566.5    0.000  100.004  Sn     = 1.45000E+00  Fe     = 1.35000E-01  Cr     = 1.00000E-01
+                                                      Ni     = 5.50000E-02  Zr90STR= 4.97605E+01  Zr91STR= 1.09724E+01
+                                                      Zr92STR= 1.69559E+01  Zr94STR= 1.75574E+01  Zr96STR= 2.88889E+00
+                                                      O-STR  = 1.25000E-01  Co-59  = 1.00000E-03  Ni-58  = 1.00000E-03
+                                                      Ni-62  = 1.00000E-03  Fe-54  = 1.00000E-03
+ COO      0.7398  0.000E+00  566.5  190.845  100.097  H      = 1.11900E+01  O-H2O  = 8.88100E+01  B      = 9.75000E-02
+ MOD      0.7398  0.000E+00  566.5   18.378  100.097  H      = 1.11900E+01  O-H2O  = 8.88100E+01  B      = 9.75000E-02
+ AIR      0.0010  0.000E+00  566.5    0.000  100.000  O-STR  = 2.09476E+01  N      = 7.90524E+01
+ CAN      6.5125  7.000E-06  566.5  265.637  100.000  Sn     = 1.45000E+00  Fe     = 2.10000E-01  Cr     = 1.00000E-01
+                                                      Zr90STR= 4.97503E+01  Zr91STR= 1.09701E+01  Zr92STR= 1.69524E+01
+                                                      Zr94STR= 1.75539E+01  Zr96STR= 2.88830E+00  O-STR  = 1.25000E-01
+ BOX      6.5125  7.000E-06  566.5   24.275  100.000  Sn     = 1.45000E+00  Fe     = 2.10000E-01  Cr     = 1.00000E-01
+                                                      Zr90STR= 4.97503E+01  Zr91STR= 1.09701E+01  Zr92STR= 1.69524E+01
+                                                      Zr94STR= 1.75539E+01  Zr96STR= 2.88830E+00  O-STR  = 1.25000E-01
+ CRA      1.7600  0.000E+00  566.5    0.000  100.000  B      = 7.82600E+01  C      = 2.17400E+01
+ CRS      7.7845  1.800E-05  566.5    0.000  100.000  SS     = 1.00000E+02
+ CRC      7.7845  1.800E-05  566.5    0.000  100.000  SS     = 1.00000E+02
+ AIC      9.9747  2.250E-05  566.5    0.000  100.000  Ag-107 = 4.11010E+01  Ag-109 = 3.88990E+01  In-113 = 6.32774E-01
+                                                      In-115 = 1.43672E+01  Cd-106 = 5.88830E-02  Cd-108 = 4.27155E-02
+                                                      Cd-110 = 6.10564E-01  Cd-111 = 6.31418E-01  Cd-112 = 1.20104E+00
+                                                      Cd-113 = 6.13679E-01  Cd-114 = 1.45556E+00  Cd-116 = 3.86138E-01
+                                                      Cd-115 = 0.00000E+00
+ B4C      1.7600  0.000E+00  566.5    0.000  100.000  B      = 7.82600E+01  C      = 2.17400E+01
+ HAF     13.0148  6.100E-06  566.5    0.000  100.000  Hf-174 = 1.55930E-01  Hf-176 = 5.18504E+00  Hf-177 = 1.84393E+01
+                                                      Hf-178 = 2.71973E+01  Hf-179 = 1.36552E+01  Hf-180 = 3.53673E+01
+                                                      Hf-175 = 0.00000E+00
+ CSS      7.7845  1.800E-05  566.5    0.000  100.000  SS     = 1.00000E+02
+ BP1      2.2539  3.300E-06  566.5    0.000  100.000  O-STR  = 5.48100E+01  Si-28  = 3.47898E+01  Si-29  = 1.83050E+00
+                                                      Si-30  = 1.24966E+00  B-10   = 7.10000E-01  Al-27  = 3.44000E+00
+                                                      B-11   = 3.17000E+00
+ BP2      3.6366  4.500E-06  566.5    0.000  100.000  C      = 7.70000E-01  O-STR  = 4.54000E+01  Al-27  = 5.10500E+01
+                                                      B-11   = 2.78000E+00
+ BP3      6.0651  7.000E-06  566.5    0.000  100.000  Zr90STR= 4.05649E+01  Zr91STR= 8.94471E+00  Zr92STR= 1.38225E+01
+                                                      Zr94STR= 1.43129E+01  Zr96STR= 2.35503E+00  B-11   = 2.00000E+01
+ EUO      7.3000  0.000E+00  566.5    0.000  100.000  Eu151CR= 4.10800E+01  Eu153CR= 4.52800E+01  O-STR  = 1.36400E+01
+ BP4      7.7845  1.800E-05  566.5    0.000  100.000  SS     = 9.96200E+01  B-10   = 7.00000E-02  B-11   = 3.10000E-01
+ CCT      2.3804  1.000E-05  566.5    0.000  100.000  H      = 5.00000E-01  O-STR  = 5.00000E+01  Al-27  = 8.00000E+00
+                                                      Si-28  = 3.62873E+01  Si-29  = 1.90928E+00  Si-30  = 1.30345E+00
+                                                      Fe     = 2.00000E+00
+ TUN     19.1791  4.500E-06  566.5    0.000  100.000  W-182  = 2.62271E+01  W-183  = 1.42406E+01  W-184  = 3.06582E+01
+                                                      W-186  = 2.87567E+01  W-180  = 1.17460E-01  W-181  = 0.00000E+00
+                                                      W-185  = 0.00000E+00  Re-185 = 0.00000E+00  Re-186 = 0.00000E+00
+                                                      Re-187 = 0.00000E+00  Re-188 = 0.00000E+00  Os-186 = 0.00000E+00
+                                                      Os-187 = 0.00000E+00  Os-188 = 0.00000E+00  W-187  = 0.00000E+00
+ DYS      8.4819  9.900E-06  566.5    0.000  100.000  Dy-156 = 5.37300E-02  Dy-158 = 9.23300E-02  Dy-160 = 2.29210E+00
+                                                      Dy-161 = 1.87062E+01  Dy-162 = 2.53852E+01  Dy-163 = 2.49618E+01
+                                                      Dy-164 = 2.85086E+01
+ HEL      0.0010  0.000E+00  566.5    0.005  100.000  He-4   = 1.00000E+02
+ FUE   1 10.2053  1.100E-05  566.5 1309.664  100.000  U-235  = 2.11560E+00  U-234  = 1.91664E-02  U-238  = 8.60154E+01
+                                                      O-FUE  = 1.18498E+01
+
+ Density for spacer material . . . . . . =  6.51252
+ Void percents in wide and narrow gap. . =  0.0  0.0
+ Number of internal compositions defined =   44
+ Reactor pressure (in Pascal). . . . . . =  1.55130E+07
+                  (in PSI) . . . . . . . =  2.25001E+03
+ Nuclides treated as resonance absorbers in fuel regions [205]:
+          U-232   U-233   U-234   U-235   U-236   U-237   U-238   U-239   U-240   Pu-236  Pu-238  Pu-239 
+          Pu-240  Pu-241  Pu-242  Pu-243  Pu-244  Am-241  Am-242  Am242m  Am-243  Np-236  Np-237  Np-238 
+          Th-229  Th-230  Th-232  Pa-231  Pa-233  Cm-242  Cm-243  Cm-244  Cm-245  Cm-246  Cm-247  Cm-248 
+          Cm-249  Cm-250  Bk-249  Gd-152  Gd-153  Gd-154  Gd-155  Gd-156  Gd-157  Gd-158  Gd-160  Er-162 
+          Er-164  Er-168  Er-170  Er-166  Er-167  Tm-169  Tm-170  Yb-170  Yb-171  Yb-172  Se-74   Se-76  
+          Se-77   Se-78   Br-79   Br-81   Kr-82   Kr-83   Kr-85   Rb-85   Rb-86   Zr-90   Zr-91   Zr-92  
+          Zr-93   Zr-94   Zr-95   Zr-96   Zr90STR Zr91STR Zr92STR Zr94STR Zr96STR Nb93F   Nb-93   Nb-94  
+          Mo-92   Mo-94   Mo-95   Mo-96   Mo-97   Mo-98   Mo-100  Tc-99   Ru-99   Ru-100  Ru-101  Ru-102 
+          Ru-103  Ru-104  Rh-103  Rh-105  Pd-104  Pd-105  Pd-106  Pd-107  Pd-108  Pd-110  Ag107F  Ag109F 
+          Cd111F  Cd113F  Cd116F  In113F  In115F  Sn-112  Sn-113  Sn-114  Sn-115  Sn-116  Sn-117  Sn-118 
+          Sn-119  Sn-120  Sn-122  Sn-124  Sn-126  Sb-121  Sb-123  Sb-126  Te-122  Te-123  Te-124  Te-125 
+          Te-126  Te-128  Te-130  Te-132  I-127   I-129   I-130   Xe-128  Xe-129  Xe-130  Xe-131  Xe-132 
+          Cs-133  Cs-134  Cs-135  Ba-134  Ba-135  Ba-136  Ba-137  Ba-140  La-138  La-139  La-140  Ce-138 
+          Ce-139  Ce-140  Ce-141  Ce-142  Ce-143  Ce-144  Pr-141  Pr-142  Nd-142  Nd-143  Nd-144  Nd-145 
+          Nd-146  Nd-147  Nd-148  Nd-150  Pm-147  Pm148m  Sm-147  Sm-148  Sm-149  Sm-150  Sm-151  Sm-152 
+          Sm-154  Eu-152  Eu-153  Eu-154  Eu-155  Eu-156  Eu-157  Gd152F  Gd153F  Gd154F  Gd155F  Gd156F 
+          Gd157F  Gd158F  Gd160F  Tb159F  Tb160F  Dy156F  Dy158F  Dy160F  Dy161F  Dy162F  Dy163F  Dy164F 
+          Ho165F 
+ Nuclides treated as resonance absorbers in CRD and structural regions [ 98]:
+          Hf-174  Hf-176  Hf-177  Hf-178  Hf-179  Hf-180  Ag-107  Ag-109  Cd-111  Cd-113  Cd-116  In-113 
+          In-115  Rh-103  Eu-151  Zr90STR Zr91STR Zr92STR Zr94STR Zr96STR W-182   W-183   W-184   W-186  
+          Re-185  Dy-156  Dy-158  Dy-160  Dy-161  Dy-162  Dy-163  Dy-164  Ho-165  Eu151CR Eu152CR Eu153CR
+          Eu154CR Eu155CR Eu156CR Eu157CR Er-162  Er-164  Er-166  Er-167  Er-168  Er-170  Gd-152  Gd-153 
+          Gd-154  Gd-155  Gd-156  Gd-157  Gd-158  Gd-160  Yb-168  Yb-170  Yb-171  Yb-172  Yb-173  Yb-174 
+          Yb-176  Cd-112  Tm-169  Tm-170  Ir-191  Ir-193  Os-184  Os-186  Os-187  Os-188  Os-189  Os-190 
+          Os-192  Re-187  Tb-159  Tb-160  Nb-93   Mo-92   Mo-94   Mo-95   Mo-96   Mo-97   Mo-98   Mo-100 
+          Sn-112  Sn-113  Sn-114  Sn-115  Sn-116  Sn-117  Sn-118  Sn-119  Sn-120  Sn-122  Sn-124  Sb-121 
+          Sb-123  Sb-126 
+ Default exponential radial distribution of U-238 resonance integral (DRI)
+ DRI Coefficients=    1.0000    5.0000  -13.0000    0.5000
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       6
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+         Geometry Specification        
+
+ Number of pins along side of assembly . . =    17       [NPST]
+ Pin pitch . . . . . . . . . . . . . . . . =   1.2624 cm [S]
+ Inner distance between box walls. . . . . =  21.5254 cm [CHW]
+ Thickness of water gap inside box wall. . =   0.0000 cm [Calculated]
+ Thickness of box wall . . . . . . . . . . =   0.0000 cm [BXW]
+ Thickness of half of the wide   water gap =   0.0000 cm [GAW]
+ Thickness of half of the narrow water gap =   0.0000 cm [GAN]
+ Outer radius of rounded box corner  . . . =   0.0000 cm [BXR]
+ Segment width                             =  21.4610 cm [Calculated]
+ Calculation on octant assembly (isym=8)
+ Number of micro group spectra calculations=  4 (including the average pin cell)
+ Number of macro group spectra calculations=  0
+
+ Boundary conditions in 2D calculation:
+   West:   Mirror     South:  Mirror    
+   East:   Mirror     North:  Mirror    
+
+ Layout of micro-group spectra calculation numbers:
+    3   1   1   2   1   1   2   1   1
+    1   1   1   1   1   1   1   1   1
+    1   1   1   1   1   1   1   1   1
+    2   1   1   2   1   1   2   1   1
+    1   1   1   1   1   1   1   1   1
+    1   1   1   1   1   2   1   1   1
+    2   1   1   2   1   1   1   1   1
+    1   1   1   1   1   1   1   1   1
+    1   1   1   1   1   1   1   1   1
+
+
+ Pin numbers (input/internal) and types:
+
+    2W   1    1    3W   1    1    3W   1    1
+
+    1    1    1    1    1    1    1    1    1
+
+    1    1    1    1    1    1    1    1    1
+
+    3W   1    1    3W   1    1    3W   1    1
+
+    1    1    1    1    1    1    1    1    1
+
+    1    1    1    1    1    3W   1    1    1
+
+    3W   1    1    3W   1    1    1    1    1
+
+    1    1    1    1    1    1    1    1    1
+
+    1    1    1    1    1    1    1    1    1
+
+
+ Number of pin types (full assembly):
+       Regular fuel pins                         :  264
+ (W)   Water rod(s), with or without shroud tube :   25
+
+       Total                                     :  289
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       7
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ Pin Cell  Compositions        Densities (g/cm3)      Volumes (cm2 per cm axially)        Occupancy     Tot Volume    Geometry
+ --------  ------------        -----------------      ----------------------------        ---------     ----------    --------
+        1  FUE  HEL  CAN      10.205   0.001   6.513  4.8610E-01  1.8603E-02  1.5450E-01     1.0        1.5937E+00    Round 
+           COO  COO  COO       0.740   0.740   0.740  1.5473E-01  3.0946E-01  4.7028E-01
+        2  MOD  BOX  COO       0.740   6.513   0.740  9.9372E-01  1.4910E-01  7.4131E-02     1.0        1.5937E+00    Round 
+           COO  COO            0.740   0.740          1.4826E-01  2.2848E-01
+        3  MOD  BOX  COO       0.740   6.513   0.740  9.9372E-01  1.4910E-01  7.4131E-02     1.0        1.5937E+00    Round 
+           COO  COO            0.740   0.740          1.4826E-01  2.2848E-01
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       8
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ Macro-region number map for pin cells: 
+ 045
+ 043   044
+ 040   041   042
+ 036   037   038   039
+ 031   032   033   034   035
+ 025   026   027   028   029   030
+ 018   019   020   021   022   023   024
+ 010   011   012   013   014   015   016   017
+ 001   002   003   004   005   006   007   008   009
+
+ Micro-region number map for pin cells: 
+  260- 264
+  248- 253   254- 259
+  230- 235   236- 241   242- 247
+  208- 212   213- 218   219- 224   225- 229
+  178- 183   184- 189   190- 195   196- 201   202- 207
+  143- 148   149- 154   155- 160   161- 166   167- 172   173- 177
+  103- 107   108- 113   114- 119   120- 124   125- 130   131- 136   137- 142
+   55-  60    61-  66    67-  72    73-  78    79-  84    85-  90    91-  96    97- 102
+    1-   6     7-  12    13-  18    19-  24    25-  30    31-  36    37-  42    43-  48    49-  54
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =       9
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+
+ Fuel Loading                      (adjusted for thermal expansion)     (not adjusted for thermal expansion)
+ ------------                                  (g/cm)     (lb/cm)               (g/cm)     (lb/cm)
+ Fuel    mass              :                 1.3097E+03  2.8873E+00            1.3136E+03  2.8960E+00
+ Metal   mass              :                 1.1545E+03  2.5451E+00            1.1579E+03  2.5528E+00
+ Fissile mass              :                 2.7707E+01  6.1084E-02            2.7791E+01  6.1267E-02
+
+
+ Hydraulic and other segment data (adjusted for thermal expansion)  
+
+    Densities                                  (g/cm3)    (lb/ft3)  
+    ---------
+ Average fissile density   :                 2.1590E-01  1.3479E+01
+ Base water density (15.51 MP  566.5 K):     7.3979E-01  4.6185E+01
+ Channel rel. water density:                 1.0000E+00
+ Bypass  rel. water density:                 1.0000E+00
+ Seg.    rel. water density:                 1.0000E+00
+
+    Dimensions                                    (cm)    (inches)
+    ----------
+ Average fuel pellet diam. :                 7.8672E-01  3.0973E-01
+ Average fuel rod diam.    :                 9.1615E-01  3.6069E-01
+ Fuel pin pitch            :                 1.2624E+00  4.9701E-01
+ Channel inside width      :                 2.1525E+01  8.4746E+00
+ Bundle pitch              :                 2.1525E+01  8.4746E+00
+ Heated perimeter          :                 7.5984E+02  2.9915E+02
+ Wet perimeter             :                 8.5458E+02  3.3645E+02
+ Hydraulic diam. channel   :                 1.2075E+00  4.7539E-01
+                                                                      Volume Fractions Vs:
+   Flow Areas                                    (cm2)       (ft2)    Segment    Flow Area
+   ----------
+ Channel flow area (COO)   :                 2.5797E+02  2.7768E-01    0.56011      0.91216
+ Water rod(s) flow area (MOD):               2.4843E+01  2.6741E-02    0.05394      0.08784
+ Total flow  area          :                 2.8282E+02  3.0442E-01    0.61405      1.00000
+
+   Volumes (per cm axially)  
+   -------
+ Fuel Pellets              :                 1.2833E+02  1.3814E-01    0.27863      0.45376
+ Fuel cladding (CAN)       :                 4.0789E+01  4.3905E-02    0.08856      0.14422
+ Total flow area           :                 2.8282E+02  3.0442E-01    0.61405      1.00000
+ Other compositions        :                 8.6385E+00  9.2985E-03    0.01876      0.03054
+ Total segment             :                 4.6057E+02  4.9576E-01    1.00000      1.62853
+ Water to fuel ratio       :                 2.2038E+00
+ Fuel to segment ratio     :                 2.7863E-01
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =      10
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+    Miscellaneous Options   
+    ---------------------   
+ Using Boron PPM*1.0e-04 for Wt% conversion. (default)
+ Resonance upscatter correction: ON (default).
+ Explicit Energy Release per Fission (ERF) model.
+ 1-sigma Pd-109 fission yield adjustment active (impacts Ag-109 N.D.).
+ 1-sigma Ru-103 fission yield adjustment active (impacts Rh-103 N.D.).
+ Fundamental mode will be omitted.
+ Delayed neutron data: ENDF/B-VII.1.
+ Spatial adjoint calculation will not be performed (default).
+ Pn scattering order:  0
+ Power density  in W/gU      . . . . . . =   1.0000E-04
+      -"-       in kW/litre    . . . . . =   2.5238E-04
+ Thermal expansion is performed.
+ Gamma smearing factor on pin powers:   0.095
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =      11
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+        Edit Options 
+ Number of edit (AVE) regions defined     =  1
+    No.  Name        Output Indicators             Region Numbers
+
+      1  CELL          0  0  1  0  0  1  0  0  1
+
+ Number of RRI regions defined            =  1
+
+ Macro-regions included in RRI edit
+ CELL - All macro-regions included in RRI edit.
+ Isotopes included RRI edit:
+   26054   27059
+
+ Detector  Nuclide   Position  Type
+        1  U-235       Center  Fission   
+        2  Rh-103      Center  Absorption
+ Number of fuel reaction rate (FRR) nuclides  =  0
+ Print list options  ( LST )  . . . . . . = 1 1 0 0
+
+ *PUN*  Additional output to the Card Image File
+ (10)=1 Pinwise Exposure Distribution (Block EXP)
+
+ Number of reaction rate nuclides  . . .  =  4
+ No calculation of cross-sections
+ No.  Nuclide  Temperature (K)
+   1  U-235          293.6
+   2  Rh-103         293.6
+   3  1/V AB         293.6
+   4  B              293.6
+
+ Parameters for SIMULATE on SIM card:
+    Segment type name  . . . . =                         
+    Weight percent U-235 . . . =     2.400 (initial heavy metal)     2.400 (initial total uranium)
+    Weight percent of BA . . . =     0.000
+    Present  number of BA rods =     0 (Total)
+    Original number of BA rods =     0 (Total)
+    Weight percent of Pu . . . =     0.000 (initial heavy metal)
+    Weight percent of Am-241 . =     0.000 (initial heavy metal)
+
+ Restart file created at exposures less than or equal to =  1000.000
+
+ Highest energy micro-group number in fluence edit (FFL)=   1  20000000.000 eV (upper boundary)
+ Lowest  energy micro-group number in fluence edit (FFL)=  62   1000000.000 eV (lower boundary)
+
+ Highest energy micro-group number in fluence edit (FLU)=   1  20000000.000 eV (upper boundary)
+ Lowest  energy micro-group number in fluence edit (FLU)=  62   1000000.000 eV (lower boundary)
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =      12
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ # of energy groups 2D transport:   2
+ # of energy groups Edit-B      :   2
+ # of energy groups Edit-A      :   2
+
+ Energy Group Structures                                   Bounds
+ - - - - - - - - - - - -                         - - - - - - - - - - - - - -
+   Micro              2D  Edit-B  Edit-A         Upper      Lower      Width
+   1-544               1       1    1         20.00000    0.00000   20.00000   MeV
+ 545-586               2       2    2          0.62500    0.00001    0.62499    eV
+
+ Iteration Parameters
+ --------------------
+ Micro-group calculation =  1.00000E-04   200
+
+ Nuclide number densities (Identical compositions are not repeated)
+   (Composition name, Material number, and Macro-region number)
+ FUE   1   1  U-235 = 5.53175E+20  U-234 = 5.03300E+18  U-238 = 2.22067E+22  O-FUE = 4.55298E+22
+ COO  40   1  H     = 4.94667E+22  O-H2O = 2.47358E+22  B     = 4.01735E+19
+ CAN  42   1  Sn    = 4.79050E+20  Fe    = 1.47482E+20  Cr    = 7.54278E+19  Zr90ST= 2.17027E+22
+              Zr91ST= 4.73284E+21  Zr92ST= 7.23423E+21  Zr94ST= 7.33125E+21  Zr96ST= 1.18110E+21
+              O-STR = 3.06491E+20
+ HEL  44   1  He-4  = 1.50456E+20
+
+ Dancoff factor map for resonance group:  1 (Library Group: 129) ( 9.1188E+03 eV -- 8.0473E+03 eV )
+   ---  0.714 0.714  ---  0.714 0.714  ---  0.714 0.673
+  0.714 0.703 0.703 0.714 0.703 0.703 0.714 0.703 0.673
+  0.714 0.703 0.703 0.714 0.703 0.703 0.714 0.703 0.673
+   ---  0.714 0.714  ---  0.714 0.714  ---  0.714 0.673
+  0.714 0.703 0.703 0.714 0.732 0.743 0.743 0.703 0.673
+  0.714 0.703 0.703 0.714 0.743  ---  0.714 0.673 0.673
+   ---  0.714 0.714  ---  0.743 0.714 0.703 0.673 0.673
+  0.714 0.703 0.703 0.714 0.703 0.673 0.673 0.673 0.673
+  0.673 0.673 0.673 0.673 0.673 0.673 0.673 0.673 0.673
+
+ K-inf from the micro group calculations = 1.14451 (Average pin cell)   
+   (Spectra calculation number 1- 3)     = 1.14416 1.13490 1.13490
+
+ Mesh for 2D transport calc
+ --------------------------
+                                              West  South  East North Inner  Box CR(NW) CR(SE)
+ Micro meshes for the gap regions   . . . =     0     0     0     0     0     0     0     0
+ Micro meshes in COO regions (BA and absorber rods) = 3
+ Micro meshes in COO regions (regular fuel pins   ) = 3
+
+ Iteration parameters for 2D transport calc
+ ------------------------------------------
+ Max number outer iterations:          100
+ EPS eigenvalue:               1.00000E-05
+ EPS flux:                     1.00000E-04
+ MoC source option:                   Flat
+
+ KRMXSN DEBUG EDIT OF 2D CROSS SECTIONS (BY XS TYPE)
+ REG.       GROUPS---->1 TO   2
+    1 SIGA   2.7695E-02  2.1802E-01
+    2 SIGA   0.0000E+00  0.0000E+00
+    3 SIGA   1.6550E-03  4.8500E-03
+    4 SIGA   6.8852E-04  2.5670E-02
+    5 SIGA   6.9290E-04  2.5834E-02
+    6 SIGA   6.9433E-04  2.5921E-02
+    7 SIGA   2.7695E-02  2.1802E-01
+    8 SIGA   0.0000E+00  0.0000E+00
+    9 SIGA   1.6550E-03  4.8500E-03
+   10 SIGA   6.8852E-04  2.5670E-02
+   11 SIGA   6.9290E-04  2.5834E-02
+   12 SIGA   6.9433E-04  2.5921E-02
+   13 SIGA   2.7695E-02  2.1802E-01
+   14 SIGA   0.0000E+00  0.0000E+00
+   15 SIGA   1.6550E-03  4.8500E-03
+   16 SIGA   6.8852E-04  2.5670E-02
+   17 SIGA   6.9290E-04  2.5834E-02
+   18 SIGA   6.9433E-04  2.5921E-02
+   19 SIGA   2.7695E-02  2.1802E-01
+   20 SIGA   0.0000E+00  0.0000E+00
+   21 SIGA   1.6550E-03  4.8500E-03
+   22 SIGA   6.8852E-04  2.5670E-02
+   23 SIGA   6.9290E-04  2.5834E-02
+   24 SIGA   6.9433E-04  2.5921E-02
+   25 SIGA   2.7695E-02  2.1802E-01
+   26 SIGA   0.0000E+00  0.0000E+00
+   27 SIGA   1.6550E-03  4.8500E-03
+   28 SIGA   6.8852E-04  2.5670E-02
+   29 SIGA   6.9290E-04  2.5834E-02
+   30 SIGA   6.9433E-04  2.5921E-02
+   31 SIGA   2.7695E-02  2.1802E-01
+   32 SIGA   0.0000E+00  0.0000E+00
+   33 SIGA   1.6550E-03  4.8500E-03
+   34 SIGA   6.8852E-04  2.5670E-02
+   35 SIGA   6.9290E-04  2.5834E-02
+   36 SIGA   6.9433E-04  2.5921E-02
+   37 SIGA   2.7695E-02  2.1802E-01
+   38 SIGA   0.0000E+00  0.0000E+00
+   39 SIGA   1.6550E-03  4.8500E-03
+   40 SIGA   6.8852E-04  2.5670E-02
+   41 SIGA   6.9290E-04  2.5834E-02
+   42 SIGA   6.9433E-04  2.5921E-02
+   43 SIGA   2.7695E-02  2.1802E-01
+   44 SIGA   0.0000E+00  0.0000E+00
+   45 SIGA   1.6550E-03  4.8500E-03
+   46 SIGA   6.8852E-04  2.5670E-02
+   47 SIGA   6.9290E-04  2.5834E-02
+   48 SIGA   6.9433E-04  2.5921E-02
+   49 SIGA   2.7695E-02  2.1802E-01
+   50 SIGA   0.0000E+00  0.0000E+00
+   51 SIGA   1.6550E-03  4.8500E-03
+   52 SIGA   6.8852E-04  2.5670E-02
+   53 SIGA   6.9290E-04  2.5834E-02
+   54 SIGA   6.9433E-04  2.5921E-02
+   55 SIGA   2.7913E-02  2.1802E-01
+   56 SIGA   0.0000E+00  0.0000E+00
+   57 SIGA   1.6550E-03  4.8500E-03
+   58 SIGA   6.8852E-04  2.5670E-02
+   59 SIGA   6.9290E-04  2.5834E-02
+   60 SIGA   6.9433E-04  2.5921E-02
+   61 SIGA   2.7854E-02  2.1802E-01
+   62 SIGA   0.0000E+00  0.0000E+00
+   63 SIGA   1.6550E-03  4.8500E-03
+   64 SIGA   6.8852E-04  2.5670E-02
+   65 SIGA   6.9290E-04  2.5834E-02
+   66 SIGA   6.9433E-04  2.5921E-02
+   67 SIGA   2.7854E-02  2.1802E-01
+   68 SIGA   0.0000E+00  0.0000E+00
+   69 SIGA   1.6550E-03  4.8500E-03
+   70 SIGA   6.8852E-04  2.5670E-02
+   71 SIGA   6.9290E-04  2.5834E-02
+   72 SIGA   6.9433E-04  2.5921E-02
+   73 SIGA   2.7913E-02  2.1802E-01
+   74 SIGA   0.0000E+00  0.0000E+00
+   75 SIGA   1.6550E-03  4.8500E-03
+   76 SIGA   6.8852E-04  2.5670E-02
+   77 SIGA   6.9290E-04  2.5834E-02
+   78 SIGA   6.9433E-04  2.5921E-02
+   79 SIGA   2.7854E-02  2.1802E-01
+   80 SIGA   0.0000E+00  0.0000E+00
+   81 SIGA   1.6550E-03  4.8500E-03
+   82 SIGA   6.8852E-04  2.5670E-02
+   83 SIGA   6.9290E-04  2.5834E-02
+   84 SIGA   6.9433E-04  2.5921E-02
+   85 SIGA   2.7695E-02  2.1802E-01
+   86 SIGA   0.0000E+00  0.0000E+00
+   87 SIGA   1.6550E-03  4.8500E-03
+   88 SIGA   6.8852E-04  2.5670E-02
+   89 SIGA   6.9290E-04  2.5834E-02
+   90 SIGA   6.9433E-04  2.5921E-02
+   91 SIGA   2.7695E-02  2.1802E-01
+   92 SIGA   0.0000E+00  0.0000E+00
+   93 SIGA   1.6550E-03  4.8500E-03
+   94 SIGA   6.8852E-04  2.5670E-02
+   95 SIGA   6.9290E-04  2.5834E-02
+   96 SIGA   6.9433E-04  2.5921E-02
+   97 SIGA   2.7695E-02  2.1802E-01
+   98 SIGA   0.0000E+00  0.0000E+00
+   99 SIGA   1.6550E-03  4.8500E-03
+  100 SIGA   6.8852E-04  2.5670E-02
+  101 SIGA   6.9290E-04  2.5834E-02
+  102 SIGA   6.9433E-04  2.5921E-02
+  103 SIGA   7.2623E-04  2.6584E-02
+  104 SIGA   1.8465E-03  5.0263E-03
+  105 SIGA   7.1755E-04  2.6440E-02
+  106 SIGA   7.1669E-04  2.6401E-02
+  107 SIGA   7.1413E-04  2.6314E-02
+  108 SIGA   2.7913E-02  2.1802E-01
+  109 SIGA   0.0000E+00  0.0000E+00
+  110 SIGA   1.6550E-03  4.8500E-03
+  111 SIGA   6.8852E-04  2.5670E-02
+  112 SIGA   6.9290E-04  2.5834E-02
+  113 SIGA   6.9433E-04  2.5921E-02
+  114 SIGA   2.7913E-02  2.1802E-01
+  115 SIGA   0.0000E+00  0.0000E+00
+  116 SIGA   1.6550E-03  4.8500E-03
+  117 SIGA   6.8852E-04  2.5670E-02
+  118 SIGA   6.9290E-04  2.5834E-02
+  119 SIGA   6.9433E-04  2.5921E-02
+  120 SIGA   7.2623E-04  2.6584E-02
+  121 SIGA   1.8465E-03  5.0263E-03
+  122 SIGA   7.1755E-04  2.6440E-02
+  123 SIGA   7.1669E-04  2.6401E-02
+  124 SIGA   7.1413E-04  2.6314E-02
+  125 SIGA   2.8067E-02  2.1802E-01
+  126 SIGA   0.0000E+00  0.0000E+00
+  127 SIGA   1.6550E-03  4.8500E-03
+  128 SIGA   6.8852E-04  2.5670E-02
+  129 SIGA   6.9290E-04  2.5834E-02
+  130 SIGA   6.9433E-04  2.5921E-02
+  131 SIGA   2.7913E-02  2.1802E-01
+  132 SIGA   0.0000E+00  0.0000E+00
+  133 SIGA   1.6550E-03  4.8500E-03
+  134 SIGA   6.8852E-04  2.5670E-02
+  135 SIGA   6.9290E-04  2.5834E-02
+  136 SIGA   6.9433E-04  2.5921E-02
+  137 SIGA   2.7854E-02  2.1802E-01
+  138 SIGA   0.0000E+00  0.0000E+00
+  139 SIGA   1.6550E-03  4.8500E-03
+  140 SIGA   6.8852E-04  2.5670E-02
+  141 SIGA   6.9290E-04  2.5834E-02
+  142 SIGA   6.9433E-04  2.5921E-02
+  143 SIGA   2.7913E-02  2.1802E-01
+  144 SIGA   0.0000E+00  0.0000E+00
+  145 SIGA   1.6550E-03  4.8500E-03
+  146 SIGA   6.8852E-04  2.5670E-02
+  147 SIGA   6.9290E-04  2.5834E-02
+  148 SIGA   6.9433E-04  2.5921E-02
+  149 SIGA   2.7854E-02  2.1802E-01
+  150 SIGA   0.0000E+00  0.0000E+00
+  151 SIGA   1.6550E-03  4.8500E-03
+  152 SIGA   6.8852E-04  2.5670E-02
+  153 SIGA   6.9290E-04  2.5834E-02
+  154 SIGA   6.9433E-04  2.5921E-02
+  155 SIGA   2.7854E-02  2.1802E-01
+  156 SIGA   0.0000E+00  0.0000E+00
+  157 SIGA   1.6550E-03  4.8500E-03
+  158 SIGA   6.8852E-04  2.5670E-02
+  159 SIGA   6.9290E-04  2.5834E-02
+  160 SIGA   6.9433E-04  2.5921E-02
+  161 SIGA   2.7913E-02  2.1802E-01
+  162 SIGA   0.0000E+00  0.0000E+00
+  163 SIGA   1.6550E-03  4.8500E-03
+  164 SIGA   6.8852E-04  2.5670E-02
+  165 SIGA   6.9290E-04  2.5834E-02
+  166 SIGA   6.9433E-04  2.5921E-02
+  167 SIGA   2.8067E-02  2.1802E-01
+  168 SIGA   0.0000E+00  0.0000E+00
+  169 SIGA   1.6550E-03  4.8500E-03
+  170 SIGA   6.8852E-04  2.5670E-02
+  171 SIGA   6.9290E-04  2.5834E-02
+  172 SIGA   6.9433E-04  2.5921E-02
+  173 SIGA   7.2623E-04  2.6584E-02
+  174 SIGA   1.8465E-03  5.0263E-03
+  175 SIGA   7.1755E-04  2.6440E-02
+  176 SIGA   7.1669E-04  2.6401E-02
+  177 SIGA   7.1413E-04  2.6314E-02
+  178 SIGA   2.7913E-02  2.1802E-01
+  179 SIGA   0.0000E+00  0.0000E+00
+  180 SIGA   1.6550E-03  4.8500E-03
+  181 SIGA   6.8852E-04  2.5670E-02
+  182 SIGA   6.9290E-04  2.5834E-02
+  183 SIGA   6.9433E-04  2.5921E-02
+  184 SIGA   2.7854E-02  2.1802E-01
+  185 SIGA   0.0000E+00  0.0000E+00
+  186 SIGA   1.6550E-03  4.8500E-03
+  187 SIGA   6.8852E-04  2.5670E-02
+  188 SIGA   6.9290E-04  2.5834E-02
+  189 SIGA   6.9433E-04  2.5921E-02
+  190 SIGA   2.7854E-02  2.1802E-01
+  191 SIGA   0.0000E+00  0.0000E+00
+  192 SIGA   1.6550E-03  4.8500E-03
+  193 SIGA   6.8852E-04  2.5670E-02
+  194 SIGA   6.9290E-04  2.5834E-02
+  195 SIGA   6.9433E-04  2.5921E-02
+  196 SIGA   2.7913E-02  2.1802E-01
+  197 SIGA   0.0000E+00  0.0000E+00
+  198 SIGA   1.6550E-03  4.8500E-03
+  199 SIGA   6.8852E-04  2.5670E-02
+  200 SIGA   6.9290E-04  2.5834E-02
+  201 SIGA   6.9433E-04  2.5921E-02
+  202 SIGA   2.8009E-02  2.1802E-01
+  203 SIGA   0.0000E+00  0.0000E+00
+  204 SIGA   1.6550E-03  4.8500E-03
+  205 SIGA   6.8852E-04  2.5670E-02
+  206 SIGA   6.9290E-04  2.5834E-02
+  207 SIGA   6.9433E-04  2.5921E-02
+  208 SIGA   7.2623E-04  2.6584E-02
+  209 SIGA   1.8465E-03  5.0263E-03
+  210 SIGA   7.1755E-04  2.6440E-02
+  211 SIGA   7.1669E-04  2.6401E-02
+  212 SIGA   7.1413E-04  2.6314E-02
+  213 SIGA   2.7913E-02  2.1802E-01
+  214 SIGA   0.0000E+00  0.0000E+00
+  215 SIGA   1.6550E-03  4.8500E-03
+  216 SIGA   6.8852E-04  2.5670E-02
+  217 SIGA   6.9290E-04  2.5834E-02
+  218 SIGA   6.9433E-04  2.5921E-02
+  219 SIGA   2.7913E-02  2.1802E-01
+  220 SIGA   0.0000E+00  0.0000E+00
+  221 SIGA   1.6550E-03  4.8500E-03
+  222 SIGA   6.8852E-04  2.5670E-02
+  223 SIGA   6.9290E-04  2.5834E-02
+  224 SIGA   6.9433E-04  2.5921E-02
+  225 SIGA   7.2623E-04  2.6584E-02
+  226 SIGA   1.8465E-03  5.0263E-03
+  227 SIGA   7.1755E-04  2.6440E-02
+  228 SIGA   7.1669E-04  2.6401E-02
+  229 SIGA   7.1413E-04  2.6314E-02
+  230 SIGA   2.7913E-02  2.1802E-01
+  231 SIGA   0.0000E+00  0.0000E+00
+  232 SIGA   1.6550E-03  4.8500E-03
+  233 SIGA   6.8852E-04  2.5670E-02
+  234 SIGA   6.9290E-04  2.5834E-02
+  235 SIGA   6.9433E-04  2.5921E-02
+  236 SIGA   2.7854E-02  2.1802E-01
+  237 SIGA   0.0000E+00  0.0000E+00
+  238 SIGA   1.6550E-03  4.8500E-03
+  239 SIGA   6.8852E-04  2.5670E-02
+  240 SIGA   6.9290E-04  2.5834E-02
+  241 SIGA   6.9433E-04  2.5921E-02
+  242 SIGA   2.7854E-02  2.1802E-01
+  243 SIGA   0.0000E+00  0.0000E+00
+  244 SIGA   1.6550E-03  4.8500E-03
+  245 SIGA   6.8852E-04  2.5670E-02
+  246 SIGA   6.9290E-04  2.5834E-02
+  247 SIGA   6.9433E-04  2.5921E-02
+  248 SIGA   2.7913E-02  2.1802E-01
+  249 SIGA   0.0000E+00  0.0000E+00
+  250 SIGA   1.6550E-03  4.8500E-03
+  251 SIGA   6.8852E-04  2.5670E-02
+  252 SIGA   6.9290E-04  2.5834E-02
+  253 SIGA   6.9433E-04  2.5921E-02
+  254 SIGA   2.7854E-02  2.1802E-01
+  255 SIGA   0.0000E+00  0.0000E+00
+  256 SIGA   1.6550E-03  4.8500E-03
+  257 SIGA   6.8852E-04  2.5670E-02
+  258 SIGA   6.9290E-04  2.5834E-02
+  259 SIGA   6.9433E-04  2.5921E-02
+  260 SIGA   7.2623E-04  2.6584E-02
+  261 SIGA   1.8465E-03  5.0263E-03
+  262 SIGA   7.1755E-04  2.6440E-02
+  263 SIGA   7.1669E-04  2.6401E-02
+  264 SIGA   7.1413E-04  2.6314E-02
+
+ REG.       GROUPS---->1 TO   2
+    1 SIGD   1.1105E+00  5.7315E-01
+    2 SIGD   2.0761E+03  3.1542E+03
+    3 SIGD   1.4798E+00  1.1233E+00
+    4 SIGD   1.6437E+00  3.0233E-01
+    5 SIGD   1.6399E+00  3.0128E-01
+    6 SIGD   1.6388E+00  3.0073E-01
+    7 SIGD   1.1105E+00  5.7315E-01
+    8 SIGD   2.0761E+03  3.1542E+03
+    9 SIGD   1.4798E+00  1.1233E+00
+   10 SIGD   1.6437E+00  3.0233E-01
+   11 SIGD   1.6399E+00  3.0128E-01
+   12 SIGD   1.6388E+00  3.0073E-01
+   13 SIGD   1.1105E+00  5.7315E-01
+   14 SIGD   2.0761E+03  3.1542E+03
+   15 SIGD   1.4798E+00  1.1233E+00
+   16 SIGD   1.6437E+00  3.0233E-01
+   17 SIGD   1.6399E+00  3.0128E-01
+   18 SIGD   1.6388E+00  3.0073E-01
+   19 SIGD   1.1105E+00  5.7315E-01
+   20 SIGD   2.0761E+03  3.1542E+03
+   21 SIGD   1.4798E+00  1.1233E+00
+   22 SIGD   1.6437E+00  3.0233E-01
+   23 SIGD   1.6399E+00  3.0128E-01
+   24 SIGD   1.6388E+00  3.0073E-01
+   25 SIGD   1.1105E+00  5.7315E-01
+   26 SIGD   2.0761E+03  3.1542E+03
+   27 SIGD   1.4798E+00  1.1233E+00
+   28 SIGD   1.6437E+00  3.0233E-01
+   29 SIGD   1.6399E+00  3.0128E-01
+   30 SIGD   1.6388E+00  3.0073E-01
+   31 SIGD   1.1105E+00  5.7315E-01
+   32 SIGD   2.0761E+03  3.1542E+03
+   33 SIGD   1.4798E+00  1.1233E+00
+   34 SIGD   1.6437E+00  3.0233E-01
+   35 SIGD   1.6399E+00  3.0128E-01
+   36 SIGD   1.6388E+00  3.0073E-01
+   37 SIGD   1.1105E+00  5.7315E-01
+   38 SIGD   2.0761E+03  3.1542E+03
+   39 SIGD   1.4798E+00  1.1233E+00
+   40 SIGD   1.6437E+00  3.0233E-01
+   41 SIGD   1.6399E+00  3.0128E-01
+   42 SIGD   1.6388E+00  3.0073E-01
+   43 SIGD   1.1105E+00  5.7315E-01
+   44 SIGD   2.0761E+03  3.1542E+03
+   45 SIGD   1.4798E+00  1.1233E+00
+   46 SIGD   1.6437E+00  3.0233E-01
+   47 SIGD   1.6399E+00  3.0128E-01
+   48 SIGD   1.6388E+00  3.0073E-01
+   49 SIGD   1.1105E+00  5.7315E-01
+   50 SIGD   2.0761E+03  3.1542E+03
+   51 SIGD   1.4798E+00  1.1233E+00
+   52 SIGD   1.6437E+00  3.0233E-01
+   53 SIGD   1.6399E+00  3.0128E-01
+   54 SIGD   1.6388E+00  3.0073E-01
+   55 SIGD   1.1103E+00  5.7315E-01
+   56 SIGD   2.0761E+03  3.1542E+03
+   57 SIGD   1.4798E+00  1.1233E+00
+   58 SIGD   1.6437E+00  3.0233E-01
+   59 SIGD   1.6399E+00  3.0128E-01
+   60 SIGD   1.6388E+00  3.0073E-01
+   61 SIGD   1.1104E+00  5.7315E-01
+   62 SIGD   2.0761E+03  3.1542E+03
+   63 SIGD   1.4798E+00  1.1233E+00
+   64 SIGD   1.6437E+00  3.0233E-01
+   65 SIGD   1.6399E+00  3.0128E-01
+   66 SIGD   1.6388E+00  3.0073E-01
+   67 SIGD   1.1104E+00  5.7315E-01
+   68 SIGD   2.0761E+03  3.1542E+03
+   69 SIGD   1.4798E+00  1.1233E+00
+   70 SIGD   1.6437E+00  3.0233E-01
+   71 SIGD   1.6399E+00  3.0128E-01
+   72 SIGD   1.6388E+00  3.0073E-01
+   73 SIGD   1.1103E+00  5.7315E-01
+   74 SIGD   2.0761E+03  3.1542E+03
+   75 SIGD   1.4798E+00  1.1233E+00
+   76 SIGD   1.6437E+00  3.0233E-01
+   77 SIGD   1.6399E+00  3.0128E-01
+   78 SIGD   1.6388E+00  3.0073E-01
+   79 SIGD   1.1104E+00  5.7315E-01
+   80 SIGD   2.0761E+03  3.1542E+03
+   81 SIGD   1.4798E+00  1.1233E+00
+   82 SIGD   1.6437E+00  3.0233E-01
+   83 SIGD   1.6399E+00  3.0128E-01
+   84 SIGD   1.6388E+00  3.0073E-01
+   85 SIGD   1.1105E+00  5.7315E-01
+   86 SIGD   2.0761E+03  3.1542E+03
+   87 SIGD   1.4798E+00  1.1233E+00
+   88 SIGD   1.6437E+00  3.0233E-01
+   89 SIGD   1.6399E+00  3.0128E-01
+   90 SIGD   1.6388E+00  3.0073E-01
+   91 SIGD   1.1105E+00  5.7315E-01
+   92 SIGD   2.0761E+03  3.1542E+03
+   93 SIGD   1.4798E+00  1.1233E+00
+   94 SIGD   1.6437E+00  3.0233E-01
+   95 SIGD   1.6399E+00  3.0128E-01
+   96 SIGD   1.6388E+00  3.0073E-01
+   97 SIGD   1.1105E+00  5.7315E-01
+   98 SIGD   2.0761E+03  3.1542E+03
+   99 SIGD   1.4798E+00  1.1233E+00
+  100 SIGD   1.6437E+00  3.0233E-01
+  101 SIGD   1.6399E+00  3.0128E-01
+  102 SIGD   1.6388E+00  3.0073E-01
+  103 SIGD   1.6333E+00  2.9352E-01
+  104 SIGD   1.4778E+00  1.1221E+00
+  105 SIGD   1.6403E+00  2.9468E-01
+  106 SIGD   1.6413E+00  2.9494E-01
+  107 SIGD   1.6437E+00  2.9553E-01
+  108 SIGD   1.1103E+00  5.7315E-01
+  109 SIGD   2.0761E+03  3.1542E+03
+  110 SIGD   1.4798E+00  1.1233E+00
+  111 SIGD   1.6437E+00  3.0233E-01
+  112 SIGD   1.6399E+00  3.0128E-01
+  113 SIGD   1.6388E+00  3.0073E-01
+  114 SIGD   1.1103E+00  5.7315E-01
+  115 SIGD   2.0761E+03  3.1542E+03
+  116 SIGD   1.4798E+00  1.1233E+00
+  117 SIGD   1.6437E+00  3.0233E-01
+  118 SIGD   1.6399E+00  3.0128E-01
+  119 SIGD   1.6388E+00  3.0073E-01
+  120 SIGD   1.6333E+00  2.9352E-01
+  121 SIGD   1.4778E+00  1.1221E+00
+  122 SIGD   1.6403E+00  2.9468E-01
+  123 SIGD   1.6413E+00  2.9494E-01
+  124 SIGD   1.6437E+00  2.9553E-01
+  125 SIGD   1.1102E+00  5.7315E-01
+  126 SIGD   2.0761E+03  3.1542E+03
+  127 SIGD   1.4798E+00  1.1233E+00
+  128 SIGD   1.6437E+00  3.0233E-01
+  129 SIGD   1.6399E+00  3.0128E-01
+  130 SIGD   1.6388E+00  3.0073E-01
+  131 SIGD   1.1103E+00  5.7315E-01
+  132 SIGD   2.0761E+03  3.1542E+03
+  133 SIGD   1.4798E+00  1.1233E+00
+  134 SIGD   1.6437E+00  3.0233E-01
+  135 SIGD   1.6399E+00  3.0128E-01
+  136 SIGD   1.6388E+00  3.0073E-01
+  137 SIGD   1.1104E+00  5.7315E-01
+  138 SIGD   2.0761E+03  3.1542E+03
+  139 SIGD   1.4798E+00  1.1233E+00
+  140 SIGD   1.6437E+00  3.0233E-01
+  141 SIGD   1.6399E+00  3.0128E-01
+  142 SIGD   1.6388E+00  3.0073E-01
+  143 SIGD   1.1103E+00  5.7315E-01
+  144 SIGD   2.0761E+03  3.1542E+03
+  145 SIGD   1.4798E+00  1.1233E+00
+  146 SIGD   1.6437E+00  3.0233E-01
+  147 SIGD   1.6399E+00  3.0128E-01
+  148 SIGD   1.6388E+00  3.0073E-01
+  149 SIGD   1.1104E+00  5.7315E-01
+  150 SIGD   2.0761E+03  3.1542E+03
+  151 SIGD   1.4798E+00  1.1233E+00
+  152 SIGD   1.6437E+00  3.0233E-01
+  153 SIGD   1.6399E+00  3.0128E-01
+  154 SIGD   1.6388E+00  3.0073E-01
+  155 SIGD   1.1104E+00  5.7315E-01
+  156 SIGD   2.0761E+03  3.1542E+03
+  157 SIGD   1.4798E+00  1.1233E+00
+  158 SIGD   1.6437E+00  3.0233E-01
+  159 SIGD   1.6399E+00  3.0128E-01
+  160 SIGD   1.6388E+00  3.0073E-01
+  161 SIGD   1.1103E+00  5.7315E-01
+  162 SIGD   2.0761E+03  3.1542E+03
+  163 SIGD   1.4798E+00  1.1233E+00
+  164 SIGD   1.6437E+00  3.0233E-01
+  165 SIGD   1.6399E+00  3.0128E-01
+  166 SIGD   1.6388E+00  3.0073E-01
+  167 SIGD   1.1102E+00  5.7315E-01
+  168 SIGD   2.0761E+03  3.1542E+03
+  169 SIGD   1.4798E+00  1.1233E+00
+  170 SIGD   1.6437E+00  3.0233E-01
+  171 SIGD   1.6399E+00  3.0128E-01
+  172 SIGD   1.6388E+00  3.0073E-01
+  173 SIGD   1.6333E+00  2.9352E-01
+  174 SIGD   1.4778E+00  1.1221E+00
+  175 SIGD   1.6403E+00  2.9468E-01
+  176 SIGD   1.6413E+00  2.9494E-01
+  177 SIGD   1.6437E+00  2.9553E-01
+  178 SIGD   1.1103E+00  5.7315E-01
+  179 SIGD   2.0761E+03  3.1542E+03
+  180 SIGD   1.4798E+00  1.1233E+00
+  181 SIGD   1.6437E+00  3.0233E-01
+  182 SIGD   1.6399E+00  3.0128E-01
+  183 SIGD   1.6388E+00  3.0073E-01
+  184 SIGD   1.1104E+00  5.7315E-01
+  185 SIGD   2.0761E+03  3.1542E+03
+  186 SIGD   1.4798E+00  1.1233E+00
+  187 SIGD   1.6437E+00  3.0233E-01
+  188 SIGD   1.6399E+00  3.0128E-01
+  189 SIGD   1.6388E+00  3.0073E-01
+  190 SIGD   1.1104E+00  5.7315E-01
+  191 SIGD   2.0761E+03  3.1542E+03
+  192 SIGD   1.4798E+00  1.1233E+00
+  193 SIGD   1.6437E+00  3.0233E-01
+  194 SIGD   1.6399E+00  3.0128E-01
+  195 SIGD   1.6388E+00  3.0073E-01
+  196 SIGD   1.1103E+00  5.7315E-01
+  197 SIGD   2.0761E+03  3.1542E+03
+  198 SIGD   1.4798E+00  1.1233E+00
+  199 SIGD   1.6437E+00  3.0233E-01
+  200 SIGD   1.6399E+00  3.0128E-01
+  201 SIGD   1.6388E+00  3.0073E-01
+  202 SIGD   1.1102E+00  5.7315E-01
+  203 SIGD   2.0761E+03  3.1542E+03
+  204 SIGD   1.4798E+00  1.1233E+00
+  205 SIGD   1.6437E+00  3.0233E-01
+  206 SIGD   1.6399E+00  3.0128E-01
+  207 SIGD   1.6388E+00  3.0073E-01
+  208 SIGD   1.6333E+00  2.9352E-01
+  209 SIGD   1.4778E+00  1.1221E+00
+  210 SIGD   1.6403E+00  2.9468E-01
+  211 SIGD   1.6413E+00  2.9494E-01
+  212 SIGD   1.6437E+00  2.9553E-01
+  213 SIGD   1.1103E+00  5.7315E-01
+  214 SIGD   2.0761E+03  3.1542E+03
+  215 SIGD   1.4798E+00  1.1233E+00
+  216 SIGD   1.6437E+00  3.0233E-01
+  217 SIGD   1.6399E+00  3.0128E-01
+  218 SIGD   1.6388E+00  3.0073E-01
+  219 SIGD   1.1103E+00  5.7315E-01
+  220 SIGD   2.0761E+03  3.1542E+03
+  221 SIGD   1.4798E+00  1.1233E+00
+  222 SIGD   1.6437E+00  3.0233E-01
+  223 SIGD   1.6399E+00  3.0128E-01
+  224 SIGD   1.6388E+00  3.0073E-01
+  225 SIGD   1.6333E+00  2.9352E-01
+  226 SIGD   1.4778E+00  1.1221E+00
+  227 SIGD   1.6403E+00  2.9468E-01
+  228 SIGD   1.6413E+00  2.9494E-01
+  229 SIGD   1.6437E+00  2.9553E-01
+  230 SIGD   1.1103E+00  5.7315E-01
+  231 SIGD   2.0761E+03  3.1542E+03
+  232 SIGD   1.4798E+00  1.1233E+00
+  233 SIGD   1.6437E+00  3.0233E-01
+  234 SIGD   1.6399E+00  3.0128E-01
+  235 SIGD   1.6388E+00  3.0073E-01
+  236 SIGD   1.1104E+00  5.7315E-01
+  237 SIGD   2.0761E+03  3.1542E+03
+  238 SIGD   1.4798E+00  1.1233E+00
+  239 SIGD   1.6437E+00  3.0233E-01
+  240 SIGD   1.6399E+00  3.0128E-01
+  241 SIGD   1.6388E+00  3.0073E-01
+  242 SIGD   1.1104E+00  5.7315E-01
+  243 SIGD   2.0761E+03  3.1542E+03
+  244 SIGD   1.4798E+00  1.1233E+00
+  245 SIGD   1.6437E+00  3.0233E-01
+  246 SIGD   1.6399E+00  3.0128E-01
+  247 SIGD   1.6388E+00  3.0073E-01
+  248 SIGD   1.1103E+00  5.7315E-01
+  249 SIGD   2.0761E+03  3.1542E+03
+  250 SIGD   1.4798E+00  1.1233E+00
+  251 SIGD   1.6437E+00  3.0233E-01
+  252 SIGD   1.6399E+00  3.0128E-01
+  253 SIGD   1.6388E+00  3.0073E-01
+  254 SIGD   1.1104E+00  5.7315E-01
+  255 SIGD   2.0761E+03  3.1542E+03
+  256 SIGD   1.4798E+00  1.1233E+00
+  257 SIGD   1.6437E+00  3.0233E-01
+  258 SIGD   1.6399E+00  3.0128E-01
+  259 SIGD   1.6388E+00  3.0073E-01
+  260 SIGD   1.6333E+00  2.9352E-01
+  261 SIGD   1.4778E+00  1.1221E+00
+  262 SIGD   1.6403E+00  2.9468E-01
+  263 SIGD   1.6413E+00  2.9494E-01
+  264 SIGD   1.6437E+00  2.9553E-01
+
+ REG.       GROUPS---->1 TO   2
+    1 SIGT   3.0015E-01  6.0408E-01
+    2 SIGT   1.6056E-04  1.0705E-04
+    3 SIGT   2.2526E-01  2.9686E-01
+    4 SIGT   2.0279E-01  1.3088E+00
+    5 SIGT   2.0326E-01  1.3164E+00
+    6 SIGT   2.0341E-01  1.3205E+00
+    7 SIGT   3.0015E-01  6.0408E-01
+    8 SIGT   1.6056E-04  1.0705E-04
+    9 SIGT   2.2526E-01  2.9686E-01
+   10 SIGT   2.0279E-01  1.3088E+00
+   11 SIGT   2.0326E-01  1.3164E+00
+   12 SIGT   2.0341E-01  1.3205E+00
+   13 SIGT   3.0015E-01  6.0408E-01
+   14 SIGT   1.6056E-04  1.0705E-04
+   15 SIGT   2.2526E-01  2.9686E-01
+   16 SIGT   2.0279E-01  1.3088E+00
+   17 SIGT   2.0326E-01  1.3164E+00
+   18 SIGT   2.0341E-01  1.3205E+00
+   19 SIGT   3.0015E-01  6.0408E-01
+   20 SIGT   1.6056E-04  1.0705E-04
+   21 SIGT   2.2526E-01  2.9686E-01
+   22 SIGT   2.0279E-01  1.3088E+00
+   23 SIGT   2.0326E-01  1.3164E+00
+   24 SIGT   2.0341E-01  1.3205E+00
+   25 SIGT   3.0015E-01  6.0408E-01
+   26 SIGT   1.6056E-04  1.0705E-04
+   27 SIGT   2.2526E-01  2.9686E-01
+   28 SIGT   2.0279E-01  1.3088E+00
+   29 SIGT   2.0326E-01  1.3164E+00
+   30 SIGT   2.0341E-01  1.3205E+00
+   31 SIGT   3.0015E-01  6.0408E-01
+   32 SIGT   1.6056E-04  1.0705E-04
+   33 SIGT   2.2526E-01  2.9686E-01
+   34 SIGT   2.0279E-01  1.3088E+00
+   35 SIGT   2.0326E-01  1.3164E+00
+   36 SIGT   2.0341E-01  1.3205E+00
+   37 SIGT   3.0015E-01  6.0408E-01
+   38 SIGT   1.6056E-04  1.0705E-04
+   39 SIGT   2.2526E-01  2.9686E-01
+   40 SIGT   2.0279E-01  1.3088E+00
+   41 SIGT   2.0326E-01  1.3164E+00
+   42 SIGT   2.0341E-01  1.3205E+00
+   43 SIGT   3.0015E-01  6.0408E-01
+   44 SIGT   1.6056E-04  1.0705E-04
+   45 SIGT   2.2526E-01  2.9686E-01
+   46 SIGT   2.0279E-01  1.3088E+00
+   47 SIGT   2.0326E-01  1.3164E+00
+   48 SIGT   2.0341E-01  1.3205E+00
+   49 SIGT   3.0015E-01  6.0408E-01
+   50 SIGT   1.6056E-04  1.0705E-04
+   51 SIGT   2.2526E-01  2.9686E-01
+   52 SIGT   2.0279E-01  1.3088E+00
+   53 SIGT   2.0326E-01  1.3164E+00
+   54 SIGT   2.0341E-01  1.3205E+00
+   55 SIGT   3.0021E-01  6.0408E-01
+   56 SIGT   1.6056E-04  1.0705E-04
+   57 SIGT   2.2526E-01  2.9686E-01
+   58 SIGT   2.0279E-01  1.3088E+00
+   59 SIGT   2.0326E-01  1.3164E+00
+   60 SIGT   2.0341E-01  1.3205E+00
+   61 SIGT   3.0020E-01  6.0408E-01
+   62 SIGT   1.6056E-04  1.0705E-04
+   63 SIGT   2.2526E-01  2.9686E-01
+   64 SIGT   2.0279E-01  1.3088E+00
+   65 SIGT   2.0326E-01  1.3164E+00
+   66 SIGT   2.0341E-01  1.3205E+00
+   67 SIGT   3.0020E-01  6.0408E-01
+   68 SIGT   1.6056E-04  1.0705E-04
+   69 SIGT   2.2526E-01  2.9686E-01
+   70 SIGT   2.0279E-01  1.3088E+00
+   71 SIGT   2.0326E-01  1.3164E+00
+   72 SIGT   2.0341E-01  1.3205E+00
+   73 SIGT   3.0021E-01  6.0408E-01
+   74 SIGT   1.6056E-04  1.0705E-04
+   75 SIGT   2.2526E-01  2.9686E-01
+   76 SIGT   2.0279E-01  1.3088E+00
+   77 SIGT   2.0326E-01  1.3164E+00
+   78 SIGT   2.0341E-01  1.3205E+00
+   79 SIGT   3.0020E-01  6.0408E-01
+   80 SIGT   1.6056E-04  1.0705E-04
+   81 SIGT   2.2526E-01  2.9686E-01
+   82 SIGT   2.0279E-01  1.3088E+00
+   83 SIGT   2.0326E-01  1.3164E+00
+   84 SIGT   2.0341E-01  1.3205E+00
+   85 SIGT   3.0015E-01  6.0408E-01
+   86 SIGT   1.6056E-04  1.0705E-04
+   87 SIGT   2.2526E-01  2.9686E-01
+   88 SIGT   2.0279E-01  1.3088E+00
+   89 SIGT   2.0326E-01  1.3164E+00
+   90 SIGT   2.0341E-01  1.3205E+00
+   91 SIGT   3.0015E-01  6.0408E-01
+   92 SIGT   1.6056E-04  1.0705E-04
+   93 SIGT   2.2526E-01  2.9686E-01
+   94 SIGT   2.0279E-01  1.3088E+00
+   95 SIGT   2.0326E-01  1.3164E+00
+   96 SIGT   2.0341E-01  1.3205E+00
+   97 SIGT   3.0015E-01  6.0408E-01
+   98 SIGT   1.6056E-04  1.0705E-04
+   99 SIGT   2.2526E-01  2.9686E-01
+  100 SIGT   2.0279E-01  1.3088E+00
+  101 SIGT   2.0326E-01  1.3164E+00
+  102 SIGT   2.0341E-01  1.3205E+00
+  103 SIGT   2.0408E-01  1.3512E+00
+  104 SIGT   2.2556E-01  2.9721E-01
+  105 SIGT   2.0322E-01  1.3445E+00
+  106 SIGT   2.0310E-01  1.3427E+00
+  107 SIGT   2.0279E-01  1.3386E+00
+  108 SIGT   3.0021E-01  6.0408E-01
+  109 SIGT   1.6056E-04  1.0705E-04
+  110 SIGT   2.2526E-01  2.9686E-01
+  111 SIGT   2.0279E-01  1.3088E+00
+  112 SIGT   2.0326E-01  1.3164E+00
+  113 SIGT   2.0341E-01  1.3205E+00
+  114 SIGT   3.0021E-01  6.0408E-01
+  115 SIGT   1.6056E-04  1.0705E-04
+  116 SIGT   2.2526E-01  2.9686E-01
+  117 SIGT   2.0279E-01  1.3088E+00
+  118 SIGT   2.0326E-01  1.3164E+00
+  119 SIGT   2.0341E-01  1.3205E+00
+  120 SIGT   2.0408E-01  1.3512E+00
+  121 SIGT   2.2556E-01  2.9721E-01
+  122 SIGT   2.0322E-01  1.3445E+00
+  123 SIGT   2.0310E-01  1.3427E+00
+  124 SIGT   2.0279E-01  1.3386E+00
+  125 SIGT   3.0025E-01  6.0408E-01
+  126 SIGT   1.6056E-04  1.0705E-04
+  127 SIGT   2.2526E-01  2.9686E-01
+  128 SIGT   2.0279E-01  1.3088E+00
+  129 SIGT   2.0326E-01  1.3164E+00
+  130 SIGT   2.0341E-01  1.3205E+00
+  131 SIGT   3.0021E-01  6.0408E-01
+  132 SIGT   1.6056E-04  1.0705E-04
+  133 SIGT   2.2526E-01  2.9686E-01
+  134 SIGT   2.0279E-01  1.3088E+00
+  135 SIGT   2.0326E-01  1.3164E+00
+  136 SIGT   2.0341E-01  1.3205E+00
+  137 SIGT   3.0020E-01  6.0408E-01
+  138 SIGT   1.6056E-04  1.0705E-04
+  139 SIGT   2.2526E-01  2.9686E-01
+  140 SIGT   2.0279E-01  1.3088E+00
+  141 SIGT   2.0326E-01  1.3164E+00
+  142 SIGT   2.0341E-01  1.3205E+00
+  143 SIGT   3.0021E-01  6.0408E-01
+  144 SIGT   1.6056E-04  1.0705E-04
+  145 SIGT   2.2526E-01  2.9686E-01
+  146 SIGT   2.0279E-01  1.3088E+00
+  147 SIGT   2.0326E-01  1.3164E+00
+  148 SIGT   2.0341E-01  1.3205E+00
+  149 SIGT   3.0020E-01  6.0408E-01
+  150 SIGT   1.6056E-04  1.0705E-04
+  151 SIGT   2.2526E-01  2.9686E-01
+  152 SIGT   2.0279E-01  1.3088E+00
+  153 SIGT   2.0326E-01  1.3164E+00
+  154 SIGT   2.0341E-01  1.3205E+00
+  155 SIGT   3.0020E-01  6.0408E-01
+  156 SIGT   1.6056E-04  1.0705E-04
+  157 SIGT   2.2526E-01  2.9686E-01
+  158 SIGT   2.0279E-01  1.3088E+00
+  159 SIGT   2.0326E-01  1.3164E+00
+  160 SIGT   2.0341E-01  1.3205E+00
+  161 SIGT   3.0021E-01  6.0408E-01
+  162 SIGT   1.6056E-04  1.0705E-04
+  163 SIGT   2.2526E-01  2.9686E-01
+  164 SIGT   2.0279E-01  1.3088E+00
+  165 SIGT   2.0326E-01  1.3164E+00
+  166 SIGT   2.0341E-01  1.3205E+00
+  167 SIGT   3.0025E-01  6.0408E-01
+  168 SIGT   1.6056E-04  1.0705E-04
+  169 SIGT   2.2526E-01  2.9686E-01
+  170 SIGT   2.0279E-01  1.3088E+00
+  171 SIGT   2.0326E-01  1.3164E+00
+  172 SIGT   2.0341E-01  1.3205E+00
+  173 SIGT   2.0408E-01  1.3512E+00
+  174 SIGT   2.2556E-01  2.9721E-01
+  175 SIGT   2.0322E-01  1.3445E+00
+  176 SIGT   2.0310E-01  1.3427E+00
+  177 SIGT   2.0279E-01  1.3386E+00
+  178 SIGT   3.0021E-01  6.0408E-01
+  179 SIGT   1.6056E-04  1.0705E-04
+  180 SIGT   2.2526E-01  2.9686E-01
+  181 SIGT   2.0279E-01  1.3088E+00
+  182 SIGT   2.0326E-01  1.3164E+00
+  183 SIGT   2.0341E-01  1.3205E+00
+  184 SIGT   3.0020E-01  6.0408E-01
+  185 SIGT   1.6056E-04  1.0705E-04
+  186 SIGT   2.2526E-01  2.9686E-01
+  187 SIGT   2.0279E-01  1.3088E+00
+  188 SIGT   2.0326E-01  1.3164E+00
+  189 SIGT   2.0341E-01  1.3205E+00
+  190 SIGT   3.0020E-01  6.0408E-01
+  191 SIGT   1.6056E-04  1.0705E-04
+  192 SIGT   2.2526E-01  2.9686E-01
+  193 SIGT   2.0279E-01  1.3088E+00
+  194 SIGT   2.0326E-01  1.3164E+00
+  195 SIGT   2.0341E-01  1.3205E+00
+  196 SIGT   3.0021E-01  6.0408E-01
+  197 SIGT   1.6056E-04  1.0705E-04
+  198 SIGT   2.2526E-01  2.9686E-01
+  199 SIGT   2.0279E-01  1.3088E+00
+  200 SIGT   2.0326E-01  1.3164E+00
+  201 SIGT   2.0341E-01  1.3205E+00
+  202 SIGT   3.0024E-01  6.0408E-01
+  203 SIGT   1.6056E-04  1.0705E-04
+  204 SIGT   2.2526E-01  2.9686E-01
+  205 SIGT   2.0279E-01  1.3088E+00
+  206 SIGT   2.0326E-01  1.3164E+00
+  207 SIGT   2.0341E-01  1.3205E+00
+  208 SIGT   2.0408E-01  1.3512E+00
+  209 SIGT   2.2556E-01  2.9721E-01
+  210 SIGT   2.0322E-01  1.3445E+00
+  211 SIGT   2.0310E-01  1.3427E+00
+  212 SIGT   2.0279E-01  1.3386E+00
+  213 SIGT   3.0021E-01  6.0408E-01
+  214 SIGT   1.6056E-04  1.0705E-04
+  215 SIGT   2.2526E-01  2.9686E-01
+  216 SIGT   2.0279E-01  1.3088E+00
+  217 SIGT   2.0326E-01  1.3164E+00
+  218 SIGT   2.0341E-01  1.3205E+00
+  219 SIGT   3.0021E-01  6.0408E-01
+  220 SIGT   1.6056E-04  1.0705E-04
+  221 SIGT   2.2526E-01  2.9686E-01
+  222 SIGT   2.0279E-01  1.3088E+00
+  223 SIGT   2.0326E-01  1.3164E+00
+  224 SIGT   2.0341E-01  1.3205E+00
+  225 SIGT   2.0408E-01  1.3512E+00
+  226 SIGT   2.2556E-01  2.9721E-01
+  227 SIGT   2.0322E-01  1.3445E+00
+  228 SIGT   2.0310E-01  1.3427E+00
+  229 SIGT   2.0279E-01  1.3386E+00
+  230 SIGT   3.0021E-01  6.0408E-01
+  231 SIGT   1.6056E-04  1.0705E-04
+  232 SIGT   2.2526E-01  2.9686E-01
+  233 SIGT   2.0279E-01  1.3088E+00
+  234 SIGT   2.0326E-01  1.3164E+00
+  235 SIGT   2.0341E-01  1.3205E+00
+  236 SIGT   3.0020E-01  6.0408E-01
+  237 SIGT   1.6056E-04  1.0705E-04
+  238 SIGT   2.2526E-01  2.9686E-01
+  239 SIGT   2.0279E-01  1.3088E+00
+  240 SIGT   2.0326E-01  1.3164E+00
+  241 SIGT   2.0341E-01  1.3205E+00
+  242 SIGT   3.0020E-01  6.0408E-01
+  243 SIGT   1.6056E-04  1.0705E-04
+  244 SIGT   2.2526E-01  2.9686E-01
+  245 SIGT   2.0279E-01  1.3088E+00
+  246 SIGT   2.0326E-01  1.3164E+00
+  247 SIGT   2.0341E-01  1.3205E+00
+  248 SIGT   3.0021E-01  6.0408E-01
+  249 SIGT   1.6056E-04  1.0705E-04
+  250 SIGT   2.2526E-01  2.9686E-01
+  251 SIGT   2.0279E-01  1.3088E+00
+  252 SIGT   2.0326E-01  1.3164E+00
+  253 SIGT   2.0341E-01  1.3205E+00
+  254 SIGT   3.0020E-01  6.0408E-01
+  255 SIGT   1.6056E-04  1.0705E-04
+  256 SIGT   2.2526E-01  2.9686E-01
+  257 SIGT   2.0279E-01  1.3088E+00
+  258 SIGT   2.0326E-01  1.3164E+00
+  259 SIGT   2.0341E-01  1.3205E+00
+  260 SIGT   2.0408E-01  1.3512E+00
+  261 SIGT   2.2556E-01  2.9721E-01
+  262 SIGT   2.0322E-01  1.3445E+00
+  263 SIGT   2.0310E-01  1.3427E+00
+  264 SIGT   2.0279E-01  1.3386E+00
+
+ REG.       GROUPS---->1 TO   2
+    1 SIGF   7.3536E-03  1.5780E-01
+    2 SIGF   0.0000E+00  0.0000E+00
+    3 SIGF   0.0000E+00  0.0000E+00
+    4 SIGF   0.0000E+00  0.0000E+00
+    5 SIGF   0.0000E+00  0.0000E+00
+    6 SIGF   0.0000E+00  0.0000E+00
+    7 SIGF   7.3536E-03  1.5780E-01
+    8 SIGF   0.0000E+00  0.0000E+00
+    9 SIGF   0.0000E+00  0.0000E+00
+   10 SIGF   0.0000E+00  0.0000E+00
+   11 SIGF   0.0000E+00  0.0000E+00
+   12 SIGF   0.0000E+00  0.0000E+00
+   13 SIGF   7.3536E-03  1.5780E-01
+   14 SIGF   0.0000E+00  0.0000E+00
+   15 SIGF   0.0000E+00  0.0000E+00
+   16 SIGF   0.0000E+00  0.0000E+00
+   17 SIGF   0.0000E+00  0.0000E+00
+   18 SIGF   0.0000E+00  0.0000E+00
+   19 SIGF   7.3536E-03  1.5780E-01
+   20 SIGF   0.0000E+00  0.0000E+00
+   21 SIGF   0.0000E+00  0.0000E+00
+   22 SIGF   0.0000E+00  0.0000E+00
+   23 SIGF   0.0000E+00  0.0000E+00
+   24 SIGF   0.0000E+00  0.0000E+00
+   25 SIGF   7.3536E-03  1.5780E-01
+   26 SIGF   0.0000E+00  0.0000E+00
+   27 SIGF   0.0000E+00  0.0000E+00
+   28 SIGF   0.0000E+00  0.0000E+00
+   29 SIGF   0.0000E+00  0.0000E+00
+   30 SIGF   0.0000E+00  0.0000E+00
+   31 SIGF   7.3536E-03  1.5780E-01
+   32 SIGF   0.0000E+00  0.0000E+00
+   33 SIGF   0.0000E+00  0.0000E+00
+   34 SIGF   0.0000E+00  0.0000E+00
+   35 SIGF   0.0000E+00  0.0000E+00
+   36 SIGF   0.0000E+00  0.0000E+00
+   37 SIGF   7.3536E-03  1.5780E-01
+   38 SIGF   0.0000E+00  0.0000E+00
+   39 SIGF   0.0000E+00  0.0000E+00
+   40 SIGF   0.0000E+00  0.0000E+00
+   41 SIGF   0.0000E+00  0.0000E+00
+   42 SIGF   0.0000E+00  0.0000E+00
+   43 SIGF   7.3536E-03  1.5780E-01
+   44 SIGF   0.0000E+00  0.0000E+00
+   45 SIGF   0.0000E+00  0.0000E+00
+   46 SIGF   0.0000E+00  0.0000E+00
+   47 SIGF   0.0000E+00  0.0000E+00
+   48 SIGF   0.0000E+00  0.0000E+00
+   49 SIGF   7.3536E-03  1.5780E-01
+   50 SIGF   0.0000E+00  0.0000E+00
+   51 SIGF   0.0000E+00  0.0000E+00
+   52 SIGF   0.0000E+00  0.0000E+00
+   53 SIGF   0.0000E+00  0.0000E+00
+   54 SIGF   0.0000E+00  0.0000E+00
+   55 SIGF   7.3593E-03  1.5780E-01
+   56 SIGF   0.0000E+00  0.0000E+00
+   57 SIGF   0.0000E+00  0.0000E+00
+   58 SIGF   0.0000E+00  0.0000E+00
+   59 SIGF   0.0000E+00  0.0000E+00
+   60 SIGF   0.0000E+00  0.0000E+00
+   61 SIGF   7.3578E-03  1.5780E-01
+   62 SIGF   0.0000E+00  0.0000E+00
+   63 SIGF   0.0000E+00  0.0000E+00
+   64 SIGF   0.0000E+00  0.0000E+00
+   65 SIGF   0.0000E+00  0.0000E+00
+   66 SIGF   0.0000E+00  0.0000E+00
+   67 SIGF   7.3578E-03  1.5780E-01
+   68 SIGF   0.0000E+00  0.0000E+00
+   69 SIGF   0.0000E+00  0.0000E+00
+   70 SIGF   0.0000E+00  0.0000E+00
+   71 SIGF   0.0000E+00  0.0000E+00
+   72 SIGF   0.0000E+00  0.0000E+00
+   73 SIGF   7.3593E-03  1.5780E-01
+   74 SIGF   0.0000E+00  0.0000E+00
+   75 SIGF   0.0000E+00  0.0000E+00
+   76 SIGF   0.0000E+00  0.0000E+00
+   77 SIGF   0.0000E+00  0.0000E+00
+   78 SIGF   0.0000E+00  0.0000E+00
+   79 SIGF   7.3578E-03  1.5780E-01
+   80 SIGF   0.0000E+00  0.0000E+00
+   81 SIGF   0.0000E+00  0.0000E+00
+   82 SIGF   0.0000E+00  0.0000E+00
+   83 SIGF   0.0000E+00  0.0000E+00
+   84 SIGF   0.0000E+00  0.0000E+00
+   85 SIGF   7.3536E-03  1.5780E-01
+   86 SIGF   0.0000E+00  0.0000E+00
+   87 SIGF   0.0000E+00  0.0000E+00
+   88 SIGF   0.0000E+00  0.0000E+00
+   89 SIGF   0.0000E+00  0.0000E+00
+   90 SIGF   0.0000E+00  0.0000E+00
+   91 SIGF   7.3536E-03  1.5780E-01
+   92 SIGF   0.0000E+00  0.0000E+00
+   93 SIGF   0.0000E+00  0.0000E+00
+   94 SIGF   0.0000E+00  0.0000E+00
+   95 SIGF   0.0000E+00  0.0000E+00
+   96 SIGF   0.0000E+00  0.0000E+00
+   97 SIGF   7.3536E-03  1.5780E-01
+   98 SIGF   0.0000E+00  0.0000E+00
+   99 SIGF   0.0000E+00  0.0000E+00
+  100 SIGF   0.0000E+00  0.0000E+00
+  101 SIGF   0.0000E+00  0.0000E+00
+  102 SIGF   0.0000E+00  0.0000E+00
+  103 SIGF   0.0000E+00  0.0000E+00
+  104 SIGF   0.0000E+00  0.0000E+00
+  105 SIGF   0.0000E+00  0.0000E+00
+  106 SIGF   0.0000E+00  0.0000E+00
+  107 SIGF   0.0000E+00  0.0000E+00
+  108 SIGF   7.3593E-03  1.5780E-01
+  109 SIGF   0.0000E+00  0.0000E+00
+  110 SIGF   0.0000E+00  0.0000E+00
+  111 SIGF   0.0000E+00  0.0000E+00
+  112 SIGF   0.0000E+00  0.0000E+00
+  113 SIGF   0.0000E+00  0.0000E+00
+  114 SIGF   7.3593E-03  1.5780E-01
+  115 SIGF   0.0000E+00  0.0000E+00
+  116 SIGF   0.0000E+00  0.0000E+00
+  117 SIGF   0.0000E+00  0.0000E+00
+  118 SIGF   0.0000E+00  0.0000E+00
+  119 SIGF   0.0000E+00  0.0000E+00
+  120 SIGF   0.0000E+00  0.0000E+00
+  121 SIGF   0.0000E+00  0.0000E+00
+  122 SIGF   0.0000E+00  0.0000E+00
+  123 SIGF   0.0000E+00  0.0000E+00
+  124 SIGF   0.0000E+00  0.0000E+00
+  125 SIGF   7.3629E-03  1.5780E-01
+  126 SIGF   0.0000E+00  0.0000E+00
+  127 SIGF   0.0000E+00  0.0000E+00
+  128 SIGF   0.0000E+00  0.0000E+00
+  129 SIGF   0.0000E+00  0.0000E+00
+  130 SIGF   0.0000E+00  0.0000E+00
+  131 SIGF   7.3593E-03  1.5780E-01
+  132 SIGF   0.0000E+00  0.0000E+00
+  133 SIGF   0.0000E+00  0.0000E+00
+  134 SIGF   0.0000E+00  0.0000E+00
+  135 SIGF   0.0000E+00  0.0000E+00
+  136 SIGF   0.0000E+00  0.0000E+00
+  137 SIGF   7.3578E-03  1.5780E-01
+  138 SIGF   0.0000E+00  0.0000E+00
+  139 SIGF   0.0000E+00  0.0000E+00
+  140 SIGF   0.0000E+00  0.0000E+00
+  141 SIGF   0.0000E+00  0.0000E+00
+  142 SIGF   0.0000E+00  0.0000E+00
+  143 SIGF   7.3593E-03  1.5780E-01
+  144 SIGF   0.0000E+00  0.0000E+00
+  145 SIGF   0.0000E+00  0.0000E+00
+  146 SIGF   0.0000E+00  0.0000E+00
+  147 SIGF   0.0000E+00  0.0000E+00
+  148 SIGF   0.0000E+00  0.0000E+00
+  149 SIGF   7.3578E-03  1.5780E-01
+  150 SIGF   0.0000E+00  0.0000E+00
+  151 SIGF   0.0000E+00  0.0000E+00
+  152 SIGF   0.0000E+00  0.0000E+00
+  153 SIGF   0.0000E+00  0.0000E+00
+  154 SIGF   0.0000E+00  0.0000E+00
+  155 SIGF   7.3578E-03  1.5780E-01
+  156 SIGF   0.0000E+00  0.0000E+00
+  157 SIGF   0.0000E+00  0.0000E+00
+  158 SIGF   0.0000E+00  0.0000E+00
+  159 SIGF   0.0000E+00  0.0000E+00
+  160 SIGF   0.0000E+00  0.0000E+00
+  161 SIGF   7.3593E-03  1.5780E-01
+  162 SIGF   0.0000E+00  0.0000E+00
+  163 SIGF   0.0000E+00  0.0000E+00
+  164 SIGF   0.0000E+00  0.0000E+00
+  165 SIGF   0.0000E+00  0.0000E+00
+  166 SIGF   0.0000E+00  0.0000E+00
+  167 SIGF   7.3629E-03  1.5780E-01
+  168 SIGF   0.0000E+00  0.0000E+00
+  169 SIGF   0.0000E+00  0.0000E+00
+  170 SIGF   0.0000E+00  0.0000E+00
+  171 SIGF   0.0000E+00  0.0000E+00
+  172 SIGF   0.0000E+00  0.0000E+00
+  173 SIGF   0.0000E+00  0.0000E+00
+  174 SIGF   0.0000E+00  0.0000E+00
+  175 SIGF   0.0000E+00  0.0000E+00
+  176 SIGF   0.0000E+00  0.0000E+00
+  177 SIGF   0.0000E+00  0.0000E+00
+  178 SIGF   7.3593E-03  1.5780E-01
+  179 SIGF   0.0000E+00  0.0000E+00
+  180 SIGF   0.0000E+00  0.0000E+00
+  181 SIGF   0.0000E+00  0.0000E+00
+  182 SIGF   0.0000E+00  0.0000E+00
+  183 SIGF   0.0000E+00  0.0000E+00
+  184 SIGF   7.3578E-03  1.5780E-01
+  185 SIGF   0.0000E+00  0.0000E+00
+  186 SIGF   0.0000E+00  0.0000E+00
+  187 SIGF   0.0000E+00  0.0000E+00
+  188 SIGF   0.0000E+00  0.0000E+00
+  189 SIGF   0.0000E+00  0.0000E+00
+  190 SIGF   7.3578E-03  1.5780E-01
+  191 SIGF   0.0000E+00  0.0000E+00
+  192 SIGF   0.0000E+00  0.0000E+00
+  193 SIGF   0.0000E+00  0.0000E+00
+  194 SIGF   0.0000E+00  0.0000E+00
+  195 SIGF   0.0000E+00  0.0000E+00
+  196 SIGF   7.3593E-03  1.5780E-01
+  197 SIGF   0.0000E+00  0.0000E+00
+  198 SIGF   0.0000E+00  0.0000E+00
+  199 SIGF   0.0000E+00  0.0000E+00
+  200 SIGF   0.0000E+00  0.0000E+00
+  201 SIGF   0.0000E+00  0.0000E+00
+  202 SIGF   7.3615E-03  1.5780E-01
+  203 SIGF   0.0000E+00  0.0000E+00
+  204 SIGF   0.0000E+00  0.0000E+00
+  205 SIGF   0.0000E+00  0.0000E+00
+  206 SIGF   0.0000E+00  0.0000E+00
+  207 SIGF   0.0000E+00  0.0000E+00
+  208 SIGF   0.0000E+00  0.0000E+00
+  209 SIGF   0.0000E+00  0.0000E+00
+  210 SIGF   0.0000E+00  0.0000E+00
+  211 SIGF   0.0000E+00  0.0000E+00
+  212 SIGF   0.0000E+00  0.0000E+00
+  213 SIGF   7.3593E-03  1.5780E-01
+  214 SIGF   0.0000E+00  0.0000E+00
+  215 SIGF   0.0000E+00  0.0000E+00
+  216 SIGF   0.0000E+00  0.0000E+00
+  217 SIGF   0.0000E+00  0.0000E+00
+  218 SIGF   0.0000E+00  0.0000E+00
+  219 SIGF   7.3593E-03  1.5780E-01
+  220 SIGF   0.0000E+00  0.0000E+00
+  221 SIGF   0.0000E+00  0.0000E+00
+  222 SIGF   0.0000E+00  0.0000E+00
+  223 SIGF   0.0000E+00  0.0000E+00
+  224 SIGF   0.0000E+00  0.0000E+00
+  225 SIGF   0.0000E+00  0.0000E+00
+  226 SIGF   0.0000E+00  0.0000E+00
+  227 SIGF   0.0000E+00  0.0000E+00
+  228 SIGF   0.0000E+00  0.0000E+00
+  229 SIGF   0.0000E+00  0.0000E+00
+  230 SIGF   7.3593E-03  1.5780E-01
+  231 SIGF   0.0000E+00  0.0000E+00
+  232 SIGF   0.0000E+00  0.0000E+00
+  233 SIGF   0.0000E+00  0.0000E+00
+  234 SIGF   0.0000E+00  0.0000E+00
+  235 SIGF   0.0000E+00  0.0000E+00
+  236 SIGF   7.3578E-03  1.5780E-01
+  237 SIGF   0.0000E+00  0.0000E+00
+  238 SIGF   0.0000E+00  0.0000E+00
+  239 SIGF   0.0000E+00  0.0000E+00
+  240 SIGF   0.0000E+00  0.0000E+00
+  241 SIGF   0.0000E+00  0.0000E+00
+  242 SIGF   7.3578E-03  1.5780E-01
+  243 SIGF   0.0000E+00  0.0000E+00
+  244 SIGF   0.0000E+00  0.0000E+00
+  245 SIGF   0.0000E+00  0.0000E+00
+  246 SIGF   0.0000E+00  0.0000E+00
+  247 SIGF   0.0000E+00  0.0000E+00
+  248 SIGF   7.3593E-03  1.5780E-01
+  249 SIGF   0.0000E+00  0.0000E+00
+  250 SIGF   0.0000E+00  0.0000E+00
+  251 SIGF   0.0000E+00  0.0000E+00
+  252 SIGF   0.0000E+00  0.0000E+00
+  253 SIGF   0.0000E+00  0.0000E+00
+  254 SIGF   7.3578E-03  1.5780E-01
+  255 SIGF   0.0000E+00  0.0000E+00
+  256 SIGF   0.0000E+00  0.0000E+00
+  257 SIGF   0.0000E+00  0.0000E+00
+  258 SIGF   0.0000E+00  0.0000E+00
+  259 SIGF   0.0000E+00  0.0000E+00
+  260 SIGF   0.0000E+00  0.0000E+00
+  261 SIGF   0.0000E+00  0.0000E+00
+  262 SIGF   0.0000E+00  0.0000E+00
+  263 SIGF   0.0000E+00  0.0000E+00
+  264 SIGF   0.0000E+00  0.0000E+00
+
+ REG.       GROUPS---->1 TO   2
+    1 SIGNF  1.8875E-02  3.8451E-01
+    2 SIGNF  0.0000E+00  0.0000E+00
+    3 SIGNF  0.0000E+00  0.0000E+00
+    4 SIGNF  0.0000E+00  0.0000E+00
+    5 SIGNF  0.0000E+00  0.0000E+00
+    6 SIGNF  0.0000E+00  0.0000E+00
+    7 SIGNF  1.8875E-02  3.8451E-01
+    8 SIGNF  0.0000E+00  0.0000E+00
+    9 SIGNF  0.0000E+00  0.0000E+00
+   10 SIGNF  0.0000E+00  0.0000E+00
+   11 SIGNF  0.0000E+00  0.0000E+00
+   12 SIGNF  0.0000E+00  0.0000E+00
+   13 SIGNF  1.8875E-02  3.8451E-01
+   14 SIGNF  0.0000E+00  0.0000E+00
+   15 SIGNF  0.0000E+00  0.0000E+00
+   16 SIGNF  0.0000E+00  0.0000E+00
+   17 SIGNF  0.0000E+00  0.0000E+00
+   18 SIGNF  0.0000E+00  0.0000E+00
+   19 SIGNF  1.8875E-02  3.8451E-01
+   20 SIGNF  0.0000E+00  0.0000E+00
+   21 SIGNF  0.0000E+00  0.0000E+00
+   22 SIGNF  0.0000E+00  0.0000E+00
+   23 SIGNF  0.0000E+00  0.0000E+00
+   24 SIGNF  0.0000E+00  0.0000E+00
+   25 SIGNF  1.8875E-02  3.8451E-01
+   26 SIGNF  0.0000E+00  0.0000E+00
+   27 SIGNF  0.0000E+00  0.0000E+00
+   28 SIGNF  0.0000E+00  0.0000E+00
+   29 SIGNF  0.0000E+00  0.0000E+00
+   30 SIGNF  0.0000E+00  0.0000E+00
+   31 SIGNF  1.8875E-02  3.8451E-01
+   32 SIGNF  0.0000E+00  0.0000E+00
+   33 SIGNF  0.0000E+00  0.0000E+00
+   34 SIGNF  0.0000E+00  0.0000E+00
+   35 SIGNF  0.0000E+00  0.0000E+00
+   36 SIGNF  0.0000E+00  0.0000E+00
+   37 SIGNF  1.8875E-02  3.8451E-01
+   38 SIGNF  0.0000E+00  0.0000E+00
+   39 SIGNF  0.0000E+00  0.0000E+00
+   40 SIGNF  0.0000E+00  0.0000E+00
+   41 SIGNF  0.0000E+00  0.0000E+00
+   42 SIGNF  0.0000E+00  0.0000E+00
+   43 SIGNF  1.8875E-02  3.8451E-01
+   44 SIGNF  0.0000E+00  0.0000E+00
+   45 SIGNF  0.0000E+00  0.0000E+00
+   46 SIGNF  0.0000E+00  0.0000E+00
+   47 SIGNF  0.0000E+00  0.0000E+00
+   48 SIGNF  0.0000E+00  0.0000E+00
+   49 SIGNF  1.8875E-02  3.8451E-01
+   50 SIGNF  0.0000E+00  0.0000E+00
+   51 SIGNF  0.0000E+00  0.0000E+00
+   52 SIGNF  0.0000E+00  0.0000E+00
+   53 SIGNF  0.0000E+00  0.0000E+00
+   54 SIGNF  0.0000E+00  0.0000E+00
+   55 SIGNF  1.8889E-02  3.8451E-01
+   56 SIGNF  0.0000E+00  0.0000E+00
+   57 SIGNF  0.0000E+00  0.0000E+00
+   58 SIGNF  0.0000E+00  0.0000E+00
+   59 SIGNF  0.0000E+00  0.0000E+00
+   60 SIGNF  0.0000E+00  0.0000E+00
+   61 SIGNF  1.8886E-02  3.8451E-01
+   62 SIGNF  0.0000E+00  0.0000E+00
+   63 SIGNF  0.0000E+00  0.0000E+00
+   64 SIGNF  0.0000E+00  0.0000E+00
+   65 SIGNF  0.0000E+00  0.0000E+00
+   66 SIGNF  0.0000E+00  0.0000E+00
+   67 SIGNF  1.8886E-02  3.8451E-01
+   68 SIGNF  0.0000E+00  0.0000E+00
+   69 SIGNF  0.0000E+00  0.0000E+00
+   70 SIGNF  0.0000E+00  0.0000E+00
+   71 SIGNF  0.0000E+00  0.0000E+00
+   72 SIGNF  0.0000E+00  0.0000E+00
+   73 SIGNF  1.8889E-02  3.8451E-01
+   74 SIGNF  0.0000E+00  0.0000E+00
+   75 SIGNF  0.0000E+00  0.0000E+00
+   76 SIGNF  0.0000E+00  0.0000E+00
+   77 SIGNF  0.0000E+00  0.0000E+00
+   78 SIGNF  0.0000E+00  0.0000E+00
+   79 SIGNF  1.8886E-02  3.8451E-01
+   80 SIGNF  0.0000E+00  0.0000E+00
+   81 SIGNF  0.0000E+00  0.0000E+00
+   82 SIGNF  0.0000E+00  0.0000E+00
+   83 SIGNF  0.0000E+00  0.0000E+00
+   84 SIGNF  0.0000E+00  0.0000E+00
+   85 SIGNF  1.8875E-02  3.8451E-01
+   86 SIGNF  0.0000E+00  0.0000E+00
+   87 SIGNF  0.0000E+00  0.0000E+00
+   88 SIGNF  0.0000E+00  0.0000E+00
+   89 SIGNF  0.0000E+00  0.0000E+00
+   90 SIGNF  0.0000E+00  0.0000E+00
+   91 SIGNF  1.8875E-02  3.8451E-01
+   92 SIGNF  0.0000E+00  0.0000E+00
+   93 SIGNF  0.0000E+00  0.0000E+00
+   94 SIGNF  0.0000E+00  0.0000E+00
+   95 SIGNF  0.0000E+00  0.0000E+00
+   96 SIGNF  0.0000E+00  0.0000E+00
+   97 SIGNF  1.8875E-02  3.8451E-01
+   98 SIGNF  0.0000E+00  0.0000E+00
+   99 SIGNF  0.0000E+00  0.0000E+00
+  100 SIGNF  0.0000E+00  0.0000E+00
+  101 SIGNF  0.0000E+00  0.0000E+00
+  102 SIGNF  0.0000E+00  0.0000E+00
+  103 SIGNF  0.0000E+00  0.0000E+00
+  104 SIGNF  0.0000E+00  0.0000E+00
+  105 SIGNF  0.0000E+00  0.0000E+00
+  106 SIGNF  0.0000E+00  0.0000E+00
+  107 SIGNF  0.0000E+00  0.0000E+00
+  108 SIGNF  1.8889E-02  3.8451E-01
+  109 SIGNF  0.0000E+00  0.0000E+00
+  110 SIGNF  0.0000E+00  0.0000E+00
+  111 SIGNF  0.0000E+00  0.0000E+00
+  112 SIGNF  0.0000E+00  0.0000E+00
+  113 SIGNF  0.0000E+00  0.0000E+00
+  114 SIGNF  1.8889E-02  3.8451E-01
+  115 SIGNF  0.0000E+00  0.0000E+00
+  116 SIGNF  0.0000E+00  0.0000E+00
+  117 SIGNF  0.0000E+00  0.0000E+00
+  118 SIGNF  0.0000E+00  0.0000E+00
+  119 SIGNF  0.0000E+00  0.0000E+00
+  120 SIGNF  0.0000E+00  0.0000E+00
+  121 SIGNF  0.0000E+00  0.0000E+00
+  122 SIGNF  0.0000E+00  0.0000E+00
+  123 SIGNF  0.0000E+00  0.0000E+00
+  124 SIGNF  0.0000E+00  0.0000E+00
+  125 SIGNF  1.8898E-02  3.8451E-01
+  126 SIGNF  0.0000E+00  0.0000E+00
+  127 SIGNF  0.0000E+00  0.0000E+00
+  128 SIGNF  0.0000E+00  0.0000E+00
+  129 SIGNF  0.0000E+00  0.0000E+00
+  130 SIGNF  0.0000E+00  0.0000E+00
+  131 SIGNF  1.8889E-02  3.8451E-01
+  132 SIGNF  0.0000E+00  0.0000E+00
+  133 SIGNF  0.0000E+00  0.0000E+00
+  134 SIGNF  0.0000E+00  0.0000E+00
+  135 SIGNF  0.0000E+00  0.0000E+00
+  136 SIGNF  0.0000E+00  0.0000E+00
+  137 SIGNF  1.8886E-02  3.8451E-01
+  138 SIGNF  0.0000E+00  0.0000E+00
+  139 SIGNF  0.0000E+00  0.0000E+00
+  140 SIGNF  0.0000E+00  0.0000E+00
+  141 SIGNF  0.0000E+00  0.0000E+00
+  142 SIGNF  0.0000E+00  0.0000E+00
+  143 SIGNF  1.8889E-02  3.8451E-01
+  144 SIGNF  0.0000E+00  0.0000E+00
+  145 SIGNF  0.0000E+00  0.0000E+00
+  146 SIGNF  0.0000E+00  0.0000E+00
+  147 SIGNF  0.0000E+00  0.0000E+00
+  148 SIGNF  0.0000E+00  0.0000E+00
+  149 SIGNF  1.8886E-02  3.8451E-01
+  150 SIGNF  0.0000E+00  0.0000E+00
+  151 SIGNF  0.0000E+00  0.0000E+00
+  152 SIGNF  0.0000E+00  0.0000E+00
+  153 SIGNF  0.0000E+00  0.0000E+00
+  154 SIGNF  0.0000E+00  0.0000E+00
+  155 SIGNF  1.8886E-02  3.8451E-01
+  156 SIGNF  0.0000E+00  0.0000E+00
+  157 SIGNF  0.0000E+00  0.0000E+00
+  158 SIGNF  0.0000E+00  0.0000E+00
+  159 SIGNF  0.0000E+00  0.0000E+00
+  160 SIGNF  0.0000E+00  0.0000E+00
+  161 SIGNF  1.8889E-02  3.8451E-01
+  162 SIGNF  0.0000E+00  0.0000E+00
+  163 SIGNF  0.0000E+00  0.0000E+00
+  164 SIGNF  0.0000E+00  0.0000E+00
+  165 SIGNF  0.0000E+00  0.0000E+00
+  166 SIGNF  0.0000E+00  0.0000E+00
+  167 SIGNF  1.8898E-02  3.8451E-01
+  168 SIGNF  0.0000E+00  0.0000E+00
+  169 SIGNF  0.0000E+00  0.0000E+00
+  170 SIGNF  0.0000E+00  0.0000E+00
+  171 SIGNF  0.0000E+00  0.0000E+00
+  172 SIGNF  0.0000E+00  0.0000E+00
+  173 SIGNF  0.0000E+00  0.0000E+00
+  174 SIGNF  0.0000E+00  0.0000E+00
+  175 SIGNF  0.0000E+00  0.0000E+00
+  176 SIGNF  0.0000E+00  0.0000E+00
+  177 SIGNF  0.0000E+00  0.0000E+00
+  178 SIGNF  1.8889E-02  3.8451E-01
+  179 SIGNF  0.0000E+00  0.0000E+00
+  180 SIGNF  0.0000E+00  0.0000E+00
+  181 SIGNF  0.0000E+00  0.0000E+00
+  182 SIGNF  0.0000E+00  0.0000E+00
+  183 SIGNF  0.0000E+00  0.0000E+00
+  184 SIGNF  1.8886E-02  3.8451E-01
+  185 SIGNF  0.0000E+00  0.0000E+00
+  186 SIGNF  0.0000E+00  0.0000E+00
+  187 SIGNF  0.0000E+00  0.0000E+00
+  188 SIGNF  0.0000E+00  0.0000E+00
+  189 SIGNF  0.0000E+00  0.0000E+00
+  190 SIGNF  1.8886E-02  3.8451E-01
+  191 SIGNF  0.0000E+00  0.0000E+00
+  192 SIGNF  0.0000E+00  0.0000E+00
+  193 SIGNF  0.0000E+00  0.0000E+00
+  194 SIGNF  0.0000E+00  0.0000E+00
+  195 SIGNF  0.0000E+00  0.0000E+00
+  196 SIGNF  1.8889E-02  3.8451E-01
+  197 SIGNF  0.0000E+00  0.0000E+00
+  198 SIGNF  0.0000E+00  0.0000E+00
+  199 SIGNF  0.0000E+00  0.0000E+00
+  200 SIGNF  0.0000E+00  0.0000E+00
+  201 SIGNF  0.0000E+00  0.0000E+00
+  202 SIGNF  1.8895E-02  3.8451E-01
+  203 SIGNF  0.0000E+00  0.0000E+00
+  204 SIGNF  0.0000E+00  0.0000E+00
+  205 SIGNF  0.0000E+00  0.0000E+00
+  206 SIGNF  0.0000E+00  0.0000E+00
+  207 SIGNF  0.0000E+00  0.0000E+00
+  208 SIGNF  0.0000E+00  0.0000E+00
+  209 SIGNF  0.0000E+00  0.0000E+00
+  210 SIGNF  0.0000E+00  0.0000E+00
+  211 SIGNF  0.0000E+00  0.0000E+00
+  212 SIGNF  0.0000E+00  0.0000E+00
+  213 SIGNF  1.8889E-02  3.8451E-01
+  214 SIGNF  0.0000E+00  0.0000E+00
+  215 SIGNF  0.0000E+00  0.0000E+00
+  216 SIGNF  0.0000E+00  0.0000E+00
+  217 SIGNF  0.0000E+00  0.0000E+00
+  218 SIGNF  0.0000E+00  0.0000E+00
+  219 SIGNF  1.8889E-02  3.8451E-01
+  220 SIGNF  0.0000E+00  0.0000E+00
+  221 SIGNF  0.0000E+00  0.0000E+00
+  222 SIGNF  0.0000E+00  0.0000E+00
+  223 SIGNF  0.0000E+00  0.0000E+00
+  224 SIGNF  0.0000E+00  0.0000E+00
+  225 SIGNF  0.0000E+00  0.0000E+00
+  226 SIGNF  0.0000E+00  0.0000E+00
+  227 SIGNF  0.0000E+00  0.0000E+00
+  228 SIGNF  0.0000E+00  0.0000E+00
+  229 SIGNF  0.0000E+00  0.0000E+00
+  230 SIGNF  1.8889E-02  3.8451E-01
+  231 SIGNF  0.0000E+00  0.0000E+00
+  232 SIGNF  0.0000E+00  0.0000E+00
+  233 SIGNF  0.0000E+00  0.0000E+00
+  234 SIGNF  0.0000E+00  0.0000E+00
+  235 SIGNF  0.0000E+00  0.0000E+00
+  236 SIGNF  1.8886E-02  3.8451E-01
+  237 SIGNF  0.0000E+00  0.0000E+00
+  238 SIGNF  0.0000E+00  0.0000E+00
+  239 SIGNF  0.0000E+00  0.0000E+00
+  240 SIGNF  0.0000E+00  0.0000E+00
+  241 SIGNF  0.0000E+00  0.0000E+00
+  242 SIGNF  1.8886E-02  3.8451E-01
+  243 SIGNF  0.0000E+00  0.0000E+00
+  244 SIGNF  0.0000E+00  0.0000E+00
+  245 SIGNF  0.0000E+00  0.0000E+00
+  246 SIGNF  0.0000E+00  0.0000E+00
+  247 SIGNF  0.0000E+00  0.0000E+00
+  248 SIGNF  1.8889E-02  3.8451E-01
+  249 SIGNF  0.0000E+00  0.0000E+00
+  250 SIGNF  0.0000E+00  0.0000E+00
+  251 SIGNF  0.0000E+00  0.0000E+00
+  252 SIGNF  0.0000E+00  0.0000E+00
+  253 SIGNF  0.0000E+00  0.0000E+00
+  254 SIGNF  1.8886E-02  3.8451E-01
+  255 SIGNF  0.0000E+00  0.0000E+00
+  256 SIGNF  0.0000E+00  0.0000E+00
+  257 SIGNF  0.0000E+00  0.0000E+00
+  258 SIGNF  0.0000E+00  0.0000E+00
+  259 SIGNF  0.0000E+00  0.0000E+00
+  260 SIGNF  0.0000E+00  0.0000E+00
+  261 SIGNF  0.0000E+00  0.0000E+00
+  262 SIGNF  0.0000E+00  0.0000E+00
+  263 SIGNF  0.0000E+00  0.0000E+00
+  264 SIGNF  0.0000E+00  0.0000E+00
+GRP    1
+    1 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+    1 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+    2 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+    2 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+    3 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+    3 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+    4 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+    4 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+    5 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+    5 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+    6 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+    6 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+    7 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+    7 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+    8 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+    8 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+    9 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+    9 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   10 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   10 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   11 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   11 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   12 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   12 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   13 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   13 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   14 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   14 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   15 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   15 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   16 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   16 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   17 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   17 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   18 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   18 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   19 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   19 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   20 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   20 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   21 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   21 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   22 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   22 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   23 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   23 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   24 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   24 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   25 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   25 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   26 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   26 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   27 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   27 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   28 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   28 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   29 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   29 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   30 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   30 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   31 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   31 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   32 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   32 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   33 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   33 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   34 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   34 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   35 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   35 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   36 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   36 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   37 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   37 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   38 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   38 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   39 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   39 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   40 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   40 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   41 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   41 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   42 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   42 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   43 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   43 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   44 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   44 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   45 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   45 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   46 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   46 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   47 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   47 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   48 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   48 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   49 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   49 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   50 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   50 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   51 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   51 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   52 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   52 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   53 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   53 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   54 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   54 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   55 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+   55 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   56 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   56 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   57 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   57 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   58 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   58 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   59 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   59 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   60 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   60 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   61 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+   61 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   62 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   62 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   63 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   63 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   64 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   64 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   65 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   65 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   66 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   66 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   67 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+   67 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   68 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   68 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   69 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   69 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   70 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   70 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   71 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   71 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   72 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   72 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   73 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+   73 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   74 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   74 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   75 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   75 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   76 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   76 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   77 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   77 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   78 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   78 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   79 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+   79 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   80 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   80 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   81 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   81 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   82 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   82 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   83 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   83 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   84 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   84 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   85 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   85 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   86 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   86 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   87 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   87 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   88 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   88 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   89 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   89 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   90 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   90 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   91 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   91 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   92 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   92 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   93 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   93 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+   94 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+   94 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+   95 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+   95 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+   96 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+   96 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+   97 SIGS  2.7181E-01  6.4524E-04
+GRP    2
+   97 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+   98 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+   98 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+   99 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+   99 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  100 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  100 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  101 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  101 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  102 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  102 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  103 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  103 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  104 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  104 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  105 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  105 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  106 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  106 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  107 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  107 SIGS  0.0000E+00  1.3123E+00
+GRP    1
+  108 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  108 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  109 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  109 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  110 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  110 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  111 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  111 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  112 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  112 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  113 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  113 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  114 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  114 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  115 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  115 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  116 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  116 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  117 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  117 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  118 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  118 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  119 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  119 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  120 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  120 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  121 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  121 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  122 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  122 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  123 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  123 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  124 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  124 SIGS  0.0000E+00  1.3123E+00
+GRP    1
+  125 SIGS  2.7154E-01  6.4524E-04
+GRP    2
+  125 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  126 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  126 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  127 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  127 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  128 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  128 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  129 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  129 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  130 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  130 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  131 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  131 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  132 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  132 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  133 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  133 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  134 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  134 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  135 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  135 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  136 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  136 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  137 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  137 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  138 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  138 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  139 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  139 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  140 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  140 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  141 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  141 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  142 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  142 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  143 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  143 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  144 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  144 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  145 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  145 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  146 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  146 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  147 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  147 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  148 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  148 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  149 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  149 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  150 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  150 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  151 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  151 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  152 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  152 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  153 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  153 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  154 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  154 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  155 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  155 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  156 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  156 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  157 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  157 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  158 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  158 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  159 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  159 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  160 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  160 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  161 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  161 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  162 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  162 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  163 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  163 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  164 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  164 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  165 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  165 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  166 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  166 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  167 SIGS  2.7154E-01  6.4524E-04
+GRP    2
+  167 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  168 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  168 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  169 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  169 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  170 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  170 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  171 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  171 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  172 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  172 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  173 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  173 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  174 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  174 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  175 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  175 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  176 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  176 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  177 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  177 SIGS  0.0000E+00  1.3123E+00
+GRP    1
+  178 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  178 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  179 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  179 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  180 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  180 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  181 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  181 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  182 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  182 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  183 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  183 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  184 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  184 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  185 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  185 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  186 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  186 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  187 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  187 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  188 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  188 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  189 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  189 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  190 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  190 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  191 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  191 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  192 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  192 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  193 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  193 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  194 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  194 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  195 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  195 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  196 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  196 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  197 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  197 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  198 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  198 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  199 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  199 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  200 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  200 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  201 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  201 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  202 SIGS  2.7158E-01  6.4524E-04
+GRP    2
+  202 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  203 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  203 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  204 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  204 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  205 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  205 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  206 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  206 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  207 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  207 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  208 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  208 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  209 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  209 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  210 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  210 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  211 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  211 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  212 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  212 SIGS  0.0000E+00  1.3123E+00
+GRP    1
+  213 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  213 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  214 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  214 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  215 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  215 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  216 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  216 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  217 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  217 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  218 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  218 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  219 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  219 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  220 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  220 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  221 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  221 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  222 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  222 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  223 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  223 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  224 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  224 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  225 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  225 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  226 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  226 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  227 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  227 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  228 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  228 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  229 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  229 SIGS  0.0000E+00  1.3123E+00
+GRP    1
+  230 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  230 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  231 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  231 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  232 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  232 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  233 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  233 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  234 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  234 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  235 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  235 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  236 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  236 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  237 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  237 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  238 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  238 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  239 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  239 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  240 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  240 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  241 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  241 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  242 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  242 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  243 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  243 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  244 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  244 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  245 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  245 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  246 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  246 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  247 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  247 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  248 SIGS  2.7165E-01  6.4524E-04
+GRP    2
+  248 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  249 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  249 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  250 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  250 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  251 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  251 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  252 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  252 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  253 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  253 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  254 SIGS  2.7170E-01  6.4524E-04
+GRP    2
+  254 SIGS  0.0000E+00  3.8606E-01
+GRP    1
+  255 SIGS  1.5912E-04  1.4340E-06
+GRP    2
+  255 SIGS  0.0000E+00  1.0705E-04
+GRP    1
+  256 SIGS  2.2342E-01  1.8733E-04
+GRP    2
+  256 SIGS  0.0000E+00  2.9201E-01
+GRP    1
+  257 SIGS  1.7199E-01  3.0117E-02
+GRP    2
+  257 SIGS  0.0000E+00  1.2831E+00
+GRP    1
+  258 SIGS  1.7225E-01  3.0323E-02
+GRP    2
+  258 SIGS  0.0000E+00  1.2906E+00
+GRP    1
+  259 SIGS  1.7232E-01  3.0390E-02
+GRP    2
+  259 SIGS  0.0000E+00  1.2946E+00
+GRP    1
+  260 SIGS  1.7131E-01  3.2050E-02
+GRP    2
+  260 SIGS  0.0000E+00  1.3246E+00
+GRP    1
+  261 SIGS  2.2352E-01  1.9912E-04
+GRP    2
+  261 SIGS  0.0000E+00  2.9219E-01
+GRP    1
+  262 SIGS  1.7088E-01  3.1623E-02
+GRP    2
+  262 SIGS  0.0000E+00  1.3180E+00
+GRP    1
+  263 SIGS  1.7080E-01  3.1576E-02
+GRP    2
+  263 SIGS  0.0000E+00  1.3163E+00
+GRP    1
+  264 SIGS  1.7063E-01  3.1446E-02
+GRP    2
+  264 SIGS  0.0000E+00  1.3123E+00
+
+ KRMXSN DEBUG EDIT OF 2D CROSS SECTIONS (BY MICRO-REGION)
+ REG.       GROUPS---->1 TO   2
+    1 SIGA   2.7695E-02  2.1802E-01
+    1 SIGD   1.1105E+00  5.7315E-01
+    1 SIGT   3.0015E-01  6.0408E-01
+    1 SIGF   7.3536E-03  1.5780E-01
+    1 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+    2 SIGA   0.0000E+00  0.0000E+00
+    2 SIGD   2.0761E+03  3.1542E+03
+    2 SIGT   1.6056E-04  1.0705E-04
+    2 SIGF   0.0000E+00  0.0000E+00
+    2 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    3 SIGA   1.6550E-03  4.8500E-03
+    3 SIGD   1.4798E+00  1.1233E+00
+    3 SIGT   2.2526E-01  2.9686E-01
+    3 SIGF   0.0000E+00  0.0000E+00
+    3 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    4 SIGA   6.8852E-04  2.5670E-02
+    4 SIGD   1.6437E+00  3.0233E-01
+    4 SIGT   2.0279E-01  1.3088E+00
+    4 SIGF   0.0000E+00  0.0000E+00
+    4 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    5 SIGA   6.9290E-04  2.5834E-02
+    5 SIGD   1.6399E+00  3.0128E-01
+    5 SIGT   2.0326E-01  1.3164E+00
+    5 SIGF   0.0000E+00  0.0000E+00
+    5 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    6 SIGA   6.9433E-04  2.5921E-02
+    6 SIGD   1.6388E+00  3.0073E-01
+    6 SIGT   2.0341E-01  1.3205E+00
+    6 SIGF   0.0000E+00  0.0000E+00
+    6 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    7 SIGA   2.7695E-02  2.1802E-01
+    7 SIGD   1.1105E+00  5.7315E-01
+    7 SIGT   3.0015E-01  6.0408E-01
+    7 SIGF   7.3536E-03  1.5780E-01
+    7 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+    8 SIGA   0.0000E+00  0.0000E+00
+    8 SIGD   2.0761E+03  3.1542E+03
+    8 SIGT   1.6056E-04  1.0705E-04
+    8 SIGF   0.0000E+00  0.0000E+00
+    8 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+    9 SIGA   1.6550E-03  4.8500E-03
+    9 SIGD   1.4798E+00  1.1233E+00
+    9 SIGT   2.2526E-01  2.9686E-01
+    9 SIGF   0.0000E+00  0.0000E+00
+    9 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   10 SIGA   6.8852E-04  2.5670E-02
+   10 SIGD   1.6437E+00  3.0233E-01
+   10 SIGT   2.0279E-01  1.3088E+00
+   10 SIGF   0.0000E+00  0.0000E+00
+   10 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   11 SIGA   6.9290E-04  2.5834E-02
+   11 SIGD   1.6399E+00  3.0128E-01
+   11 SIGT   2.0326E-01  1.3164E+00
+   11 SIGF   0.0000E+00  0.0000E+00
+   11 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   12 SIGA   6.9433E-04  2.5921E-02
+   12 SIGD   1.6388E+00  3.0073E-01
+   12 SIGT   2.0341E-01  1.3205E+00
+   12 SIGF   0.0000E+00  0.0000E+00
+   12 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   13 SIGA   2.7695E-02  2.1802E-01
+   13 SIGD   1.1105E+00  5.7315E-01
+   13 SIGT   3.0015E-01  6.0408E-01
+   13 SIGF   7.3536E-03  1.5780E-01
+   13 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   14 SIGA   0.0000E+00  0.0000E+00
+   14 SIGD   2.0761E+03  3.1542E+03
+   14 SIGT   1.6056E-04  1.0705E-04
+   14 SIGF   0.0000E+00  0.0000E+00
+   14 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   15 SIGA   1.6550E-03  4.8500E-03
+   15 SIGD   1.4798E+00  1.1233E+00
+   15 SIGT   2.2526E-01  2.9686E-01
+   15 SIGF   0.0000E+00  0.0000E+00
+   15 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   16 SIGA   6.8852E-04  2.5670E-02
+   16 SIGD   1.6437E+00  3.0233E-01
+   16 SIGT   2.0279E-01  1.3088E+00
+   16 SIGF   0.0000E+00  0.0000E+00
+   16 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   17 SIGA   6.9290E-04  2.5834E-02
+   17 SIGD   1.6399E+00  3.0128E-01
+   17 SIGT   2.0326E-01  1.3164E+00
+   17 SIGF   0.0000E+00  0.0000E+00
+   17 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   18 SIGA   6.9433E-04  2.5921E-02
+   18 SIGD   1.6388E+00  3.0073E-01
+   18 SIGT   2.0341E-01  1.3205E+00
+   18 SIGF   0.0000E+00  0.0000E+00
+   18 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   19 SIGA   2.7695E-02  2.1802E-01
+   19 SIGD   1.1105E+00  5.7315E-01
+   19 SIGT   3.0015E-01  6.0408E-01
+   19 SIGF   7.3536E-03  1.5780E-01
+   19 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   20 SIGA   0.0000E+00  0.0000E+00
+   20 SIGD   2.0761E+03  3.1542E+03
+   20 SIGT   1.6056E-04  1.0705E-04
+   20 SIGF   0.0000E+00  0.0000E+00
+   20 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   21 SIGA   1.6550E-03  4.8500E-03
+   21 SIGD   1.4798E+00  1.1233E+00
+   21 SIGT   2.2526E-01  2.9686E-01
+   21 SIGF   0.0000E+00  0.0000E+00
+   21 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   22 SIGA   6.8852E-04  2.5670E-02
+   22 SIGD   1.6437E+00  3.0233E-01
+   22 SIGT   2.0279E-01  1.3088E+00
+   22 SIGF   0.0000E+00  0.0000E+00
+   22 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   23 SIGA   6.9290E-04  2.5834E-02
+   23 SIGD   1.6399E+00  3.0128E-01
+   23 SIGT   2.0326E-01  1.3164E+00
+   23 SIGF   0.0000E+00  0.0000E+00
+   23 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   24 SIGA   6.9433E-04  2.5921E-02
+   24 SIGD   1.6388E+00  3.0073E-01
+   24 SIGT   2.0341E-01  1.3205E+00
+   24 SIGF   0.0000E+00  0.0000E+00
+   24 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   25 SIGA   2.7695E-02  2.1802E-01
+   25 SIGD   1.1105E+00  5.7315E-01
+   25 SIGT   3.0015E-01  6.0408E-01
+   25 SIGF   7.3536E-03  1.5780E-01
+   25 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   26 SIGA   0.0000E+00  0.0000E+00
+   26 SIGD   2.0761E+03  3.1542E+03
+   26 SIGT   1.6056E-04  1.0705E-04
+   26 SIGF   0.0000E+00  0.0000E+00
+   26 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   27 SIGA   1.6550E-03  4.8500E-03
+   27 SIGD   1.4798E+00  1.1233E+00
+   27 SIGT   2.2526E-01  2.9686E-01
+   27 SIGF   0.0000E+00  0.0000E+00
+   27 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   28 SIGA   6.8852E-04  2.5670E-02
+   28 SIGD   1.6437E+00  3.0233E-01
+   28 SIGT   2.0279E-01  1.3088E+00
+   28 SIGF   0.0000E+00  0.0000E+00
+   28 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   29 SIGA   6.9290E-04  2.5834E-02
+   29 SIGD   1.6399E+00  3.0128E-01
+   29 SIGT   2.0326E-01  1.3164E+00
+   29 SIGF   0.0000E+00  0.0000E+00
+   29 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   30 SIGA   6.9433E-04  2.5921E-02
+   30 SIGD   1.6388E+00  3.0073E-01
+   30 SIGT   2.0341E-01  1.3205E+00
+   30 SIGF   0.0000E+00  0.0000E+00
+   30 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   31 SIGA   2.7695E-02  2.1802E-01
+   31 SIGD   1.1105E+00  5.7315E-01
+   31 SIGT   3.0015E-01  6.0408E-01
+   31 SIGF   7.3536E-03  1.5780E-01
+   31 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   32 SIGA   0.0000E+00  0.0000E+00
+   32 SIGD   2.0761E+03  3.1542E+03
+   32 SIGT   1.6056E-04  1.0705E-04
+   32 SIGF   0.0000E+00  0.0000E+00
+   32 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   33 SIGA   1.6550E-03  4.8500E-03
+   33 SIGD   1.4798E+00  1.1233E+00
+   33 SIGT   2.2526E-01  2.9686E-01
+   33 SIGF   0.0000E+00  0.0000E+00
+   33 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   34 SIGA   6.8852E-04  2.5670E-02
+   34 SIGD   1.6437E+00  3.0233E-01
+   34 SIGT   2.0279E-01  1.3088E+00
+   34 SIGF   0.0000E+00  0.0000E+00
+   34 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   35 SIGA   6.9290E-04  2.5834E-02
+   35 SIGD   1.6399E+00  3.0128E-01
+   35 SIGT   2.0326E-01  1.3164E+00
+   35 SIGF   0.0000E+00  0.0000E+00
+   35 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   36 SIGA   6.9433E-04  2.5921E-02
+   36 SIGD   1.6388E+00  3.0073E-01
+   36 SIGT   2.0341E-01  1.3205E+00
+   36 SIGF   0.0000E+00  0.0000E+00
+   36 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   37 SIGA   2.7695E-02  2.1802E-01
+   37 SIGD   1.1105E+00  5.7315E-01
+   37 SIGT   3.0015E-01  6.0408E-01
+   37 SIGF   7.3536E-03  1.5780E-01
+   37 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   38 SIGA   0.0000E+00  0.0000E+00
+   38 SIGD   2.0761E+03  3.1542E+03
+   38 SIGT   1.6056E-04  1.0705E-04
+   38 SIGF   0.0000E+00  0.0000E+00
+   38 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   39 SIGA   1.6550E-03  4.8500E-03
+   39 SIGD   1.4798E+00  1.1233E+00
+   39 SIGT   2.2526E-01  2.9686E-01
+   39 SIGF   0.0000E+00  0.0000E+00
+   39 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   40 SIGA   6.8852E-04  2.5670E-02
+   40 SIGD   1.6437E+00  3.0233E-01
+   40 SIGT   2.0279E-01  1.3088E+00
+   40 SIGF   0.0000E+00  0.0000E+00
+   40 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   41 SIGA   6.9290E-04  2.5834E-02
+   41 SIGD   1.6399E+00  3.0128E-01
+   41 SIGT   2.0326E-01  1.3164E+00
+   41 SIGF   0.0000E+00  0.0000E+00
+   41 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   42 SIGA   6.9433E-04  2.5921E-02
+   42 SIGD   1.6388E+00  3.0073E-01
+   42 SIGT   2.0341E-01  1.3205E+00
+   42 SIGF   0.0000E+00  0.0000E+00
+   42 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   43 SIGA   2.7695E-02  2.1802E-01
+   43 SIGD   1.1105E+00  5.7315E-01
+   43 SIGT   3.0015E-01  6.0408E-01
+   43 SIGF   7.3536E-03  1.5780E-01
+   43 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   44 SIGA   0.0000E+00  0.0000E+00
+   44 SIGD   2.0761E+03  3.1542E+03
+   44 SIGT   1.6056E-04  1.0705E-04
+   44 SIGF   0.0000E+00  0.0000E+00
+   44 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   45 SIGA   1.6550E-03  4.8500E-03
+   45 SIGD   1.4798E+00  1.1233E+00
+   45 SIGT   2.2526E-01  2.9686E-01
+   45 SIGF   0.0000E+00  0.0000E+00
+   45 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   46 SIGA   6.8852E-04  2.5670E-02
+   46 SIGD   1.6437E+00  3.0233E-01
+   46 SIGT   2.0279E-01  1.3088E+00
+   46 SIGF   0.0000E+00  0.0000E+00
+   46 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   47 SIGA   6.9290E-04  2.5834E-02
+   47 SIGD   1.6399E+00  3.0128E-01
+   47 SIGT   2.0326E-01  1.3164E+00
+   47 SIGF   0.0000E+00  0.0000E+00
+   47 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   48 SIGA   6.9433E-04  2.5921E-02
+   48 SIGD   1.6388E+00  3.0073E-01
+   48 SIGT   2.0341E-01  1.3205E+00
+   48 SIGF   0.0000E+00  0.0000E+00
+   48 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   49 SIGA   2.7695E-02  2.1802E-01
+   49 SIGD   1.1105E+00  5.7315E-01
+   49 SIGT   3.0015E-01  6.0408E-01
+   49 SIGF   7.3536E-03  1.5780E-01
+   49 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   50 SIGA   0.0000E+00  0.0000E+00
+   50 SIGD   2.0761E+03  3.1542E+03
+   50 SIGT   1.6056E-04  1.0705E-04
+   50 SIGF   0.0000E+00  0.0000E+00
+   50 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   51 SIGA   1.6550E-03  4.8500E-03
+   51 SIGD   1.4798E+00  1.1233E+00
+   51 SIGT   2.2526E-01  2.9686E-01
+   51 SIGF   0.0000E+00  0.0000E+00
+   51 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   52 SIGA   6.8852E-04  2.5670E-02
+   52 SIGD   1.6437E+00  3.0233E-01
+   52 SIGT   2.0279E-01  1.3088E+00
+   52 SIGF   0.0000E+00  0.0000E+00
+   52 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   53 SIGA   6.9290E-04  2.5834E-02
+   53 SIGD   1.6399E+00  3.0128E-01
+   53 SIGT   2.0326E-01  1.3164E+00
+   53 SIGF   0.0000E+00  0.0000E+00
+   53 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   54 SIGA   6.9433E-04  2.5921E-02
+   54 SIGD   1.6388E+00  3.0073E-01
+   54 SIGT   2.0341E-01  1.3205E+00
+   54 SIGF   0.0000E+00  0.0000E+00
+   54 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   55 SIGA   2.7913E-02  2.1802E-01
+   55 SIGD   1.1103E+00  5.7315E-01
+   55 SIGT   3.0021E-01  6.0408E-01
+   55 SIGF   7.3593E-03  1.5780E-01
+   55 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   56 SIGA   0.0000E+00  0.0000E+00
+   56 SIGD   2.0761E+03  3.1542E+03
+   56 SIGT   1.6056E-04  1.0705E-04
+   56 SIGF   0.0000E+00  0.0000E+00
+   56 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   57 SIGA   1.6550E-03  4.8500E-03
+   57 SIGD   1.4798E+00  1.1233E+00
+   57 SIGT   2.2526E-01  2.9686E-01
+   57 SIGF   0.0000E+00  0.0000E+00
+   57 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   58 SIGA   6.8852E-04  2.5670E-02
+   58 SIGD   1.6437E+00  3.0233E-01
+   58 SIGT   2.0279E-01  1.3088E+00
+   58 SIGF   0.0000E+00  0.0000E+00
+   58 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   59 SIGA   6.9290E-04  2.5834E-02
+   59 SIGD   1.6399E+00  3.0128E-01
+   59 SIGT   2.0326E-01  1.3164E+00
+   59 SIGF   0.0000E+00  0.0000E+00
+   59 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   60 SIGA   6.9433E-04  2.5921E-02
+   60 SIGD   1.6388E+00  3.0073E-01
+   60 SIGT   2.0341E-01  1.3205E+00
+   60 SIGF   0.0000E+00  0.0000E+00
+   60 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   61 SIGA   2.7854E-02  2.1802E-01
+   61 SIGD   1.1104E+00  5.7315E-01
+   61 SIGT   3.0020E-01  6.0408E-01
+   61 SIGF   7.3578E-03  1.5780E-01
+   61 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   62 SIGA   0.0000E+00  0.0000E+00
+   62 SIGD   2.0761E+03  3.1542E+03
+   62 SIGT   1.6056E-04  1.0705E-04
+   62 SIGF   0.0000E+00  0.0000E+00
+   62 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   63 SIGA   1.6550E-03  4.8500E-03
+   63 SIGD   1.4798E+00  1.1233E+00
+   63 SIGT   2.2526E-01  2.9686E-01
+   63 SIGF   0.0000E+00  0.0000E+00
+   63 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   64 SIGA   6.8852E-04  2.5670E-02
+   64 SIGD   1.6437E+00  3.0233E-01
+   64 SIGT   2.0279E-01  1.3088E+00
+   64 SIGF   0.0000E+00  0.0000E+00
+   64 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   65 SIGA   6.9290E-04  2.5834E-02
+   65 SIGD   1.6399E+00  3.0128E-01
+   65 SIGT   2.0326E-01  1.3164E+00
+   65 SIGF   0.0000E+00  0.0000E+00
+   65 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   66 SIGA   6.9433E-04  2.5921E-02
+   66 SIGD   1.6388E+00  3.0073E-01
+   66 SIGT   2.0341E-01  1.3205E+00
+   66 SIGF   0.0000E+00  0.0000E+00
+   66 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   67 SIGA   2.7854E-02  2.1802E-01
+   67 SIGD   1.1104E+00  5.7315E-01
+   67 SIGT   3.0020E-01  6.0408E-01
+   67 SIGF   7.3578E-03  1.5780E-01
+   67 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   68 SIGA   0.0000E+00  0.0000E+00
+   68 SIGD   2.0761E+03  3.1542E+03
+   68 SIGT   1.6056E-04  1.0705E-04
+   68 SIGF   0.0000E+00  0.0000E+00
+   68 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   69 SIGA   1.6550E-03  4.8500E-03
+   69 SIGD   1.4798E+00  1.1233E+00
+   69 SIGT   2.2526E-01  2.9686E-01
+   69 SIGF   0.0000E+00  0.0000E+00
+   69 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   70 SIGA   6.8852E-04  2.5670E-02
+   70 SIGD   1.6437E+00  3.0233E-01
+   70 SIGT   2.0279E-01  1.3088E+00
+   70 SIGF   0.0000E+00  0.0000E+00
+   70 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   71 SIGA   6.9290E-04  2.5834E-02
+   71 SIGD   1.6399E+00  3.0128E-01
+   71 SIGT   2.0326E-01  1.3164E+00
+   71 SIGF   0.0000E+00  0.0000E+00
+   71 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   72 SIGA   6.9433E-04  2.5921E-02
+   72 SIGD   1.6388E+00  3.0073E-01
+   72 SIGT   2.0341E-01  1.3205E+00
+   72 SIGF   0.0000E+00  0.0000E+00
+   72 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   73 SIGA   2.7913E-02  2.1802E-01
+   73 SIGD   1.1103E+00  5.7315E-01
+   73 SIGT   3.0021E-01  6.0408E-01
+   73 SIGF   7.3593E-03  1.5780E-01
+   73 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   74 SIGA   0.0000E+00  0.0000E+00
+   74 SIGD   2.0761E+03  3.1542E+03
+   74 SIGT   1.6056E-04  1.0705E-04
+   74 SIGF   0.0000E+00  0.0000E+00
+   74 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   75 SIGA   1.6550E-03  4.8500E-03
+   75 SIGD   1.4798E+00  1.1233E+00
+   75 SIGT   2.2526E-01  2.9686E-01
+   75 SIGF   0.0000E+00  0.0000E+00
+   75 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   76 SIGA   6.8852E-04  2.5670E-02
+   76 SIGD   1.6437E+00  3.0233E-01
+   76 SIGT   2.0279E-01  1.3088E+00
+   76 SIGF   0.0000E+00  0.0000E+00
+   76 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   77 SIGA   6.9290E-04  2.5834E-02
+   77 SIGD   1.6399E+00  3.0128E-01
+   77 SIGT   2.0326E-01  1.3164E+00
+   77 SIGF   0.0000E+00  0.0000E+00
+   77 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   78 SIGA   6.9433E-04  2.5921E-02
+   78 SIGD   1.6388E+00  3.0073E-01
+   78 SIGT   2.0341E-01  1.3205E+00
+   78 SIGF   0.0000E+00  0.0000E+00
+   78 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   79 SIGA   2.7854E-02  2.1802E-01
+   79 SIGD   1.1104E+00  5.7315E-01
+   79 SIGT   3.0020E-01  6.0408E-01
+   79 SIGF   7.3578E-03  1.5780E-01
+   79 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   80 SIGA   0.0000E+00  0.0000E+00
+   80 SIGD   2.0761E+03  3.1542E+03
+   80 SIGT   1.6056E-04  1.0705E-04
+   80 SIGF   0.0000E+00  0.0000E+00
+   80 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   81 SIGA   1.6550E-03  4.8500E-03
+   81 SIGD   1.4798E+00  1.1233E+00
+   81 SIGT   2.2526E-01  2.9686E-01
+   81 SIGF   0.0000E+00  0.0000E+00
+   81 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   82 SIGA   6.8852E-04  2.5670E-02
+   82 SIGD   1.6437E+00  3.0233E-01
+   82 SIGT   2.0279E-01  1.3088E+00
+   82 SIGF   0.0000E+00  0.0000E+00
+   82 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   83 SIGA   6.9290E-04  2.5834E-02
+   83 SIGD   1.6399E+00  3.0128E-01
+   83 SIGT   2.0326E-01  1.3164E+00
+   83 SIGF   0.0000E+00  0.0000E+00
+   83 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   84 SIGA   6.9433E-04  2.5921E-02
+   84 SIGD   1.6388E+00  3.0073E-01
+   84 SIGT   2.0341E-01  1.3205E+00
+   84 SIGF   0.0000E+00  0.0000E+00
+   84 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   85 SIGA   2.7695E-02  2.1802E-01
+   85 SIGD   1.1105E+00  5.7315E-01
+   85 SIGT   3.0015E-01  6.0408E-01
+   85 SIGF   7.3536E-03  1.5780E-01
+   85 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   86 SIGA   0.0000E+00  0.0000E+00
+   86 SIGD   2.0761E+03  3.1542E+03
+   86 SIGT   1.6056E-04  1.0705E-04
+   86 SIGF   0.0000E+00  0.0000E+00
+   86 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   87 SIGA   1.6550E-03  4.8500E-03
+   87 SIGD   1.4798E+00  1.1233E+00
+   87 SIGT   2.2526E-01  2.9686E-01
+   87 SIGF   0.0000E+00  0.0000E+00
+   87 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   88 SIGA   6.8852E-04  2.5670E-02
+   88 SIGD   1.6437E+00  3.0233E-01
+   88 SIGT   2.0279E-01  1.3088E+00
+   88 SIGF   0.0000E+00  0.0000E+00
+   88 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   89 SIGA   6.9290E-04  2.5834E-02
+   89 SIGD   1.6399E+00  3.0128E-01
+   89 SIGT   2.0326E-01  1.3164E+00
+   89 SIGF   0.0000E+00  0.0000E+00
+   89 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   90 SIGA   6.9433E-04  2.5921E-02
+   90 SIGD   1.6388E+00  3.0073E-01
+   90 SIGT   2.0341E-01  1.3205E+00
+   90 SIGF   0.0000E+00  0.0000E+00
+   90 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   91 SIGA   2.7695E-02  2.1802E-01
+   91 SIGD   1.1105E+00  5.7315E-01
+   91 SIGT   3.0015E-01  6.0408E-01
+   91 SIGF   7.3536E-03  1.5780E-01
+   91 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   92 SIGA   0.0000E+00  0.0000E+00
+   92 SIGD   2.0761E+03  3.1542E+03
+   92 SIGT   1.6056E-04  1.0705E-04
+   92 SIGF   0.0000E+00  0.0000E+00
+   92 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   93 SIGA   1.6550E-03  4.8500E-03
+   93 SIGD   1.4798E+00  1.1233E+00
+   93 SIGT   2.2526E-01  2.9686E-01
+   93 SIGF   0.0000E+00  0.0000E+00
+   93 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   94 SIGA   6.8852E-04  2.5670E-02
+   94 SIGD   1.6437E+00  3.0233E-01
+   94 SIGT   2.0279E-01  1.3088E+00
+   94 SIGF   0.0000E+00  0.0000E+00
+   94 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   95 SIGA   6.9290E-04  2.5834E-02
+   95 SIGD   1.6399E+00  3.0128E-01
+   95 SIGT   2.0326E-01  1.3164E+00
+   95 SIGF   0.0000E+00  0.0000E+00
+   95 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   96 SIGA   6.9433E-04  2.5921E-02
+   96 SIGD   1.6388E+00  3.0073E-01
+   96 SIGT   2.0341E-01  1.3205E+00
+   96 SIGF   0.0000E+00  0.0000E+00
+   96 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   97 SIGA   2.7695E-02  2.1802E-01
+   97 SIGD   1.1105E+00  5.7315E-01
+   97 SIGT   3.0015E-01  6.0408E-01
+   97 SIGF   7.3536E-03  1.5780E-01
+   97 SIGNF  1.8875E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+   98 SIGA   0.0000E+00  0.0000E+00
+   98 SIGD   2.0761E+03  3.1542E+03
+   98 SIGT   1.6056E-04  1.0705E-04
+   98 SIGF   0.0000E+00  0.0000E+00
+   98 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+   99 SIGA   1.6550E-03  4.8500E-03
+   99 SIGD   1.4798E+00  1.1233E+00
+   99 SIGT   2.2526E-01  2.9686E-01
+   99 SIGF   0.0000E+00  0.0000E+00
+   99 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  100 SIGA   6.8852E-04  2.5670E-02
+  100 SIGD   1.6437E+00  3.0233E-01
+  100 SIGT   2.0279E-01  1.3088E+00
+  100 SIGF   0.0000E+00  0.0000E+00
+  100 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  101 SIGA   6.9290E-04  2.5834E-02
+  101 SIGD   1.6399E+00  3.0128E-01
+  101 SIGT   2.0326E-01  1.3164E+00
+  101 SIGF   0.0000E+00  0.0000E+00
+  101 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  102 SIGA   6.9433E-04  2.5921E-02
+  102 SIGD   1.6388E+00  3.0073E-01
+  102 SIGT   2.0341E-01  1.3205E+00
+  102 SIGF   0.0000E+00  0.0000E+00
+  102 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  103 SIGA   7.2623E-04  2.6584E-02
+  103 SIGD   1.6333E+00  2.9352E-01
+  103 SIGT   2.0408E-01  1.3512E+00
+  103 SIGF   0.0000E+00  0.0000E+00
+  103 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  104 SIGA   1.8465E-03  5.0263E-03
+  104 SIGD   1.4778E+00  1.1221E+00
+  104 SIGT   2.2556E-01  2.9721E-01
+  104 SIGF   0.0000E+00  0.0000E+00
+  104 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  105 SIGA   7.1755E-04  2.6440E-02
+  105 SIGD   1.6403E+00  2.9468E-01
+  105 SIGT   2.0322E-01  1.3445E+00
+  105 SIGF   0.0000E+00  0.0000E+00
+  105 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  106 SIGA   7.1669E-04  2.6401E-02
+  106 SIGD   1.6413E+00  2.9494E-01
+  106 SIGT   2.0310E-01  1.3427E+00
+  106 SIGF   0.0000E+00  0.0000E+00
+  106 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  107 SIGA   7.1413E-04  2.6314E-02
+  107 SIGD   1.6437E+00  2.9553E-01
+  107 SIGT   2.0279E-01  1.3386E+00
+  107 SIGF   0.0000E+00  0.0000E+00
+  107 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  108 SIGA   2.7913E-02  2.1802E-01
+  108 SIGD   1.1103E+00  5.7315E-01
+  108 SIGT   3.0021E-01  6.0408E-01
+  108 SIGF   7.3593E-03  1.5780E-01
+  108 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  109 SIGA   0.0000E+00  0.0000E+00
+  109 SIGD   2.0761E+03  3.1542E+03
+  109 SIGT   1.6056E-04  1.0705E-04
+  109 SIGF   0.0000E+00  0.0000E+00
+  109 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  110 SIGA   1.6550E-03  4.8500E-03
+  110 SIGD   1.4798E+00  1.1233E+00
+  110 SIGT   2.2526E-01  2.9686E-01
+  110 SIGF   0.0000E+00  0.0000E+00
+  110 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  111 SIGA   6.8852E-04  2.5670E-02
+  111 SIGD   1.6437E+00  3.0233E-01
+  111 SIGT   2.0279E-01  1.3088E+00
+  111 SIGF   0.0000E+00  0.0000E+00
+  111 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  112 SIGA   6.9290E-04  2.5834E-02
+  112 SIGD   1.6399E+00  3.0128E-01
+  112 SIGT   2.0326E-01  1.3164E+00
+  112 SIGF   0.0000E+00  0.0000E+00
+  112 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  113 SIGA   6.9433E-04  2.5921E-02
+  113 SIGD   1.6388E+00  3.0073E-01
+  113 SIGT   2.0341E-01  1.3205E+00
+  113 SIGF   0.0000E+00  0.0000E+00
+  113 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  114 SIGA   2.7913E-02  2.1802E-01
+  114 SIGD   1.1103E+00  5.7315E-01
+  114 SIGT   3.0021E-01  6.0408E-01
+  114 SIGF   7.3593E-03  1.5780E-01
+  114 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  115 SIGA   0.0000E+00  0.0000E+00
+  115 SIGD   2.0761E+03  3.1542E+03
+  115 SIGT   1.6056E-04  1.0705E-04
+  115 SIGF   0.0000E+00  0.0000E+00
+  115 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  116 SIGA   1.6550E-03  4.8500E-03
+  116 SIGD   1.4798E+00  1.1233E+00
+  116 SIGT   2.2526E-01  2.9686E-01
+  116 SIGF   0.0000E+00  0.0000E+00
+  116 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  117 SIGA   6.8852E-04  2.5670E-02
+  117 SIGD   1.6437E+00  3.0233E-01
+  117 SIGT   2.0279E-01  1.3088E+00
+  117 SIGF   0.0000E+00  0.0000E+00
+  117 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  118 SIGA   6.9290E-04  2.5834E-02
+  118 SIGD   1.6399E+00  3.0128E-01
+  118 SIGT   2.0326E-01  1.3164E+00
+  118 SIGF   0.0000E+00  0.0000E+00
+  118 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  119 SIGA   6.9433E-04  2.5921E-02
+  119 SIGD   1.6388E+00  3.0073E-01
+  119 SIGT   2.0341E-01  1.3205E+00
+  119 SIGF   0.0000E+00  0.0000E+00
+  119 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  120 SIGA   7.2623E-04  2.6584E-02
+  120 SIGD   1.6333E+00  2.9352E-01
+  120 SIGT   2.0408E-01  1.3512E+00
+  120 SIGF   0.0000E+00  0.0000E+00
+  120 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  121 SIGA   1.8465E-03  5.0263E-03
+  121 SIGD   1.4778E+00  1.1221E+00
+  121 SIGT   2.2556E-01  2.9721E-01
+  121 SIGF   0.0000E+00  0.0000E+00
+  121 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  122 SIGA   7.1755E-04  2.6440E-02
+  122 SIGD   1.6403E+00  2.9468E-01
+  122 SIGT   2.0322E-01  1.3445E+00
+  122 SIGF   0.0000E+00  0.0000E+00
+  122 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  123 SIGA   7.1669E-04  2.6401E-02
+  123 SIGD   1.6413E+00  2.9494E-01
+  123 SIGT   2.0310E-01  1.3427E+00
+  123 SIGF   0.0000E+00  0.0000E+00
+  123 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  124 SIGA   7.1413E-04  2.6314E-02
+  124 SIGD   1.6437E+00  2.9553E-01
+  124 SIGT   2.0279E-01  1.3386E+00
+  124 SIGF   0.0000E+00  0.0000E+00
+  124 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  125 SIGA   2.8067E-02  2.1802E-01
+  125 SIGD   1.1102E+00  5.7315E-01
+  125 SIGT   3.0025E-01  6.0408E-01
+  125 SIGF   7.3629E-03  1.5780E-01
+  125 SIGNF  1.8898E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  126 SIGA   0.0000E+00  0.0000E+00
+  126 SIGD   2.0761E+03  3.1542E+03
+  126 SIGT   1.6056E-04  1.0705E-04
+  126 SIGF   0.0000E+00  0.0000E+00
+  126 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  127 SIGA   1.6550E-03  4.8500E-03
+  127 SIGD   1.4798E+00  1.1233E+00
+  127 SIGT   2.2526E-01  2.9686E-01
+  127 SIGF   0.0000E+00  0.0000E+00
+  127 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  128 SIGA   6.8852E-04  2.5670E-02
+  128 SIGD   1.6437E+00  3.0233E-01
+  128 SIGT   2.0279E-01  1.3088E+00
+  128 SIGF   0.0000E+00  0.0000E+00
+  128 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  129 SIGA   6.9290E-04  2.5834E-02
+  129 SIGD   1.6399E+00  3.0128E-01
+  129 SIGT   2.0326E-01  1.3164E+00
+  129 SIGF   0.0000E+00  0.0000E+00
+  129 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  130 SIGA   6.9433E-04  2.5921E-02
+  130 SIGD   1.6388E+00  3.0073E-01
+  130 SIGT   2.0341E-01  1.3205E+00
+  130 SIGF   0.0000E+00  0.0000E+00
+  130 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  131 SIGA   2.7913E-02  2.1802E-01
+  131 SIGD   1.1103E+00  5.7315E-01
+  131 SIGT   3.0021E-01  6.0408E-01
+  131 SIGF   7.3593E-03  1.5780E-01
+  131 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  132 SIGA   0.0000E+00  0.0000E+00
+  132 SIGD   2.0761E+03  3.1542E+03
+  132 SIGT   1.6056E-04  1.0705E-04
+  132 SIGF   0.0000E+00  0.0000E+00
+  132 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  133 SIGA   1.6550E-03  4.8500E-03
+  133 SIGD   1.4798E+00  1.1233E+00
+  133 SIGT   2.2526E-01  2.9686E-01
+  133 SIGF   0.0000E+00  0.0000E+00
+  133 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  134 SIGA   6.8852E-04  2.5670E-02
+  134 SIGD   1.6437E+00  3.0233E-01
+  134 SIGT   2.0279E-01  1.3088E+00
+  134 SIGF   0.0000E+00  0.0000E+00
+  134 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  135 SIGA   6.9290E-04  2.5834E-02
+  135 SIGD   1.6399E+00  3.0128E-01
+  135 SIGT   2.0326E-01  1.3164E+00
+  135 SIGF   0.0000E+00  0.0000E+00
+  135 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  136 SIGA   6.9433E-04  2.5921E-02
+  136 SIGD   1.6388E+00  3.0073E-01
+  136 SIGT   2.0341E-01  1.3205E+00
+  136 SIGF   0.0000E+00  0.0000E+00
+  136 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  137 SIGA   2.7854E-02  2.1802E-01
+  137 SIGD   1.1104E+00  5.7315E-01
+  137 SIGT   3.0020E-01  6.0408E-01
+  137 SIGF   7.3578E-03  1.5780E-01
+  137 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  138 SIGA   0.0000E+00  0.0000E+00
+  138 SIGD   2.0761E+03  3.1542E+03
+  138 SIGT   1.6056E-04  1.0705E-04
+  138 SIGF   0.0000E+00  0.0000E+00
+  138 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  139 SIGA   1.6550E-03  4.8500E-03
+  139 SIGD   1.4798E+00  1.1233E+00
+  139 SIGT   2.2526E-01  2.9686E-01
+  139 SIGF   0.0000E+00  0.0000E+00
+  139 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  140 SIGA   6.8852E-04  2.5670E-02
+  140 SIGD   1.6437E+00  3.0233E-01
+  140 SIGT   2.0279E-01  1.3088E+00
+  140 SIGF   0.0000E+00  0.0000E+00
+  140 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  141 SIGA   6.9290E-04  2.5834E-02
+  141 SIGD   1.6399E+00  3.0128E-01
+  141 SIGT   2.0326E-01  1.3164E+00
+  141 SIGF   0.0000E+00  0.0000E+00
+  141 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  142 SIGA   6.9433E-04  2.5921E-02
+  142 SIGD   1.6388E+00  3.0073E-01
+  142 SIGT   2.0341E-01  1.3205E+00
+  142 SIGF   0.0000E+00  0.0000E+00
+  142 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  143 SIGA   2.7913E-02  2.1802E-01
+  143 SIGD   1.1103E+00  5.7315E-01
+  143 SIGT   3.0021E-01  6.0408E-01
+  143 SIGF   7.3593E-03  1.5780E-01
+  143 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  144 SIGA   0.0000E+00  0.0000E+00
+  144 SIGD   2.0761E+03  3.1542E+03
+  144 SIGT   1.6056E-04  1.0705E-04
+  144 SIGF   0.0000E+00  0.0000E+00
+  144 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  145 SIGA   1.6550E-03  4.8500E-03
+  145 SIGD   1.4798E+00  1.1233E+00
+  145 SIGT   2.2526E-01  2.9686E-01
+  145 SIGF   0.0000E+00  0.0000E+00
+  145 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  146 SIGA   6.8852E-04  2.5670E-02
+  146 SIGD   1.6437E+00  3.0233E-01
+  146 SIGT   2.0279E-01  1.3088E+00
+  146 SIGF   0.0000E+00  0.0000E+00
+  146 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  147 SIGA   6.9290E-04  2.5834E-02
+  147 SIGD   1.6399E+00  3.0128E-01
+  147 SIGT   2.0326E-01  1.3164E+00
+  147 SIGF   0.0000E+00  0.0000E+00
+  147 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  148 SIGA   6.9433E-04  2.5921E-02
+  148 SIGD   1.6388E+00  3.0073E-01
+  148 SIGT   2.0341E-01  1.3205E+00
+  148 SIGF   0.0000E+00  0.0000E+00
+  148 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  149 SIGA   2.7854E-02  2.1802E-01
+  149 SIGD   1.1104E+00  5.7315E-01
+  149 SIGT   3.0020E-01  6.0408E-01
+  149 SIGF   7.3578E-03  1.5780E-01
+  149 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  150 SIGA   0.0000E+00  0.0000E+00
+  150 SIGD   2.0761E+03  3.1542E+03
+  150 SIGT   1.6056E-04  1.0705E-04
+  150 SIGF   0.0000E+00  0.0000E+00
+  150 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  151 SIGA   1.6550E-03  4.8500E-03
+  151 SIGD   1.4798E+00  1.1233E+00
+  151 SIGT   2.2526E-01  2.9686E-01
+  151 SIGF   0.0000E+00  0.0000E+00
+  151 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  152 SIGA   6.8852E-04  2.5670E-02
+  152 SIGD   1.6437E+00  3.0233E-01
+  152 SIGT   2.0279E-01  1.3088E+00
+  152 SIGF   0.0000E+00  0.0000E+00
+  152 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  153 SIGA   6.9290E-04  2.5834E-02
+  153 SIGD   1.6399E+00  3.0128E-01
+  153 SIGT   2.0326E-01  1.3164E+00
+  153 SIGF   0.0000E+00  0.0000E+00
+  153 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  154 SIGA   6.9433E-04  2.5921E-02
+  154 SIGD   1.6388E+00  3.0073E-01
+  154 SIGT   2.0341E-01  1.3205E+00
+  154 SIGF   0.0000E+00  0.0000E+00
+  154 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  155 SIGA   2.7854E-02  2.1802E-01
+  155 SIGD   1.1104E+00  5.7315E-01
+  155 SIGT   3.0020E-01  6.0408E-01
+  155 SIGF   7.3578E-03  1.5780E-01
+  155 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  156 SIGA   0.0000E+00  0.0000E+00
+  156 SIGD   2.0761E+03  3.1542E+03
+  156 SIGT   1.6056E-04  1.0705E-04
+  156 SIGF   0.0000E+00  0.0000E+00
+  156 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  157 SIGA   1.6550E-03  4.8500E-03
+  157 SIGD   1.4798E+00  1.1233E+00
+  157 SIGT   2.2526E-01  2.9686E-01
+  157 SIGF   0.0000E+00  0.0000E+00
+  157 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  158 SIGA   6.8852E-04  2.5670E-02
+  158 SIGD   1.6437E+00  3.0233E-01
+  158 SIGT   2.0279E-01  1.3088E+00
+  158 SIGF   0.0000E+00  0.0000E+00
+  158 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  159 SIGA   6.9290E-04  2.5834E-02
+  159 SIGD   1.6399E+00  3.0128E-01
+  159 SIGT   2.0326E-01  1.3164E+00
+  159 SIGF   0.0000E+00  0.0000E+00
+  159 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  160 SIGA   6.9433E-04  2.5921E-02
+  160 SIGD   1.6388E+00  3.0073E-01
+  160 SIGT   2.0341E-01  1.3205E+00
+  160 SIGF   0.0000E+00  0.0000E+00
+  160 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  161 SIGA   2.7913E-02  2.1802E-01
+  161 SIGD   1.1103E+00  5.7315E-01
+  161 SIGT   3.0021E-01  6.0408E-01
+  161 SIGF   7.3593E-03  1.5780E-01
+  161 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  162 SIGA   0.0000E+00  0.0000E+00
+  162 SIGD   2.0761E+03  3.1542E+03
+  162 SIGT   1.6056E-04  1.0705E-04
+  162 SIGF   0.0000E+00  0.0000E+00
+  162 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  163 SIGA   1.6550E-03  4.8500E-03
+  163 SIGD   1.4798E+00  1.1233E+00
+  163 SIGT   2.2526E-01  2.9686E-01
+  163 SIGF   0.0000E+00  0.0000E+00
+  163 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  164 SIGA   6.8852E-04  2.5670E-02
+  164 SIGD   1.6437E+00  3.0233E-01
+  164 SIGT   2.0279E-01  1.3088E+00
+  164 SIGF   0.0000E+00  0.0000E+00
+  164 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  165 SIGA   6.9290E-04  2.5834E-02
+  165 SIGD   1.6399E+00  3.0128E-01
+  165 SIGT   2.0326E-01  1.3164E+00
+  165 SIGF   0.0000E+00  0.0000E+00
+  165 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  166 SIGA   6.9433E-04  2.5921E-02
+  166 SIGD   1.6388E+00  3.0073E-01
+  166 SIGT   2.0341E-01  1.3205E+00
+  166 SIGF   0.0000E+00  0.0000E+00
+  166 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  167 SIGA   2.8067E-02  2.1802E-01
+  167 SIGD   1.1102E+00  5.7315E-01
+  167 SIGT   3.0025E-01  6.0408E-01
+  167 SIGF   7.3629E-03  1.5780E-01
+  167 SIGNF  1.8898E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  168 SIGA   0.0000E+00  0.0000E+00
+  168 SIGD   2.0761E+03  3.1542E+03
+  168 SIGT   1.6056E-04  1.0705E-04
+  168 SIGF   0.0000E+00  0.0000E+00
+  168 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  169 SIGA   1.6550E-03  4.8500E-03
+  169 SIGD   1.4798E+00  1.1233E+00
+  169 SIGT   2.2526E-01  2.9686E-01
+  169 SIGF   0.0000E+00  0.0000E+00
+  169 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  170 SIGA   6.8852E-04  2.5670E-02
+  170 SIGD   1.6437E+00  3.0233E-01
+  170 SIGT   2.0279E-01  1.3088E+00
+  170 SIGF   0.0000E+00  0.0000E+00
+  170 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  171 SIGA   6.9290E-04  2.5834E-02
+  171 SIGD   1.6399E+00  3.0128E-01
+  171 SIGT   2.0326E-01  1.3164E+00
+  171 SIGF   0.0000E+00  0.0000E+00
+  171 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  172 SIGA   6.9433E-04  2.5921E-02
+  172 SIGD   1.6388E+00  3.0073E-01
+  172 SIGT   2.0341E-01  1.3205E+00
+  172 SIGF   0.0000E+00  0.0000E+00
+  172 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  173 SIGA   7.2623E-04  2.6584E-02
+  173 SIGD   1.6333E+00  2.9352E-01
+  173 SIGT   2.0408E-01  1.3512E+00
+  173 SIGF   0.0000E+00  0.0000E+00
+  173 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  174 SIGA   1.8465E-03  5.0263E-03
+  174 SIGD   1.4778E+00  1.1221E+00
+  174 SIGT   2.2556E-01  2.9721E-01
+  174 SIGF   0.0000E+00  0.0000E+00
+  174 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  175 SIGA   7.1755E-04  2.6440E-02
+  175 SIGD   1.6403E+00  2.9468E-01
+  175 SIGT   2.0322E-01  1.3445E+00
+  175 SIGF   0.0000E+00  0.0000E+00
+  175 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  176 SIGA   7.1669E-04  2.6401E-02
+  176 SIGD   1.6413E+00  2.9494E-01
+  176 SIGT   2.0310E-01  1.3427E+00
+  176 SIGF   0.0000E+00  0.0000E+00
+  176 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  177 SIGA   7.1413E-04  2.6314E-02
+  177 SIGD   1.6437E+00  2.9553E-01
+  177 SIGT   2.0279E-01  1.3386E+00
+  177 SIGF   0.0000E+00  0.0000E+00
+  177 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  178 SIGA   2.7913E-02  2.1802E-01
+  178 SIGD   1.1103E+00  5.7315E-01
+  178 SIGT   3.0021E-01  6.0408E-01
+  178 SIGF   7.3593E-03  1.5780E-01
+  178 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  179 SIGA   0.0000E+00  0.0000E+00
+  179 SIGD   2.0761E+03  3.1542E+03
+  179 SIGT   1.6056E-04  1.0705E-04
+  179 SIGF   0.0000E+00  0.0000E+00
+  179 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  180 SIGA   1.6550E-03  4.8500E-03
+  180 SIGD   1.4798E+00  1.1233E+00
+  180 SIGT   2.2526E-01  2.9686E-01
+  180 SIGF   0.0000E+00  0.0000E+00
+  180 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  181 SIGA   6.8852E-04  2.5670E-02
+  181 SIGD   1.6437E+00  3.0233E-01
+  181 SIGT   2.0279E-01  1.3088E+00
+  181 SIGF   0.0000E+00  0.0000E+00
+  181 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  182 SIGA   6.9290E-04  2.5834E-02
+  182 SIGD   1.6399E+00  3.0128E-01
+  182 SIGT   2.0326E-01  1.3164E+00
+  182 SIGF   0.0000E+00  0.0000E+00
+  182 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  183 SIGA   6.9433E-04  2.5921E-02
+  183 SIGD   1.6388E+00  3.0073E-01
+  183 SIGT   2.0341E-01  1.3205E+00
+  183 SIGF   0.0000E+00  0.0000E+00
+  183 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  184 SIGA   2.7854E-02  2.1802E-01
+  184 SIGD   1.1104E+00  5.7315E-01
+  184 SIGT   3.0020E-01  6.0408E-01
+  184 SIGF   7.3578E-03  1.5780E-01
+  184 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  185 SIGA   0.0000E+00  0.0000E+00
+  185 SIGD   2.0761E+03  3.1542E+03
+  185 SIGT   1.6056E-04  1.0705E-04
+  185 SIGF   0.0000E+00  0.0000E+00
+  185 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  186 SIGA   1.6550E-03  4.8500E-03
+  186 SIGD   1.4798E+00  1.1233E+00
+  186 SIGT   2.2526E-01  2.9686E-01
+  186 SIGF   0.0000E+00  0.0000E+00
+  186 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  187 SIGA   6.8852E-04  2.5670E-02
+  187 SIGD   1.6437E+00  3.0233E-01
+  187 SIGT   2.0279E-01  1.3088E+00
+  187 SIGF   0.0000E+00  0.0000E+00
+  187 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  188 SIGA   6.9290E-04  2.5834E-02
+  188 SIGD   1.6399E+00  3.0128E-01
+  188 SIGT   2.0326E-01  1.3164E+00
+  188 SIGF   0.0000E+00  0.0000E+00
+  188 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  189 SIGA   6.9433E-04  2.5921E-02
+  189 SIGD   1.6388E+00  3.0073E-01
+  189 SIGT   2.0341E-01  1.3205E+00
+  189 SIGF   0.0000E+00  0.0000E+00
+  189 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  190 SIGA   2.7854E-02  2.1802E-01
+  190 SIGD   1.1104E+00  5.7315E-01
+  190 SIGT   3.0020E-01  6.0408E-01
+  190 SIGF   7.3578E-03  1.5780E-01
+  190 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  191 SIGA   0.0000E+00  0.0000E+00
+  191 SIGD   2.0761E+03  3.1542E+03
+  191 SIGT   1.6056E-04  1.0705E-04
+  191 SIGF   0.0000E+00  0.0000E+00
+  191 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  192 SIGA   1.6550E-03  4.8500E-03
+  192 SIGD   1.4798E+00  1.1233E+00
+  192 SIGT   2.2526E-01  2.9686E-01
+  192 SIGF   0.0000E+00  0.0000E+00
+  192 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  193 SIGA   6.8852E-04  2.5670E-02
+  193 SIGD   1.6437E+00  3.0233E-01
+  193 SIGT   2.0279E-01  1.3088E+00
+  193 SIGF   0.0000E+00  0.0000E+00
+  193 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  194 SIGA   6.9290E-04  2.5834E-02
+  194 SIGD   1.6399E+00  3.0128E-01
+  194 SIGT   2.0326E-01  1.3164E+00
+  194 SIGF   0.0000E+00  0.0000E+00
+  194 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  195 SIGA   6.9433E-04  2.5921E-02
+  195 SIGD   1.6388E+00  3.0073E-01
+  195 SIGT   2.0341E-01  1.3205E+00
+  195 SIGF   0.0000E+00  0.0000E+00
+  195 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  196 SIGA   2.7913E-02  2.1802E-01
+  196 SIGD   1.1103E+00  5.7315E-01
+  196 SIGT   3.0021E-01  6.0408E-01
+  196 SIGF   7.3593E-03  1.5780E-01
+  196 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  197 SIGA   0.0000E+00  0.0000E+00
+  197 SIGD   2.0761E+03  3.1542E+03
+  197 SIGT   1.6056E-04  1.0705E-04
+  197 SIGF   0.0000E+00  0.0000E+00
+  197 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  198 SIGA   1.6550E-03  4.8500E-03
+  198 SIGD   1.4798E+00  1.1233E+00
+  198 SIGT   2.2526E-01  2.9686E-01
+  198 SIGF   0.0000E+00  0.0000E+00
+  198 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  199 SIGA   6.8852E-04  2.5670E-02
+  199 SIGD   1.6437E+00  3.0233E-01
+  199 SIGT   2.0279E-01  1.3088E+00
+  199 SIGF   0.0000E+00  0.0000E+00
+  199 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  200 SIGA   6.9290E-04  2.5834E-02
+  200 SIGD   1.6399E+00  3.0128E-01
+  200 SIGT   2.0326E-01  1.3164E+00
+  200 SIGF   0.0000E+00  0.0000E+00
+  200 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  201 SIGA   6.9433E-04  2.5921E-02
+  201 SIGD   1.6388E+00  3.0073E-01
+  201 SIGT   2.0341E-01  1.3205E+00
+  201 SIGF   0.0000E+00  0.0000E+00
+  201 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  202 SIGA   2.8009E-02  2.1802E-01
+  202 SIGD   1.1102E+00  5.7315E-01
+  202 SIGT   3.0024E-01  6.0408E-01
+  202 SIGF   7.3615E-03  1.5780E-01
+  202 SIGNF  1.8895E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  203 SIGA   0.0000E+00  0.0000E+00
+  203 SIGD   2.0761E+03  3.1542E+03
+  203 SIGT   1.6056E-04  1.0705E-04
+  203 SIGF   0.0000E+00  0.0000E+00
+  203 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  204 SIGA   1.6550E-03  4.8500E-03
+  204 SIGD   1.4798E+00  1.1233E+00
+  204 SIGT   2.2526E-01  2.9686E-01
+  204 SIGF   0.0000E+00  0.0000E+00
+  204 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  205 SIGA   6.8852E-04  2.5670E-02
+  205 SIGD   1.6437E+00  3.0233E-01
+  205 SIGT   2.0279E-01  1.3088E+00
+  205 SIGF   0.0000E+00  0.0000E+00
+  205 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  206 SIGA   6.9290E-04  2.5834E-02
+  206 SIGD   1.6399E+00  3.0128E-01
+  206 SIGT   2.0326E-01  1.3164E+00
+  206 SIGF   0.0000E+00  0.0000E+00
+  206 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  207 SIGA   6.9433E-04  2.5921E-02
+  207 SIGD   1.6388E+00  3.0073E-01
+  207 SIGT   2.0341E-01  1.3205E+00
+  207 SIGF   0.0000E+00  0.0000E+00
+  207 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  208 SIGA   7.2623E-04  2.6584E-02
+  208 SIGD   1.6333E+00  2.9352E-01
+  208 SIGT   2.0408E-01  1.3512E+00
+  208 SIGF   0.0000E+00  0.0000E+00
+  208 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  209 SIGA   1.8465E-03  5.0263E-03
+  209 SIGD   1.4778E+00  1.1221E+00
+  209 SIGT   2.2556E-01  2.9721E-01
+  209 SIGF   0.0000E+00  0.0000E+00
+  209 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  210 SIGA   7.1755E-04  2.6440E-02
+  210 SIGD   1.6403E+00  2.9468E-01
+  210 SIGT   2.0322E-01  1.3445E+00
+  210 SIGF   0.0000E+00  0.0000E+00
+  210 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  211 SIGA   7.1669E-04  2.6401E-02
+  211 SIGD   1.6413E+00  2.9494E-01
+  211 SIGT   2.0310E-01  1.3427E+00
+  211 SIGF   0.0000E+00  0.0000E+00
+  211 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  212 SIGA   7.1413E-04  2.6314E-02
+  212 SIGD   1.6437E+00  2.9553E-01
+  212 SIGT   2.0279E-01  1.3386E+00
+  212 SIGF   0.0000E+00  0.0000E+00
+  212 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  213 SIGA   2.7913E-02  2.1802E-01
+  213 SIGD   1.1103E+00  5.7315E-01
+  213 SIGT   3.0021E-01  6.0408E-01
+  213 SIGF   7.3593E-03  1.5780E-01
+  213 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  214 SIGA   0.0000E+00  0.0000E+00
+  214 SIGD   2.0761E+03  3.1542E+03
+  214 SIGT   1.6056E-04  1.0705E-04
+  214 SIGF   0.0000E+00  0.0000E+00
+  214 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  215 SIGA   1.6550E-03  4.8500E-03
+  215 SIGD   1.4798E+00  1.1233E+00
+  215 SIGT   2.2526E-01  2.9686E-01
+  215 SIGF   0.0000E+00  0.0000E+00
+  215 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  216 SIGA   6.8852E-04  2.5670E-02
+  216 SIGD   1.6437E+00  3.0233E-01
+  216 SIGT   2.0279E-01  1.3088E+00
+  216 SIGF   0.0000E+00  0.0000E+00
+  216 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  217 SIGA   6.9290E-04  2.5834E-02
+  217 SIGD   1.6399E+00  3.0128E-01
+  217 SIGT   2.0326E-01  1.3164E+00
+  217 SIGF   0.0000E+00  0.0000E+00
+  217 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  218 SIGA   6.9433E-04  2.5921E-02
+  218 SIGD   1.6388E+00  3.0073E-01
+  218 SIGT   2.0341E-01  1.3205E+00
+  218 SIGF   0.0000E+00  0.0000E+00
+  218 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  219 SIGA   2.7913E-02  2.1802E-01
+  219 SIGD   1.1103E+00  5.7315E-01
+  219 SIGT   3.0021E-01  6.0408E-01
+  219 SIGF   7.3593E-03  1.5780E-01
+  219 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  220 SIGA   0.0000E+00  0.0000E+00
+  220 SIGD   2.0761E+03  3.1542E+03
+  220 SIGT   1.6056E-04  1.0705E-04
+  220 SIGF   0.0000E+00  0.0000E+00
+  220 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  221 SIGA   1.6550E-03  4.8500E-03
+  221 SIGD   1.4798E+00  1.1233E+00
+  221 SIGT   2.2526E-01  2.9686E-01
+  221 SIGF   0.0000E+00  0.0000E+00
+  221 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  222 SIGA   6.8852E-04  2.5670E-02
+  222 SIGD   1.6437E+00  3.0233E-01
+  222 SIGT   2.0279E-01  1.3088E+00
+  222 SIGF   0.0000E+00  0.0000E+00
+  222 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  223 SIGA   6.9290E-04  2.5834E-02
+  223 SIGD   1.6399E+00  3.0128E-01
+  223 SIGT   2.0326E-01  1.3164E+00
+  223 SIGF   0.0000E+00  0.0000E+00
+  223 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  224 SIGA   6.9433E-04  2.5921E-02
+  224 SIGD   1.6388E+00  3.0073E-01
+  224 SIGT   2.0341E-01  1.3205E+00
+  224 SIGF   0.0000E+00  0.0000E+00
+  224 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  225 SIGA   7.2623E-04  2.6584E-02
+  225 SIGD   1.6333E+00  2.9352E-01
+  225 SIGT   2.0408E-01  1.3512E+00
+  225 SIGF   0.0000E+00  0.0000E+00
+  225 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  226 SIGA   1.8465E-03  5.0263E-03
+  226 SIGD   1.4778E+00  1.1221E+00
+  226 SIGT   2.2556E-01  2.9721E-01
+  226 SIGF   0.0000E+00  0.0000E+00
+  226 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  227 SIGA   7.1755E-04  2.6440E-02
+  227 SIGD   1.6403E+00  2.9468E-01
+  227 SIGT   2.0322E-01  1.3445E+00
+  227 SIGF   0.0000E+00  0.0000E+00
+  227 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  228 SIGA   7.1669E-04  2.6401E-02
+  228 SIGD   1.6413E+00  2.9494E-01
+  228 SIGT   2.0310E-01  1.3427E+00
+  228 SIGF   0.0000E+00  0.0000E+00
+  228 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  229 SIGA   7.1413E-04  2.6314E-02
+  229 SIGD   1.6437E+00  2.9553E-01
+  229 SIGT   2.0279E-01  1.3386E+00
+  229 SIGF   0.0000E+00  0.0000E+00
+  229 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  230 SIGA   2.7913E-02  2.1802E-01
+  230 SIGD   1.1103E+00  5.7315E-01
+  230 SIGT   3.0021E-01  6.0408E-01
+  230 SIGF   7.3593E-03  1.5780E-01
+  230 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  231 SIGA   0.0000E+00  0.0000E+00
+  231 SIGD   2.0761E+03  3.1542E+03
+  231 SIGT   1.6056E-04  1.0705E-04
+  231 SIGF   0.0000E+00  0.0000E+00
+  231 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  232 SIGA   1.6550E-03  4.8500E-03
+  232 SIGD   1.4798E+00  1.1233E+00
+  232 SIGT   2.2526E-01  2.9686E-01
+  232 SIGF   0.0000E+00  0.0000E+00
+  232 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  233 SIGA   6.8852E-04  2.5670E-02
+  233 SIGD   1.6437E+00  3.0233E-01
+  233 SIGT   2.0279E-01  1.3088E+00
+  233 SIGF   0.0000E+00  0.0000E+00
+  233 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  234 SIGA   6.9290E-04  2.5834E-02
+  234 SIGD   1.6399E+00  3.0128E-01
+  234 SIGT   2.0326E-01  1.3164E+00
+  234 SIGF   0.0000E+00  0.0000E+00
+  234 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  235 SIGA   6.9433E-04  2.5921E-02
+  235 SIGD   1.6388E+00  3.0073E-01
+  235 SIGT   2.0341E-01  1.3205E+00
+  235 SIGF   0.0000E+00  0.0000E+00
+  235 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  236 SIGA   2.7854E-02  2.1802E-01
+  236 SIGD   1.1104E+00  5.7315E-01
+  236 SIGT   3.0020E-01  6.0408E-01
+  236 SIGF   7.3578E-03  1.5780E-01
+  236 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  237 SIGA   0.0000E+00  0.0000E+00
+  237 SIGD   2.0761E+03  3.1542E+03
+  237 SIGT   1.6056E-04  1.0705E-04
+  237 SIGF   0.0000E+00  0.0000E+00
+  237 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  238 SIGA   1.6550E-03  4.8500E-03
+  238 SIGD   1.4798E+00  1.1233E+00
+  238 SIGT   2.2526E-01  2.9686E-01
+  238 SIGF   0.0000E+00  0.0000E+00
+  238 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  239 SIGA   6.8852E-04  2.5670E-02
+  239 SIGD   1.6437E+00  3.0233E-01
+  239 SIGT   2.0279E-01  1.3088E+00
+  239 SIGF   0.0000E+00  0.0000E+00
+  239 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  240 SIGA   6.9290E-04  2.5834E-02
+  240 SIGD   1.6399E+00  3.0128E-01
+  240 SIGT   2.0326E-01  1.3164E+00
+  240 SIGF   0.0000E+00  0.0000E+00
+  240 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  241 SIGA   6.9433E-04  2.5921E-02
+  241 SIGD   1.6388E+00  3.0073E-01
+  241 SIGT   2.0341E-01  1.3205E+00
+  241 SIGF   0.0000E+00  0.0000E+00
+  241 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  242 SIGA   2.7854E-02  2.1802E-01
+  242 SIGD   1.1104E+00  5.7315E-01
+  242 SIGT   3.0020E-01  6.0408E-01
+  242 SIGF   7.3578E-03  1.5780E-01
+  242 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  243 SIGA   0.0000E+00  0.0000E+00
+  243 SIGD   2.0761E+03  3.1542E+03
+  243 SIGT   1.6056E-04  1.0705E-04
+  243 SIGF   0.0000E+00  0.0000E+00
+  243 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  244 SIGA   1.6550E-03  4.8500E-03
+  244 SIGD   1.4798E+00  1.1233E+00
+  244 SIGT   2.2526E-01  2.9686E-01
+  244 SIGF   0.0000E+00  0.0000E+00
+  244 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  245 SIGA   6.8852E-04  2.5670E-02
+  245 SIGD   1.6437E+00  3.0233E-01
+  245 SIGT   2.0279E-01  1.3088E+00
+  245 SIGF   0.0000E+00  0.0000E+00
+  245 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  246 SIGA   6.9290E-04  2.5834E-02
+  246 SIGD   1.6399E+00  3.0128E-01
+  246 SIGT   2.0326E-01  1.3164E+00
+  246 SIGF   0.0000E+00  0.0000E+00
+  246 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  247 SIGA   6.9433E-04  2.5921E-02
+  247 SIGD   1.6388E+00  3.0073E-01
+  247 SIGT   2.0341E-01  1.3205E+00
+  247 SIGF   0.0000E+00  0.0000E+00
+  247 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  248 SIGA   2.7913E-02  2.1802E-01
+  248 SIGD   1.1103E+00  5.7315E-01
+  248 SIGT   3.0021E-01  6.0408E-01
+  248 SIGF   7.3593E-03  1.5780E-01
+  248 SIGNF  1.8889E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  249 SIGA   0.0000E+00  0.0000E+00
+  249 SIGD   2.0761E+03  3.1542E+03
+  249 SIGT   1.6056E-04  1.0705E-04
+  249 SIGF   0.0000E+00  0.0000E+00
+  249 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  250 SIGA   1.6550E-03  4.8500E-03
+  250 SIGD   1.4798E+00  1.1233E+00
+  250 SIGT   2.2526E-01  2.9686E-01
+  250 SIGF   0.0000E+00  0.0000E+00
+  250 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  251 SIGA   6.8852E-04  2.5670E-02
+  251 SIGD   1.6437E+00  3.0233E-01
+  251 SIGT   2.0279E-01  1.3088E+00
+  251 SIGF   0.0000E+00  0.0000E+00
+  251 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  252 SIGA   6.9290E-04  2.5834E-02
+  252 SIGD   1.6399E+00  3.0128E-01
+  252 SIGT   2.0326E-01  1.3164E+00
+  252 SIGF   0.0000E+00  0.0000E+00
+  252 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  253 SIGA   6.9433E-04  2.5921E-02
+  253 SIGD   1.6388E+00  3.0073E-01
+  253 SIGT   2.0341E-01  1.3205E+00
+  253 SIGF   0.0000E+00  0.0000E+00
+  253 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  254 SIGA   2.7854E-02  2.1802E-01
+  254 SIGD   1.1104E+00  5.7315E-01
+  254 SIGT   3.0020E-01  6.0408E-01
+  254 SIGF   7.3578E-03  1.5780E-01
+  254 SIGNF  1.8886E-02  3.8451E-01
+ REG.       GROUPS---->1 TO   2
+  255 SIGA   0.0000E+00  0.0000E+00
+  255 SIGD   2.0761E+03  3.1542E+03
+  255 SIGT   1.6056E-04  1.0705E-04
+  255 SIGF   0.0000E+00  0.0000E+00
+  255 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  256 SIGA   1.6550E-03  4.8500E-03
+  256 SIGD   1.4798E+00  1.1233E+00
+  256 SIGT   2.2526E-01  2.9686E-01
+  256 SIGF   0.0000E+00  0.0000E+00
+  256 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  257 SIGA   6.8852E-04  2.5670E-02
+  257 SIGD   1.6437E+00  3.0233E-01
+  257 SIGT   2.0279E-01  1.3088E+00
+  257 SIGF   0.0000E+00  0.0000E+00
+  257 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  258 SIGA   6.9290E-04  2.5834E-02
+  258 SIGD   1.6399E+00  3.0128E-01
+  258 SIGT   2.0326E-01  1.3164E+00
+  258 SIGF   0.0000E+00  0.0000E+00
+  258 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  259 SIGA   6.9433E-04  2.5921E-02
+  259 SIGD   1.6388E+00  3.0073E-01
+  259 SIGT   2.0341E-01  1.3205E+00
+  259 SIGF   0.0000E+00  0.0000E+00
+  259 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  260 SIGA   7.2623E-04  2.6584E-02
+  260 SIGD   1.6333E+00  2.9352E-01
+  260 SIGT   2.0408E-01  1.3512E+00
+  260 SIGF   0.0000E+00  0.0000E+00
+  260 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  261 SIGA   1.8465E-03  5.0263E-03
+  261 SIGD   1.4778E+00  1.1221E+00
+  261 SIGT   2.2556E-01  2.9721E-01
+  261 SIGF   0.0000E+00  0.0000E+00
+  261 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  262 SIGA   7.1755E-04  2.6440E-02
+  262 SIGD   1.6403E+00  2.9468E-01
+  262 SIGT   2.0322E-01  1.3445E+00
+  262 SIGF   0.0000E+00  0.0000E+00
+  262 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  263 SIGA   7.1669E-04  2.6401E-02
+  263 SIGD   1.6413E+00  2.9494E-01
+  263 SIGT   2.0310E-01  1.3427E+00
+  263 SIGF   0.0000E+00  0.0000E+00
+  263 SIGNF  0.0000E+00  0.0000E+00
+ REG.       GROUPS---->1 TO   2
+  264 SIGA   7.1413E-04  2.6314E-02
+  264 SIGD   1.6437E+00  2.9553E-01
+  264 SIGT   2.0279E-01  1.3386E+00
+  264 SIGF   0.0000E+00  0.0000E+00
+  264 SIGNF  0.0000E+00  0.0000E+00
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =      13
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ Ray Tracing Integrity Summary
+ -----------------------------
+ Maximum track misalignment = 1.000006D-08                                                                   
+ Tot. Vol. Actual :           57.571865  Tot. Vol. Tracked :          57.571865  Diff:    -0.000001    0.00% 
+ Maximum volume without a track: None (All regions contain at least 1 track)                                 
+
+ Polar Angle Integration: TY Optimum 3 Polar Angle
+ 2D neutron transport calculation symmetry: 1/8 assembly                                         
+ Boundary Conditions: West: Mirror,  South: Mirror,  East: Mirror,  North: Mirror                    Flat source regions:       1331
+ 2D Groups:  2   EDIT-B Groups:  2   Azimuthal Angles:  64   Polar Angles:  3   Ray-Spacing:  0.0500 cm           Tracks:     321736
+
+ C h a r a c t e r i s t i c s   S o l u t i o n --Statepoint:   1  Ave Exp:   0.000
+
+   Iter   Eigen  Del PCM      CPU      EPS-2D    EPS-Source    EPS-Flux    CMCO-Dev    Thermals
+   ----   -----  -------      ---    --------    ----------    --------    --------    --------
+     1  1.09874              0.00    1.000000      1.000000    1.000000    1.000000        0
+     2  1.12405   2531.4     0.06    0.007133      0.000039    0.000021    0.222320        3
+     3  1.13182    777.0     0.04    0.001699      0.000007    0.000003    0.026466        2
+     4  1.13214     32.0     0.04    0.000127      0.000002    0.000001    0.001408        2
+     5  1.13218      3.3     0.04    0.000053      0.000001    0.000000    0.001008        2
+     6  1.13217     -0.3     0.02    0.000009      0.000000    0.000000    0.000094        1
+ Total CPU (Sec)             0.20
+ 2D k-infinity:  1.132174
+
+ ********************
+ * K-inf = 1.13217  *   (Fundamental mode calc. skipped)
+ ********************
+
+ Segment reaction-rate balance ( 586 groups ):
+ Segment nu-bar       :      2.45835 neutrons/fission
+ E-ave. chi           :      2.01885 MeV
+ Total Nu*fis (prod)  :      1.000000
+ Total Abs.   (dest)  :      0.883256
+ Total Capture        :      0.477699
+ Total Fission        :      0.406777
+ Capture/Fission      :      1.174350
+ k-infinity           :      1.132175  Delta pcm to 2D k-inf:          0.04 
+
+ Energy Release per Fission Data:
+ Ave. Q/Fission (E0)  :      193.661 MeV/fission
+ Ave. Qc-Bar          :        4.900 MeV/capture        5.754 MeV/fission
+ Q-Total RR based     :      199.415 MeV/fission
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      1 Page =      14
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup=   0.000  V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0  EFPH=     0  ECH=   0.000                                       
+
+          --------------------  C A S M O 5      S U M M A R Y    ----------------------  
+                          Burnup =    0.000 MWd/kg   K-inf =   1.13217
+          ------------------------------------------------------------------------------  
+
+  * Power Distribution    Peak: LL = 1.033  (   0.0 W/cm),  HSF =  1.033  (    0.0 W/cm2) (including   9.5% gamma smearing)
+  0.000 
+  1.028  1.013 
+  1.028  1.013  1.013 
+  0.000  1.027  1.028  0.000 
+  1.026  1.012  1.013  1.032  1.025 
+  1.023  1.009  1.011  1.031  1.033* 0.000 
+  0.000  1.018  1.019  0.000  1.022  1.010  0.984 
+  1.006  0.993  0.993  1.005  0.989  0.977  0.966  0.957 
+  0.980  0.978  0.978  0.978  0.972  0.965  0.957  0.952  0.949 
+
+  * Two Group Data                                    K-inf Xe, No Xe  1.13192     1.13192
+    Diff1   , Diff2         1.4272E+00   3.7444E-01   M2     ",  "     5.7499E+01  5.7499E+01
+    Abs1    , Abs2          8.4923E-03   7.3627E-02   Xe2  Mic, Mac    1.5092E+06  4.2053E-19
+    Nufiss1 , Nufiss2       5.3638E-03   1.0003E-01   Sm2    ",  "     4.4924E+04  1.2517E-20
+    Remov1  , Nu            1.8737E-02   2.4583E+00   Bor1   ",  "     1.0008E+01  2.4688E-04
+    Kappa   , Xe-Yield      3.1946E-11   6.5630E-02   Bor2   ",  "     4.3315E+02  1.0685E-02
+
+  * Neutron Balance            Group 1      Group 2        Total
+    Flux  . . . . . . .     7.0348E-02   1.7932E-02   8.8281E-02
+    Absorption  . . . .     2.7516E-01   6.0810E-01   8.8326E-01
+    Fission . . . . . .     6.7709E-02   3.3907E-01   4.0678E-01
+    Nufission . . . . .     1.7379E-01   8.2621E-01   1.0000E+00
+    Leakage . . . . . .     0.0000E+00   0.0000E+00   0.0000E+00
+    Outscatter  . . . .     6.1779E-01   1.0686E-02   6.2848E-01
+    K-inf  (2-Group). .     1.9698E-01   9.3493E-01   1.1319E+00
+    ETA*F, P  . . . . .     6.3161E-01   1.3587E+00   6.8812E-01
+    Inv Velocity  . . .     5.9380E-08   2.4876E-06
+    Flux Ratio:[Det/Cell]   9.7035E-01   1.1366E+00
+
+  * Neutron Detector        5.2818E+11   Gamma Det    0.0000E+00   Pr. Neut. Gen.  2.6516E-05
+    Integrated Abs  . .     0.0000E+00   Int Nufiss   0.0000E+00   Int Leakage     0.0000E+00
+    Fast Fluence    . .     0.0000E+00   Power (w/g)  1.0000E-04   Norm Factor     8.8842E+09
+    Conv Ratio      . .     5.0901E-01   Fiss/Tot U%  2.4000E+00   Fiss/Tot Pu%    0.0000E+00
+    Neut Det (Abs)  . .     6.0978E+10   GTIP(Abs)    0.0000E+00
+
+  * Nuclide  Wt(%) HM       Capture      Fission      Int Capt      Int Fiss           MWd/kg
+    U-234     0.0217        1.3674E-03   2.5478E-05   0.0000E+00   0.0000E+00           0.000 Fer
+    U-235     2.4000        8.0441E-02   3.8348E-01   0.0000E+00   0.0000E+00           0.000 Fis
+    U-236     0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    U-237     0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    U-238    97.5783        2.3477E-01   2.3277E-02   0.0000E+00   0.0000E+00           0.000 Fer
+    Np-237    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Np-238    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Np-239    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Pu-238    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fer
+    Pu-239    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fis
+    Pu-240    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fer
+    Pu-241    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fis
+    Pu-242    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Pu-243    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Am-241    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Am-242    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Am-243    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Am242m    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fis
+    Cm-242    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fis
+    Cm-243    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fis
+    Cm-244    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000 Fer
+    Cm-245    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Cm-246    0.0000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Tot  U   100.000        3.1658E-01   4.0678E-01   0.0000E+00   0.0000E+00           0.000
+    Tot Pu     0.000        0.0000E+00   0.0000E+00   0.0000E+00   0.0000E+00           0.000
+    Sum      100.000
+
+  * Nuclide  Wt(%) HM       Capture      Fission      Int Capt      Int Fiss           MWd/kg
+    Fissile    2.400        8.0441E-02   3.8348E-01   0.0000E+00   0.0000E+00           0.000
+    Fertile   97.600        2.3614E-01   2.3302E-02   0.0000E+00   0.0000E+00           0.000
+    Sum      100.000
+
+  * Delayed Neutron Data (ENDF/B-VII.1) (Weight:0-D Adjoint)
+                          Grp 1   Grp 2   Grp 3   Grp 4   Grp 5   Grp 6              Total
+       Decay Constants:  0.0134  0.0326  0.1211  0.3062  0.8628  2.8981
+              Yield*E3:  0.2271  1.2139  1.1828  2.7454  1.2240  0.5094             7.1025 (Beta Phy.)
+    Effective Yield*E3:  0.2271  1.2139  1.1828  2.7456  1.2241  0.5094             7.1029 (Beta Eff.)   I-bar= 1.0001
+
+
+ Prompt Neutron Generation Time (sec) :  2.6516E-05
+ Period to Reactivity Conversion (In-Hour):
+ Period        (sec)   10.00   20.00   30.00   40.00   50.00   75.00  100.00  125.00  150.00  175.00  225.00  300.00
+ Doubling Time (sec)    6.93   13.86   20.80   27.73   34.66   51.99   69.32   86.65  103.98  121.30  155.96  207.95
+ Reactivity    (pcm)  247.36  172.23  135.30  112.42   96.56   71.91   57.54   48.04   41.27   36.20   29.07   22.46
+1___________________________________________________________________________________________________________________________________
+ * C A S M O 5    2.03.00 Rev:00 Created:2012/11/19 **Studsvik** Executed:2013/11/21  13:29:38   State Point =      2 Page =      15
+ * BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+ * Burnup =     0.000 V= 0.0  TF= 566.5  TM= 566.5  BOR= 975.0                                        
+
+ List of Errors/Warnings/Cautions/Notes Encountered
+ Severity: (E):Error, (W):Warning, (C):Caution, (N):Note
+ -------------------------------------------------------
+ Routine       S  Text
+ -------       -  ----
+ SCANIN        W  Input card STA is missing before END card  -  STA card added.
+ GRPDEF        W  Edit-B group structure reset from: 8 to 2 groups (# Edit-B groups must be <= # 2D groups).
+ INP_DEB       C  Debug edit of 2D cross sections requested.
+ INP_GRP       N  Using 2 group 2D neutron group structure (set by GRP input).
+ INIT_MGD      N  Multigroup data (MGD) for SIMULATE5 will be added to the Card Image File (with micros).
+
+   ** C A S M O 5  Summary **
+
+   BEAVRS PWR MODEL - FUEL PWRU240C00 BASE AND BRANCHES
+   HVOI=  0.0 HTFU=  566.5 HTMO=  566.5 HTCO=  566.5 HBOR=  975.0
+   No Void    TFU    TMO    TCO    BOR   PRE  Rod   Burnup   K-inf   K-inf     M2     Pin   U-235 Fiss Pu  Tot Pu
+                                                    MWd/kg            Two-Group      Peak    Wt %    Wt %    Wt %
+    1  0.0  566.5  566.5  566.5  975.0 155.1         0.000 1.13217 1.13192  57.50   1.033   2.400   0.000   0.000  
+
+
+ Run Terminated.    5  Messages Encountered
+     0  Fatal error(s),       2  Warning(s)
+     2  Usage note(s),        1  Caution(s)
+
+ Run Started     (Date,Time):  2013/11/21   13:29:38  
+ Run Completed   (Date,Time):  2013/11/21   13:29:39  
+ Total Wall Time Used       :               00:00:01
+ Total CPU  Time Used       :               00:00:01  CPU Util: 100%
+
+ #S.P.                      :           1
+ Sec./S.P.                  :        1.00
+ S.P./Min.                  :       60.00
+
+
+ Maximum dynamic memory used (bytes):      169773868
+
+ Files:
+ Input                      :  c4.pwru240c00.inp
+ Output                     :  c4.pwru240c00.out
+ Screen                     :  c4.pwru240c00.log
+ Card Image                 :  c4.pwru240c00.cax
+
+ Scanning C.I. file:
+ Card Image File contains no non-ASCII characters.
+ Card image file contains:      3509 lines
+ Scan Complete
+
+ *********************************
+ *        CASMO5 v2.03.00        *
+ *       Normal Termination      *
+ *     -Warnings Encountered-    *
+ *********************************
+Thu Nov 21 13:29:39 EST 2013
+Using executable --> /opt/cms/C5/v2.03.00L/Linux/c5.exe
+---x--x--x 1 root root 28117245 Jun 21 08:41 /opt/cms/C5/v2.03.00L/Linux/c5.exe
