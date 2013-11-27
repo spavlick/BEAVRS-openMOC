@@ -5,30 +5,34 @@ import os
 #c4.pwru160c00.out  c4.pwru240w12.out  c4.pwru310w12.out
 #c4.pwru240c00.out  c4.pwru310c00.out
 
-
+#sets geometry variable to the file name used
 geometry = 'pwru310w12'
+#removes previously created hdf5 file for the geometry file
 os.system('rm ' + geometry + '-materials.hdf5')
 
 #numgroups = 2 #make user input
+#creates filename variable
 filename = 'c4.' + geometry + '.out'
+#sets directory to the directory location of the file
 directory = "Cross-Section-Output/2-group/" #%(numgroups)
+#opens file
 f = open(directory + filename, "r")
 #f.read()
 lines = []
 counter = 0
 for line in f: #finds line with "KRMXSN" and parses the next one
     if "KRMXSN" in line:
-        lines.append(line) #for debugging; we don't actually need this line right now
         counter += 1
         continue #returns back to line 9 and reads code from there
-    if counter == 1:
-        words = line.split()
+    if counter == 1: #allows for line after KRMXSN to be read
+        words = line.split() #parses line into separate words
         print line
-        numgroups = int(words[3])
-        break
+        numgroups = int(words[3]) #finds number of groups from line
+        break #stops look after finding numgroups
 print lines
-f.close()
+f.close() #stops reading file
 
+#begins reading file again from beginning of file
 f = open(directory + filename, "r")
 lines = []
 counter = 0
@@ -47,6 +51,7 @@ for line in f: #finds line with "full assembly" and parses the next one
 #print lines
 f.close()
 
+#creates empty arrays for XS data using variables read from file
 siga = np.zeros((numregions, numgroups))
 sigd = np.zeros((numregions, numgroups))
 sigt = np.zeros((numregions, numgroups))
@@ -54,20 +59,23 @@ sigf = np.zeros((numregions, numgroups))
 signf = np.zeros((numregions, numgroups))
 sigs = np.zeros((numregions, numgroups, numgroups))
 
+#function to read XS data from file
 def parseXS(name, array):
     f = open(directory + filename, "r")
     lines = []
     counter = 0
     for line in f: 
-        if name in line:
+        if name in line: #finds lines with the XS name
             words = line.split()
             print line
+            #inputs line data to array
             array[counter, :] = [float(xs) for xs in words[2:2+numgroups]] 
             counter += 1
         if counter == numregions:
-            break
+            break #stops loop after array has been filled
     f.close()
 
+#function to read data for the scattering XS
 def parseXS_scatter(name, array):
     f = open(directory + filename, "r")
     lines = []
@@ -87,6 +95,7 @@ def parseXS_scatter(name, array):
             break
     f.close()
 
+#calls function for each XS type
 parseXS("SIGA", siga)
 parseXS("SIGD", sigd)
 parseXS('SIGT', sigt)
@@ -94,11 +103,12 @@ parseXS("SIGF", sigf)
 parseXS("SIGNF", signf)
 parseXS_scatter("SIGS", sigs)
 
-
+#creates hdf5 file for data
 f = h5py.File(geometry + '-materials.hdf5')
 
 f.attrs['Energy Groups'] = numgroups
 
+#loop to input data for each microregion
 for region in range(numregions):
     material = f.create_group('microregion-' + str((region + 1)))
     material.create_dataset('Total XS', data=sigt[region, :])
@@ -110,6 +120,7 @@ for region in range(numregions):
     #material.create_dataset('Chi', data=chi)
 f.close()
 
+#prints data
 print "THIS IS SIG A"
 print siga
 print "\n\n\n"
