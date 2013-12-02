@@ -8,11 +8,11 @@ numgroups = str(raw_input('How many energy groups? '))
 #sets geometry variable to the file name used
 geometry = raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
 
-def geo_lister(files):
-    geo_list = files.split()
-    return geo_list
+def casmo_lister(files):
+    casmo_list = files.split()
+    return casmo_list
 
-geo_list = geo_lister(geometry)
+geo_list = casmo_lister(geometry)
 
 for geometry in geo_list:
 
