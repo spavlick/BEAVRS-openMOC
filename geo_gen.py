@@ -40,9 +40,12 @@ log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 #the materialize python file to the variable materials
 materials = materialize.materialize(directory + geometry + '-materials.hdf5')
 
+material_ids = []
+
 #jasmeet rox
 for material in materials:
-    material_id = materials[str(material)].getId()
+    material_ids.append(materials[str(material)].getId())
+
 
 ###############################################################################
 ###########################   Creating Surfaces   #############################
