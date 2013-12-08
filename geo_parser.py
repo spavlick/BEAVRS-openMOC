@@ -72,8 +72,53 @@ for cell_data in cell_data_list:
     plt.imshow(bigsquare, interpolation = "nearest")
     plt.show()'''
 
-    f = h5py.File(directory1 + cell_data + '-cell_data.hdf5')
+    f = open(directory + filename, 'r')
+
+    squaremin = numpy.zeros((x,x))
+    squaremax = numpy.zeros((x,x))    
+    counter = 0
+    for line in f:
+        if counter >= 1 and "1_________" in line:
+            break
+        if "Micro-region" in line:
+            counter += 1
+            print line
+            continue
+        if counter >= 1:
+            powers = line.split()
+            for index, power in enumerate(powers):
+                power = power.strip("*")
+                power = power.strip("-")
+                if index%2 ==0:
+                    squaremin[counter-1, index/2] = float(power)
+                    squaremin[index/2, counter-1] = float(power)
+                else:
+                    squaremax[counter-1, (index-1)/2] = float(power)
+                    squaremax[(index-1)/2, counter-1] = float(power)
+            counter += 1
+    f.close()
+    
+    d = (2*x-1)
+    bigsquare = numpy.zeros ((d,d))
+    bigsquare[(x-1):,(x-1):] = squaremin
+    bigsquare[(x-1):, 0:(x)] = numpy.fliplr(squaremin)
+    bigsquare[0:(x), (x-1):] = numpy.flipud(squaremin)
+    bigsquare[0:(x), 0:(x)] = numpy.flipud(numpy.fliplr(squaremin))
+
+    bigsquaremax = numpy.zeros ((d,d))
+    bigsquaremax[(x-1):,(x-1):] = squaremax
+    bigsquaremax[(x-1):, 0:(x)] = numpy.fliplr(squaremax)
+    bigsquaremax[0:(x), (x-1):] = numpy.flipud(squaremax)
+    bigsquaremax[0:(x), 0:(x)] = numpy.flipud(numpy.fliplr(squaremax))
+
+    print squaremin
+    print squaremax
+
+    f = h5py.File(directory1 + cell_data + '-minmax.hdf5')
     f.attrs['Energy Groups'] = numgroups
-    f.create_dataset('cell_types', data = bigsquare)
+    f.create_dataset('minregions', data = bigsquare)
+    f.create_dataset('maxregions', data = bigsquaremax)
 
     f.close()
+
+#pwru240w12
