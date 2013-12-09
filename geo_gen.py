@@ -57,4 +57,74 @@ log.py_printf('NORMAL', 'Creating Surfaces...')
 circles = [] 
 planes = []
 
+#creates empty Material object as a dummy to fill the fuel cells
+dummy_id = material_id()
+dummy = Material(dummy_id)
 
+#appends surfaces to listsg
+planes.append(XPlane(x=-0.62992*17))
+planes.append(XPlane(x=0.62992*17))
+planes.append(YPlane(y=-0.62992*17))
+planes.append(YPlane(y=0.62992*17))
+#Radii for fuel cells
+circles.append(Circle(x=0.0, y=0.0, radius=0.39218))
+circles.append(Circle(x=0.0, y=0.0, radius=0.40005))
+circles.append(Circle(x=0.0, y=0.0, radius=0.45720))
+#Radii for guide tubes (also use for instrument tube)
+circles.append(Circle(x=0.0, y=0.0, radius=0.56134))
+circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
+
+#sets the boundary type for the planes to be reflective (neutrons bounce back)
+for plane in planes:plane.setBoundaryType(REFLECTIVE)
+
+
+###############################################################################
+#############################   Creating Cells   ##############################
+###############################################################################
+
+#creates cells corresponding to the fuel pin
+cells = []
+#corresponds to fuel
+cells.append(CellBasic(universe=1, material=dummy_id, rings=3, sectors=8))
+#corresponds to Helium
+cells.append(CellBasic(universe=1, material=dummy_id, sectors=8))
+#corresponds to cladding
+cells.append(CellBasic(universe=1, material=dummy_id, sectors=8))
+#corresponds to water
+cells.append(CellBasic(universe=1, material=dummy_id,sectors=8))
+
+#first cell, region with fuel
+cells[0].addSurface(halfspace=-1, surface=circles[0])
+
+#second cell, region with helium
+cells[1].addSurface(halfspace=-1, surface=circles[1])
+cells[1].addSurface(halfspace=+1, surface=circles[0])
+
+#third cell, region with cladding
+cells[2].addSurface(halfspace=-1, surface=circles[2])
+cells[2].addSurface(halfspace=+1, surface=circles[1])
+
+#region with water
+cells[3].addSurface(halfspace=+1, surface=circles[2])
+
+#creates cells corresponding to the guide tube
+#inner region with water
+cells.append(CellBasic(universe=2, material=dummy_id, rings=3, sectors=8))
+#region with cladding
+cells.append(CellBasic(universe=2, material=dummy_id, sectors=8))
+#outside region with water
+cells.append(CellBasic(universe=2, material=dummy_id, sectors=8))
+
+#first cell, inner water region
+cells[4].addSurface(halfspace=-1, surface=circles[3])
+
+#next cell with cladding
+cells[5].addSurface(halfspace=-1, surface=circles[4])
+cells[5].addSurface(halfspace=+1, surface=circles[3])
+
+#outer cell with water
+cells[6].addSurface(halfspace=+1, surface=circles[4])
+
+
+#creates cells that are filled by the lattice universe
+cells.append(CellFill(universe=0, universe_fill=3))
