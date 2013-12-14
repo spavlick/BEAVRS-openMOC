@@ -156,5 +156,27 @@ lattice_universes[8,8] = 2
 
 lattice.setLatticeCells(lattice_universes)
 
+
+#initialize geometry to initialize universes
+geometry = Geometry() 
+
+geometry.addMaterial(dummy)
+for cell in cells: geometry.addCell(cell)
+geometry.addLattice(lattice)
+geometry.initializeFlatSourceRegions()
+
+rows, cols = lattice_universes.shape
+for row in range(rows):
+    for col in range(cols):
+        #Only Will knows #but not now
+        #universe = lattice.getUniverse(row,col)
+        material_ids = [1,2,3]
+        clone = cloneUniverse(universe)
+        fill = fillCellMaterials(clone,[1,2,3])
+        
+
+       
+
+
 print lattice_universes
 
