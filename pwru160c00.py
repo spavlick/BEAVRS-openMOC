@@ -5,15 +5,17 @@ from openmoc import *
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
 import openmoc.materialize as materialize
-import geo_parser
 import numpy
+import h5py
+
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups? '))
 
 #sets geometry variable to the file name used
-geometry = "pwru160c00"
+assembly = "pwru160c00"
 
 directory = "materials/%s-group/" % (numgroups)
+geoDirectory = "geo-data/%s-group/" % (numgroups)
 
 ###############################################################################
 #######################   Main Simulation Parameters   ########################
@@ -39,9 +41,9 @@ log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
 #The following assigns the dictionary returned by the materialize function in 
 #the materialize python file to the variable materials
-materials = materialize.materialize(directory + geometry + '-materials.hdf5')
+materials = materialize.materialize(directory + assembly + '-materials.hdf5')
 
-material_ids = []###############################################################################
+material_ids = []
 
 #jasmeet rox
 for material in materials:
@@ -141,18 +143,74 @@ comments below on how the lattice was created."""
 
 lattice = Lattice(id=3, width_x=0.62992*2, width_y=0.62992*2)
 
-fuelPins = geo_parser.bigsquare
-dimension = geo_parser.d
-lattice = numpy.zeros((dimension,dimension))
+#reads data from hdf5 file
+f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+cellData = f['cell_types']
+pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
 
-for i, row in enumerate(fuelPins):
-    for j, col in enumerate(fuelPins[i]):
-        if fuelPins[i,j] == 1:
-            lattice[i,j] = 1
+burnablePoisons = False
+
+if 4 in cellData[:,:]:
+    burnablePoisons = True
+
+for i, row in enumerate(cellData):
+    for j, col in enumerate(cellData[i]):
+        if cellData[i,j] == 1:
+            pinCellArray[i,j] = 1
+        elif cellData[i,j] == 2:
+            pinCellArray[i,j] = 2
+        elif burnablePoisons == False and cellData[i,j] == 3:
+            pinCellArray[i,j] = 2
+        elif burnablePoisons == True and cellData[i,j] == 3:
+            pinCellArray[i,j] = 3
         else:
-            lattice[i,j] = 2
+            pinCellArray[i,j] = 2
 
-lattice.setLatticeCells(lattice)
+lattice.setLatticeCells(pinCellArray)
+
+###############################################################################
+##########################   Creating the Geometry   ##########################
+###############################################################################
+
+log.py_printf('NORMAL', 'Creating geometry...')
+
+geometry = Geometry() 
+"""Creates an instance of the Geometry class. This is a 
+class in the openmoc file."""
+geometry.addMaterial(dummy)
+
+for material in materials.values(): geometry.addMaterial(material)
+"""This one line has a long explanation. Earlier in this file, we ran our
+materials data through the materialize function and assigned that dictionary
+to the variable "materials". That means "materials" is a dictionary containing
+each material as the key, and its attributes (sigma_a, sigma_s, etc...) as 
+values. The .values() operator returns a list of all the values in the 
+materials dictionary. The for loop loops through each material in the list
+and adds that material to the geometry. One confusing thing here is that
+after the colon, the block of code isn't indented below the for loop--it 
+continues on the same line. It would function the same if it were written
+like this:
+
+for material in materials.values():
+    geometry.addMaterial(material)
+
+"""
+
+for cell in cells: geometry.addCell(cell)
+"""Same deal here, except cells is a list of our cell types (we have 6). The
+for loop runs through the cell list and adds each cell to the geometry 
+(which is, once again, an instance of the Geometry class). The geometry class
+now understands what each universe in the lattice means so that adding
+the lattice in the next line makes sense to the geometry."""
+
+geometry.addLattice(lattice)
+"""Adds the lattice we just created to the geometry."""
+
+geometry.initializeFlatSourceRegions()
+"""Once the geometry attributes are set up, this method returns
+"_openmoc.Geometry_initializeFlatSourceRegions(self)" This figures out what each
+flat source region is in the geometry and gives each one a unique ID"""
+
 
 ###############################################################################
 ########################   Creating the TrackGenerator   ######################

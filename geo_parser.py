@@ -22,7 +22,7 @@ for cell_data in cell_data_list:
     directory1 = "geo-data/%s-group/" % (numgroups)
 
     #removes previously created hdf5 file for the results file
-    os.system('rm ' + directory1 + cell_data + '-cell_data.hdf5')
+    os.system('rm ' + directory1 + cell_data + '-minmax.hdf5')
 
     filename = 'c4.' + cell_data + '.out'
 
@@ -61,7 +61,7 @@ for cell_data in cell_data_list:
     f.close()
 
     d = (2*x-1)
-    bigsquare = numpy.zeros((d,d), dtype=numpy.int64)
+    bigsquare = numpy.zeros((d,d), dtype=numpy.int32)
     bigsquare[(x-1):,(x-1):] = square4
     bigsquare[(x-1):, 0:(x)] = numpy.fliplr(square4)
     bigsquare[0:(x), (x-1):] = numpy.flipud(square4)
@@ -74,8 +74,8 @@ for cell_data in cell_data_list:
 
     f = open(directory + filename, 'r')
 
-    squaremin = numpy.zeros((x,x))
-    squaremax = numpy.zeros((x,x))    
+    squaremin = numpy.zeros((x,x), dtype=numpy.int32)
+    squaremax = numpy.zeros((x,x), dtype=numpy.int32)    
     counter = 0
     for line in f:
         if counter >= 1 and "1_________" in line:
@@ -99,13 +99,13 @@ for cell_data in cell_data_list:
     f.close()
     
     d = (2*x-1)
-    bigsquare = numpy.zeros ((d,d))
-    bigsquare[(x-1):,(x-1):] = squaremin
-    bigsquare[(x-1):, 0:(x)] = numpy.fliplr(squaremin)
-    bigsquare[0:(x), (x-1):] = numpy.flipud(squaremin)
-    bigsquare[0:(x), 0:(x)] = numpy.flipud(numpy.fliplr(squaremin))
+    bigsquaremin = numpy.zeros ((d,d), dtype=numpy.int32)
+    bigsquaremin[(x-1):,(x-1):] = squaremin
+    bigsquaremin[(x-1):, 0:(x)] = numpy.fliplr(squaremin)
+    bigsquaremin[0:(x), (x-1):] = numpy.flipud(squaremin)
+    bigsquaremin[0:(x), 0:(x)] = numpy.flipud(numpy.fliplr(squaremin))
 
-    bigsquaremax = numpy.zeros ((d,d))
+    bigsquaremax = numpy.zeros ((d,d), dtype=numpy.int32)
     bigsquaremax[(x-1):,(x-1):] = squaremax
     bigsquaremax[(x-1):, 0:(x)] = numpy.fliplr(squaremax)
     bigsquaremax[0:(x), (x-1):] = numpy.flipud(squaremax)
@@ -114,10 +114,12 @@ for cell_data in cell_data_list:
     print squaremin
     print squaremax
 
+    
     f = h5py.File(directory1 + cell_data + '-minmax.hdf5')
     f.attrs['Energy Groups'] = numgroups
-    f.create_dataset('minregions', data = bigsquare)
+    f.create_dataset('minregions', data = bigsquaremin)
     f.create_dataset('maxregions', data = bigsquaremax)
+    f.create_dataset('cell_types', data = bigsquare)
 
     f.close()
 
