@@ -1,7 +1,7 @@
-"""Imports all modules from OpenMOC, as well as the individual functions log, 
+"""Imports all modules from OpenMOC, as well as the individual functions log,
 plotter, and materialize, all of which are part of submodules within OpenMoc"""
 
-from openmoc import * 
+from openmoc import *
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
 import openmoc.materialize as materialize
@@ -10,15 +10,15 @@ import openmoc.materialize as materialize
 numgroups = str(raw_input('How many energy groups? '))
 
 #sets geometry variable to the file name used
-geometry = raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
+geometry = pwru240c00 # raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
 
 directory = "materials/%s-group/" % (numgroups)
 
 ###############################################################################
-#######################   Main Simulation Parameters   ########################
+####################### Main Simulation Parameters ########################
 ###############################################################################
 
-"""This imports a variety of variables from the options file. This should be 
+"""This imports a variety of variables from the options file. This should be
 located within the OpenMOC folder.This could potentially also accept user input,
 but there should also be a default value."""
 
@@ -31,12 +31,12 @@ max_iters = options.max_iters
 log.setLogLevel('NORMAL')
 
 ###############################################################################
-###########################   Creating Materials   ############################
+########################### Creating Materials ############################
 ###############################################################################
 
 log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
-#The following assigns the dictionary returned by the materialize function in 
+#The following assigns the dictionary returned by the materialize function in
 #the materialize python file to the variable materials
 materials = materialize.materialize(directory + geometry + '-materials.hdf5')
 
@@ -48,13 +48,13 @@ for material in materials:
 
 
 ###############################################################################
-###########################   Creating Surfaces   #############################
+########################### Creating Surfaces #############################
 ###############################################################################
 
 log.py_printf('NORMAL', 'Creating Surfaces...')
 
 #creates list of circle and plane surfaces
-circles = [] 
+circles = []
 planes = []
 
 #creates empty Material object as a dummy to fill the fuel cells
@@ -79,7 +79,7 @@ for plane in planes:plane.setBoundaryType(REFLECTIVE)
 
 
 ###############################################################################
-#############################   Creating Cells   ##############################
+############################# Creating Cells ##############################
 ###############################################################################
 
 #creates cells corresponding to the fuel pin
