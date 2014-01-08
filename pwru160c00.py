@@ -5,12 +5,13 @@ from openmoc import *
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
 import openmoc.materialize as materialize
-
+import geo_parser
+import numpy
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups? '))
 
 #sets geometry variable to the file name used
-geometry = raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
+geometry = "pwru160c00"
 
 directory = "materials/%s-group/" % (numgroups)
 
@@ -40,7 +41,7 @@ log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 #the materialize python file to the variable materials
 materials = materialize.materialize(directory + geometry + '-materials.hdf5')
 
-material_ids = []
+material_ids = []###############################################################################
 
 #jasmeet rox
 for material in materials:
@@ -61,7 +62,7 @@ planes = []
 dummy_id = material_id()
 dummy = Material(dummy_id)
 
-#appends surfaces to listsg
+#appends surfaces to lists
 planes.append(XPlane(x=-0.62992*17))
 planes.append(XPlane(x=0.62992*17))
 planes.append(YPlane(y=-0.62992*17))
@@ -128,3 +129,56 @@ cells[6].addSurface(halfspace=+1, surface=circles[4])
 
 #creates cells that are filled by the lattice universe
 cells.append(CellFill(universe=0, universe_fill=3))
+
+###############################################################################
+###########################   Creating Lattices   #############################
+###############################################################################
+
+log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
+
+"""A universe is a space containing a fuel pin within our 4x4 lattice. Further 
+comments below on how the lattice was created."""
+
+lattice = Lattice(id=3, width_x=0.62992*2, width_y=0.62992*2)
+
+fuelPins = geo_parser.bigsquare
+dimension = geo_parser.d
+lattice = numpy.zeros((dimension,dimension))
+
+for i, row in enumerate(fuelPins):
+    for j, col in enumerate(fuelPins[i]):
+        if fuelPins[i,j] == 1:
+            lattice[i,j] = 1
+        else:
+            lattice[i,j] = 2
+
+lattice.setLatticeCells(lattice)
+
+###############################################################################
+########################   Creating the TrackGenerator   ######################
+###############################################################################
+
+#The following runs the simulation for changes in FSR
+
+log.py_printf('NORMAL', 'Initializing the track generator...')
+
+#Creates an instance of the TrackGenerator class, takes three parameters
+track_generator = TrackGenerator(geometry, num_azim, track_spacing)
+#Runs the generateTracks() method of the TrackGenerator class
+track_generator.generateTracks()
+
+###############################################################################
+#########################   Running a Simulation ##############################
+###############################################################################
+
+#Creates an instance of the ThreadPrivateSolver class with two parameters
+solver = ThreadPrivateSolver(geometry, track_generator)
+#Sets the number of threads with the number imported from options
+solver.setNumThreads(num_threads)
+#sets the convergence threshold with tolerance imported from options
+solver.setSourceConvergenceThreshold(tolerance)
+#This is where the simulation is actually run. max_iters here is the 
+#number of iterations for the simulation.
+solver.convergeSource(max_iters)
+#Prints a report with time elapsed 
+solver.printTimerReport()
