@@ -180,37 +180,19 @@ class in the openmoc file."""
 geometry.addMaterial(dummy)
 
 for material in materials.values(): geometry.addMaterial(material)
-"""This one line has a long explanation. Earlier in this file, we ran our
-materials data through the materialize function and assigned that dictionary
-to the variable "materials". That means "materials" is a dictionary containing
-each material as the key, and its attributes (sigma_a, sigma_s, etc...) as 
-values. The .values() operator returns a list of all the values in the 
-materials dictionary. The for loop loops through each material in the list
-and adds that material to the geometry. One confusing thing here is that
-after the colon, the block of code isn't indented below the for loop--it 
-continues on the same line. It would function the same if it were written
-like this:
-
-for material in materials.values():
-    geometry.addMaterial(material)
-
-"""
 
 for cell in cells: geometry.addCell(cell)
-"""Same deal here, except cells is a list of our cell types (we have 6). The
-for loop runs through the cell list and adds each cell to the geometry 
-(which is, once again, an instance of the Geometry class). The geometry class
-now understands what each universe in the lattice means so that adding
-the lattice in the next line makes sense to the geometry."""
-
 geometry.addLattice(lattice)
-"""Adds the lattice we just created to the geometry."""
-
 geometry.initializeFlatSourceRegions()
-"""Once the geometry attributes are set up, this method returns
-"_openmoc.Geometry_initializeFlatSourceRegions(self)" This figures out what each
-flat source region is in the geometry and gives each one a unique ID"""
 
+rows, cols = lattice_universes.shape
+for row in range(rows):
+    for col in range(cols):
+        #Only Will knows #but not now
+        #universe = lattice.getUniverse(row,col)
+        material_ids = [1,2,3]
+        clone = cloneUniverse(universe)
+        fill = fillCellMaterials(clone,[1,2,3])
 
 ###############################################################################
 ########################   Creating the TrackGenerator   ######################

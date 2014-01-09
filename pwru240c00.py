@@ -10,9 +10,10 @@ import openmoc.materialize as materialize
 numgroups = str(raw_input('How many energy groups? '))
 
 #sets geometry variable to the file name used
-geometry = pwru240c00 # raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
+assembly = 'pwru240c00'
 
 directory = "materials/%s-group/" % (numgroups)
+geoDirectory = "geo-data/%s-group/" % (numgroups)
 
 ###############################################################################
 ####################### Main Simulation Parameters ########################
@@ -38,7 +39,7 @@ log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
 #The following assigns the dictionary returned by the materialize function in
 #the materialize python file to the variable materials
-materials = materialize.materialize(directory + geometry + '-materials.hdf5')
+materials = materialize.materialize(directory + assembly + '-materials.hdf5')
 
 material_ids = []
 
@@ -128,3 +129,85 @@ cells[6].addSurface(halfspace=+1, surface=circles[4])
 
 #creates cells that are filled by the lattice universe
 cells.append(CellFill(universe=0, universe_fill=3))
+
+###############################################################################
+###########################   Creating Lattices   #############################
+###############################################################################
+
+log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
+
+"""A universe is a space containing a fuel pin within our 4x4 lattice. Further 
+comments below on how the lattice was created."""
+
+lattice = Lattice(id=3, width_x=0.62992*2, width_y=0.62992*2)
+
+#reads data from hdf5 file
+f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+cellData = f['cell_types']
+pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
+
+burnablePoisons = False
+
+if 4 in cellData[:,:]:
+    burnablePoisons = True
+
+for i, row in enumerate(cellData):
+    for j, col in enumerate(cellData[i]):
+        if cellData[i,j] == 1:
+            pinCellArray[i,j] = 1
+        elif cellData[i,j] == 2:
+            pinCellArray[i,j] = 2
+        elif burnablePoisons == False and cellData[i,j] == 3:
+            pinCellArray[i,j] = 2
+        elif burnablePoisons == True and cellData[i,j] == 3:
+            pinCellArray[i,j] = 3
+        else:
+            pinCellArray[i,j] = 2
+
+lattice.setLatticeCells(pinCellArray)
+
+###############################################################################
+##########################   Creating the Geometry   ##########################
+###############################################################################
+
+log.py_printf('NORMAL', 'Creating geometry...')
+
+geometry = Geometry() 
+"""Creates an instance of the Geometry class. This is a 
+class in the openmoc file."""
+geometry.addMaterial(dummy)
+
+for material in materials.values(): geometry.addMaterial(material)
+
+for cell in cells: geometry.addCell(cell)
+geometry.addLattice(lattice)
+geometry.initializeFlatSourceRegions()
+
+###############################################################################
+########################   Creating the TrackGenerator   ######################
+###############################################################################
+
+#The following runs the simulation for changes in FSR
+
+log.py_printf('NORMAL', 'Initializing the track generator...')
+
+#Creates an instance of the TrackGenerator class, takes three parameters
+track_generator = TrackGenerator(geometry, num_azim, track_spacing)
+#Runs the generateTracks() method of the TrackGenerator class
+track_generator.generateTracks()
+
+###############################################################################
+#########################   Running a Simulation ##############################
+###############################################################################
+
+#Creates an instance of the ThreadPrivateSolver class with two parameters
+solver = ThreadPrivateSolver(geometry, track_generator)
+#Sets the number of threads with the number imported from options
+solver.setNumThreads(num_threads)
+#sets the convergence threshold with tolerance imported from options
+solver.setSourceConvergenceThreshold(tolerance)
+#This is where the simulation is actually run. max_iters here is the 
+#number of iterations for the simulation.
+solver.convergeSource(max_iters)
+#Prints a report with time elapsed 
+solver.printTimerReport()
