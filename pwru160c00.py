@@ -154,7 +154,7 @@ if 4 in cellData[:,:]:
     burnablePoisons = True
 
 for i, row in enumerate(cellData):
-    for j, col in enumerate(cellData[i]):
+    for j, col in enumerate(row):
         if cellData[i,j] == 1:
             pinCellArray[i,j] = 1
         elif cellData[i,j] == 2:
@@ -177,22 +177,38 @@ log.py_printf('NORMAL', 'Creating geometry...')
 geometry = Geometry() 
 """Creates an instance of the Geometry class. This is a 
 class in the openmoc file."""
+
 geometry.addMaterial(dummy)
+
+min_values = f['minregions']
+max_values = f['maxregions']
+
+f.close()
+
+for i, row in enumerate(pinCellArray):
+    for j, col in enumerate(row):
+        current_UID = pinCellArray[i,j]
+        current_universe = geometry.getUniverse(current_UID)
+        cloned_universe = current_universe.clone()
+        cell_ids = current_universe.cellIds()
+        for region in range(min_values[i,j],max_values[i,j]+1):
+            #for cell_id in cell_ids:
+                #cell = cloned_universe.getCell(cell_id)
+                #figure out what micro region to use
+                #cell.setmaterial(our specific material)
+                
 
 for material in materials.values(): geometry.addMaterial(material)
 
+
 for cell in cells: geometry.addCell(cell)
+
+
 geometry.addLattice(lattice)
+
 geometry.initializeFlatSourceRegions()
 
-rows, cols = lattice_universes.shape
-for row in range(rows):
-    for col in range(cols):
-        #Only Will knows #but not now
-        #universe = lattice.getUniverse(row,col)
-        material_ids = [1,2,3]
-        clone = cloneUniverse(universe)
-        fill = fillCellMaterials(clone,[1,2,3])
+
 
 ###############################################################################
 ########################   Creating the TrackGenerator   ######################
