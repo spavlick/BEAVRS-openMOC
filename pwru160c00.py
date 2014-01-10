@@ -1,15 +1,22 @@
 """Imports all modules from OpenMOC, as well as the individual functions log, 
 plotter, and materialize, all of which are part of submodules within OpenMoc"""
 
+
+
 from openmoc import * 
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
 import openmoc.materialize as materialize
 import numpy
 import h5py
+from openmoc.options import Options
+
+options = Options()
+log.setLogLevel("INFO")
+setLogLevel("INFO")
 
 #sets the number of energy groups
-numgroups = str(raw_input('How many energy groups? '))
+numgroups = str(raw_input('How many energy groups?'))
 
 #sets geometry variable to the file name used
 assembly = "pwru160c00"
@@ -63,6 +70,17 @@ planes = []
 #creates empty Material object as a dummy to fill the fuel cells
 dummy_id = material_id()
 dummy = Material(dummy_id)
+
+#gives dummy material stupid cross sections
+dummy.setNumEnergyGroups(int(numgroups))
+dummyxs = numpy.zeros(int(numgroups))
+dummyscatter = numpy.zeros((int(numgroups))**2)
+dummy.setSigmaT(dummyxs)
+dummy.setSigmaS(dummyscatter)
+dummy.setSigmaF(dummyxs)
+dummy.setSigmaA(dummyxs)
+dummy.setNuSigmaF(dummyxs)
+dummy.setChi(dummyxs)
 
 #appends surfaces to lists
 planes.append(XPlane(x=-0.62992*17))
@@ -188,15 +206,16 @@ f.close()
 for i, row in enumerate(pinCellArray):
     for j, col in enumerate(row):
         current_UID = pinCellArray[i,j]
-        current_universe = geometry.getUniverse(current_UID)
+        print current_UID
+        current_universe = geometry.getUniverse(int(current_UID))
         cloned_universe = current_universe.clone()
         cell_ids = current_universe.cellIds()
-        for region in range(min_values[i,j],max_values[i,j]+1):
-            #for cell_id in cell_ids:
-                #cell = cloned_universe.getCell(cell_id)
-                #figure out what micro region to use
-                #cell.setmaterial(our specific material)
-                
+        #for region in range(min_values[i,j],max_values[i,j]+1):
+        for cell_id in cell_ids:
+            cell = cloned_universe.getCell(cell_id)
+            #figure out what micro region to use
+            #cell.setmaterial(our specific material)
+            print cell_id
 
 for material in materials.values(): geometry.addMaterial(material)
 
@@ -211,7 +230,7 @@ geometry.initializeFlatSourceRegions()
 
 
 ###############################################################################
-########################   Creating the TrackGenerator   ######################
+#####################   Creating the TrackGenerator   ######################
 ###############################################################################
 
 #The following runs the simulation for changes in FSR
