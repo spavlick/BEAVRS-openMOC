@@ -1,8 +1,6 @@
 """Imports all modules from OpenMOC, as well as the individual functions log, 
 plotter, and materialize, all of which are part of submodules within OpenMoc"""
 
-
-
 from openmoc import * 
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
@@ -11,16 +9,19 @@ import numpy
 import h5py
 from openmoc.options import Options
 
+#sets log level to 'INFO'
 options = Options()
 log.setLogLevel("INFO")
 setLogLevel("INFO")
 
+
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups?'))
 
-#sets geometry variable to the file name used
+#sets assembly variable to the file name used
 assembly = "pwru160c00"
 
+#sets directories to find the files in
 directory = "materials/%s-group/" % (numgroups)
 geoDirectory = "geo-data/%s-group/" % (numgroups)
 
@@ -50,11 +51,14 @@ log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 #the materialize python file to the variable materials
 materials = materialize.materialize(directory + assembly + '-materials.hdf5')
 
+#empty list to insert all material ids
 material_ids = []
 
 #jasmeet rox
 for material in materials:
     material_ids.append(materials[str(material)].getId())
+
+#print material_ids
 
 
 ###############################################################################
@@ -72,6 +76,7 @@ dummy_id = material_id()
 dummy = Material(dummy_id)
 
 #gives dummy material stupid cross sections
+#dummy material is offended.
 dummy.setNumEnergyGroups(int(numgroups))
 dummyxs = numpy.zeros(int(numgroups))
 dummyscatter = numpy.zeros((int(numgroups))**2)
@@ -163,14 +168,20 @@ lattice = Lattice(id=3, width_x=0.62992*2, width_y=0.62992*2)
 
 #reads data from hdf5 file
 f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+
+#extracts cell_types data set from file and assigns it to cellData
 cellData = f['cell_types']
+
+#creates an array of zeros in the same shape as cellData
 pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
 
 burnablePoisons = False
 
+#checks to see if there are burnable poisons in cellData
 if 4 in cellData[:,:]:
     burnablePoisons = True
 
+#changes values in pinCellArray to be consistent in this code
 for i, row in enumerate(cellData):
     for j, col in enumerate(row):
         if cellData[i,j] == 1:
@@ -184,6 +195,7 @@ for i, row in enumerate(cellData):
         else:
             pinCellArray[i,j] = 2
 
+#completes lattice with pinCellArray
 lattice.setLatticeCells(pinCellArray)
 
 ###############################################################################
@@ -196,38 +208,67 @@ geometry = Geometry()
 """Creates an instance of the Geometry class. This is a 
 class in the openmoc file."""
 
+#adds dummy matterial to geometry
 geometry.addMaterial(dummy)
-
-min_values = f['minregions']
-max_values = f['maxregions']
-
-f.close()
-
-for i, row in enumerate(pinCellArray):
-    for j, col in enumerate(row):
-        current_UID = pinCellArray[i,j]
-        print current_UID
-        current_universe = geometry.getUniverse(int(current_UID))
-        cloned_universe = current_universe.clone()
-        cell_ids = current_universe.cellIds()
-        #for region in range(min_values[i,j],max_values[i,j]+1):
-        for cell_id in cell_ids:
-            cell = cloned_universe.getCell(cell_id)
-            #figure out what micro region to use
-            #cell.setmaterial(our specific material)
-            print cell_id
 
 for material in materials.values(): geometry.addMaterial(material)
 
-
 for cell in cells: geometry.addCell(cell)
+
+#extracts the range of microregions for each unit in the array
+min_values = f['minregions']
+max_values = f['maxregions']
+
+#creates zeros numpy arrays to convert min and max regions
+min_array = numpy.zeros(min_values.shape, dtype=numpy.int32)
+max_array = numpy.zeros(max_values.shape, dtype=numpy.int32)
+
+#converts hdf5 minregions data set to numpy array
+for i, row in enumerate(min_values):
+    for j, col in enumerate(row):
+        min_array[i,j] = min_values[i,j]
+
+#converts hdf5 maxregions data set to numpy array
+for i, row in enumerate(max_values):
+    for j, col in enumerate(row):
+        max_array[i,j] = max_values[i,j]
+
+#print min_array
+#print max_array
+
+f.close()
+
+#finds microregions, clones universe, adds materials to cells in universes
+for i, row in enumerate(pinCellArray):
+    for j, col in enumerate(row):
+        current_UID = pinCellArray[i,j]
+        #print current_UID
+        current_min_max = [y for y in range(min_array[i,j], max_array[i,j]+1)]
+        current_universe = geometry.getUniverse(int(current_UID))
+        cloned_universe = current_universe.clone()
+        num_cells = cloned_universe.getNumCells()
+        cell_ids = cloned_universe.getCellIds(num_cells)
+        #current_materials = []
+        current_material_ids = []
+        for i in range(len(current_min_max)):
+            if 'microregion-%d' % (current_min_max[i]) in materials.keys():
+                #current_materials.append(materials['microregion-%d' % (current_min_max[i])])
+                #print materials['microregion-%d' % (current_min_max[i])].getId()
+                current_material_ids.append(materials['microregion-%d' % (current_min_max[i])].getId())
+        #print current_material_ids
+        #print cell_ids
+        #print current_min_max
+        #print current_materials
+        for i, cell_id in enumerate(cell_ids):
+            cloned_cell = cloned_universe.getCell(int(cell_id))
+            geometry.addCell(cloned_cell) 
+            #print cloned_cell
+            cloned_cell.setMaterial(current_material_ids[i])
 
 
 geometry.addLattice(lattice)
 
 geometry.initializeFlatSourceRegions()
-
-
 
 ###############################################################################
 #####################   Creating the TrackGenerator   ######################
