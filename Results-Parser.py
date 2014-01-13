@@ -10,12 +10,15 @@ numgroups = str(raw_input('How many energy groups? '))
 #sets results variable to the file name used
 results = raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
 
+#splits results inputs into tokens
 def casmo_lister(files):
     casmo_list = files.split()
     return casmo_list
 
+#calls the function casmo_lister to retrieve list of casmo files to parse
 results_list = casmo_lister(results)
 
+#loops through each casmo file
 for results in results_list:
 
     #sets directory to the directory location of the file
@@ -41,7 +44,8 @@ for results in results_list:
 
     #opens file
     f = open(directory + filename, "r")
-
+    
+    #checks to see how many rows and colums the small array
     counter = 0
     x = -1
     for line in f:
@@ -56,6 +60,7 @@ for results in results_list:
     f.close()
 
     f = open(directory + filename, "r")
+    
     #parses pin powers from the CASMO output file
     for line in f:
         if counter >= 1 and line == "\n":
@@ -71,7 +76,8 @@ for results in results_list:
                 square4[index, counter-1] = float(power)
             counter += 1
     f.close()
-       
+    
+    #creates a 17x17 array and systematically fills with square4   
     d = (2*x-1)
     bigsquare = numpy.zeros ((d,d))
     bigsquare[(x-1):,(x-1):] = square4
@@ -79,18 +85,16 @@ for results in results_list:
     bigsquare[0:(x), (x-1):] = numpy.flipud(square4)
     bigsquare[0:(x), 0:(x)] = numpy.flipud(numpy.fliplr(square4))
 
-    fig = plt.figure()
-    plt.title(results + ' Pin Powers')
-    plt.imshow(bigsquare, interpolation = "nearest")
-    plt.show()
+    #plots pin powers
+    #fig = plt.figure()
+    #plt.title(results + ' Pin Powers')
+    #plt.imshow(bigsquare, interpolation = "nearest")
+    #plt.show()
     
-
-
 
     #creates hdf5 file for data
     f = h5py.File(directory1 + results + '-results.hdf5')
     f.attrs['K-Infinity'] = kinf
     f.create_dataset("Pin Powers", data = bigsquare)
-
 
     f.close()

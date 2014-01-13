@@ -1,3 +1,8 @@
 *~
 */*~
-
+*pyc
+*/*pyc
+*.log
+*/*.log
+*.data
+*/*.data
