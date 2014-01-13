@@ -12,8 +12,7 @@ import h5py
 from openmoc.options import Options
 
 options = Options()
-log.setLogLevel("INFO")
-setLogLevel("INFO")
+
 
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups?'))
@@ -198,6 +197,10 @@ class in the openmoc file."""
 
 geometry.addMaterial(dummy)
 
+for material in materials.values(): geometry.addMaterial(material)
+for cell in cells: geometry.addCell(cell)
+geometry.addLattice(lattice)
+
 min_values = f['minregions']
 max_values = f['maxregions']
 
@@ -209,21 +212,21 @@ for i, row in enumerate(pinCellArray):
         print current_UID
         current_universe = geometry.getUniverse(int(current_UID))
         cloned_universe = current_universe.clone()
-        cell_ids = current_universe.cellIds()
-        #for region in range(min_values[i,j],max_values[i,j]+1):
-        for cell_id in cell_ids:
-            cell = cloned_universe.getCell(cell_id)
+        numcells = cloned_universe.getNumCells()
+        cell_ids = cloned_universe.getCellIds(numcells)
+        if current_UID == 2:
+            print "guide tube"
+            #for region in range(min_values[i,j],max_values[i,j]+1):
+            for cell_id in cell_ids:
+                cell = cloned_universe.getCell(int(cell_id))
+                #if cell_id == #whatever:
+                    #cell.setmaterial(#whatever)
+            
             #figure out what micro region to use
             #cell.setmaterial(our specific material)
-            print cell_id
-
-for material in materials.values(): geometry.addMaterial(material)
+                print cell_id
 
 
-for cell in cells: geometry.addCell(cell)
-
-
-geometry.addLattice(lattice)
 
 geometry.initializeFlatSourceRegions()
 
