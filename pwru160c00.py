@@ -8,6 +8,7 @@ import openmoc.materialize as materialize
 import numpy
 import h5py
 from openmoc.options import Options
+import openmoc.plotter as plotter
 
 #sets log level to 'INFO'
 options = Options()
@@ -58,7 +59,6 @@ material_ids = []
 for material in materials:
     material_ids.append(materials[str(material)].getId())
 
-#print material_ids
 
 
 ###############################################################################
@@ -76,7 +76,6 @@ dummy_id = material_id()
 dummy = Material(dummy_id)
 
 #gives dummy material stupid cross sections
-#dummy material is offended.
 dummy.setNumEnergyGroups(int(numgroups))
 dummyxs = numpy.zeros(int(numgroups))
 dummyscatter = numpy.zeros((int(numgroups))**2)
@@ -151,6 +150,9 @@ cells[5].addSurface(halfspace=+1, surface=circles[3])
 #outer cell with water
 cells[6].addSurface(halfspace=+1, surface=circles[4])
 
+#giant cell
+cells[7].add
+
 
 #creates cells that are filled by the lattice universe
 cells.append(CellFill(universe=0, universe_fill=3))
@@ -216,9 +218,9 @@ for material in materials.values(): geometry.addMaterial(material)
 for cell in cells: geometry.addCell(cell)
 
 #extracts the range of microregions for each unit in the array
-min_values = f['minregions']
-max_values = f['maxregions']
-
+min_values = f['minregions'][...]
+max_values = f['maxregions'][...]
+'''
 #creates zeros numpy arrays to convert min and max regions
 min_array = numpy.zeros(min_values.shape, dtype=numpy.int32)
 max_array = numpy.zeros(max_values.shape, dtype=numpy.int32)
@@ -235,7 +237,7 @@ for i, row in enumerate(max_values):
 
 #print min_array
 #print max_array
-
+'''
 f.close()
 
 #finds microregions, clones universe, adds materials to cells in universes
@@ -243,10 +245,12 @@ for i, row in enumerate(pinCellArray):
     for j, col in enumerate(row):
         current_UID = pinCellArray[i,j]
         #print current_UID
-        current_min_max = [y for y in range(min_array[i,j], max_array[i,j]+1)]
+        current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
+        #print j, current_min_max
         current_universe = geometry.getUniverse(int(current_UID))
         cloned_universe = current_universe.clone()
         num_cells = cloned_universe.getNumCells()
+        current_cell_ids = current_universe.getCellIds(num_cells)
         cell_ids = cloned_universe.getCellIds(num_cells)
         #current_materials = []
         current_material_ids = []
@@ -255,12 +259,20 @@ for i, row in enumerate(pinCellArray):
                 #current_materials.append(materials['microregion-%d' % (current_min_max[i])])
                 #print materials['microregion-%d' % (current_min_max[i])].getId()
                 current_material_ids.append(materials['microregion-%d' % (current_min_max[i])].getId())
-        #print current_material_ids
-        #print cell_ids
+        print current_cell_ids
+        print current_universe.getId()        
+        print cloned_universe.getId()
+        print cloned_universe
+        print current_universe
+        print current_material_ids
+        print cell_ids
+        print num_cells
         #print current_min_max
         #print current_materials
         for i, cell_id in enumerate(cell_ids):
-            cloned_cell = cloned_universe.getCell(int(cell_id))
+            print i
+            print current_material_ids[i]
+            cloned_cell = cloned_universe.getCellBasic(int(cell_id))
             geometry.addCell(cloned_cell) 
             #print cloned_cell
             cloned_cell.setMaterial(current_material_ids[i])
@@ -269,6 +281,9 @@ for i, row in enumerate(pinCellArray):
 geometry.addLattice(lattice)
 
 geometry.initializeFlatSourceRegions()
+
+plotter.plotCells(geometry)
+plotter.plotMaterials(geometry)
 
 ###############################################################################
 #####################   Creating the TrackGenerator   ######################
