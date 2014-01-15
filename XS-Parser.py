@@ -55,6 +55,7 @@ for casmo_files in casmo_list:
             continue 
         if counter == 1:
             words = line.split()
+            #returns number of fuel pins in assembly
             numregions = int(words[4])
             break
     f.close()
@@ -66,6 +67,8 @@ for casmo_files in casmo_list:
     sigf = np.zeros((numregions, numgroups))
     signf = np.zeros((numregions, numgroups))
     sigs = np.zeros((numregions, numgroups, numgroups))
+    chi = np.array([1.0, 0.0])
+    chi_dummy = np.array([0.0, 0.0])
 
     #function to read XS data from file
     def parseXS(name, array):
@@ -124,29 +127,10 @@ for casmo_files in casmo_list:
         material.create_dataset('Nu Fission XS', data=signf[region, :])
         material.create_dataset('Scattering XS', data=np.ravel(sigs[region, :, :]))
         material.create_dataset('Dif Coefficient', data=sigd[region, :])
-        #material.create_dataset('Chi', data=chi)
+        if numgroups == 2:
+            if sigf[region, 0] == 0.0 and sigf[region, 1] == 0.0:
+                material.create_dataset('Chi', data=chi_dummy)
+            else:
+                material.create_dataset('Chi', data=chi)
+                
     f.close()
-
-    #prints data
-    '''
-    print "THIS IS SIG A"
-    print siga
-    print "\n\n\n"
-
-    print "THIS IS SIG D"
-    print sigd
-    print "\n\n\n"
-
-    print "THIS IS SIG F"
-    print sigf
-    print "\n\n\n"
-
-    print "THIS IS SIG NF"
-    print signf
-    print "\n\n\n"
-
-    print "THIS IS SIG s"
-    print sigs
-    print "\n\n\n"
-    '''
-
