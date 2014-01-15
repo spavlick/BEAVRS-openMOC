@@ -10,10 +10,7 @@ import h5py
 from openmoc.options import Options
 import openmoc.plotter as plotter
 
-#sets log level to 'INFO'
 options = Options()
-
-
 
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups?'))
@@ -21,7 +18,6 @@ numgroups = str(raw_input('How many energy groups?'))
 #sets assembly variable to the file name used
 assembly = "pwru160c00"
 
-#sets directories to find the files in
 directory = "materials/%s-group/" % (numgroups)
 geoDirectory = "geo-data/%s-group/" % (numgroups)
 

@@ -5,6 +5,12 @@ from openmoc import *
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
 import openmoc.materialize as materialize
+import numpy
+import h5py
+from openmoc.options import Options
+import openmoc.plotter as plotter
+
+options = Options()
 
 #sets the number of energy groups
 numgroups = str(raw_input('How many energy groups? '))
@@ -62,6 +68,18 @@ planes = []
 dummy_id = material_id()
 dummy = Material(dummy_id)
 
+
+#gives dummy material stupid cross sections
+dummy.setNumEnergyGroups(int(numgroups))
+dummyxs = numpy.zeros(int(numgroups))
+dummyscatter = numpy.zeros((int(numgroups))**2)
+dummy.setSigmaT(dummyxs)
+dummy.setSigmaS(dummyscatter)
+dummy.setSigmaF(dummyxs)
+dummy.setSigmaA(dummyxs)
+dummy.setNuSigmaF(dummyxs)
+dummy.setChi(dummyxs)
+
 #appends surfaces to listsg
 planes.append(XPlane(x=-0.62992*17))
 planes.append(XPlane(x=0.62992*17))
@@ -83,16 +101,19 @@ for plane in planes:plane.setBoundaryType(REFLECTIVE)
 ############################# Creating Cells ##############################
 ###############################################################################
 
+num_sectors = 8
+num_rings = 3
+
 #creates cells corresponding to the fuel pin
 cells = []
 #corresponds to fuel
-cells.append(CellBasic(universe=1, material=dummy_id, rings=3, sectors=8))
+cells.append(CellBasic(universe=1, material=dummy_id))
 #corresponds to Helium
-cells.append(CellBasic(universe=1, material=dummy_id, sectors=8))
+cells.append(CellBasic(universe=1, material=dummy_id))
 #corresponds to cladding
-cells.append(CellBasic(universe=1, material=dummy_id, sectors=8))
+cells.append(CellBasic(universe=1, material=dummy_id))
 #corresponds to water
-cells.append(CellBasic(universe=1, material=dummy_id,sectors=8))
+cells.append(CellBasic(universe=1, material=dummy_id))
 
 #first cell, region with fuel
 cells[0].addSurface(halfspace=-1, surface=circles[0])
@@ -110,11 +131,11 @@ cells[3].addSurface(halfspace=+1, surface=circles[2])
 
 #creates cells corresponding to the guide tube
 #inner region with water
-cells.append(CellBasic(universe=2, material=dummy_id, rings=3, sectors=8))
+cells.append(CellBasic(universe=2, material=dummy_id))
 #region with cladding
-cells.append(CellBasic(universe=2, material=dummy_id, sectors=8))
+cells.append(CellBasic(universe=2, material=dummy_id))
 #outside region with water
-cells.append(CellBasic(universe=2, material=dummy_id, sectors=8))
+cells.append(CellBasic(universe=2, material=dummy_id))
 
 #first cell, inner water region
 cells[4].addSurface(halfspace=-1, surface=circles[3])
@@ -128,7 +149,15 @@ cells[6].addSurface(halfspace=+1, surface=circles[4])
 
 
 #creates cells that are filled by the lattice universe
-cells.append(CellFill(universe=0, universe_fill=3))
+cells.append(CellFill(universe=0, universe_fill=100))
+
+#giant cell
+cells[7].addSurface(halfspace=+1, surface=planes[0])
+cells[7].addSurface(halfspace=-1, surface=planes[1])
+cells[7].addSurface(halfspace=+1, surface=planes[2])
+cells[7].addSurface(halfspace=-1, surface=planes[3])
+
+
 
 ###############################################################################
 ###########################   Creating Lattices   #############################
@@ -139,11 +168,15 @@ log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
 """A universe is a space containing a fuel pin within our 4x4 lattice. Further 
 comments below on how the lattice was created."""
 
-lattice = Lattice(id=3, width_x=0.62992*2, width_y=0.62992*2)
+lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
 
 #reads data from hdf5 file
 f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+
+#extracts cell_types data set from file and assigns it to cellData
 cellData = f['cell_types']
+
+#creates an array of zeros in the same shape as cellData
 pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
 
 burnablePoisons = False
@@ -164,7 +197,6 @@ for i, row in enumerate(cellData):
         else:
             pinCellArray[i,j] = 2
 
-lattice.setLatticeCells(pinCellArray)
 
 ###############################################################################
 ##########################   Creating the Geometry   ##########################
@@ -175,13 +207,56 @@ log.py_printf('NORMAL', 'Creating geometry...')
 geometry = Geometry() 
 """Creates an instance of the Geometry class. This is a 
 class in the openmoc file."""
+
+#adds dummy matterial to geometry
 geometry.addMaterial(dummy)
 
 for material in materials.values(): geometry.addMaterial(material)
 
 for cell in cells: geometry.addCell(cell)
+
+#extracts the range of microregions for each unit in the array
+min_values = f['minregions'][...]
+max_values = f['maxregions'][...]
+f.close()
+
+#finds microregions, clones universe, adds materials to cells in universes
+for i, row in enumerate(pinCellArray):
+    for j, col in enumerate(row):
+        current_UID = pinCellArray[i,j]
+        #print current_UID
+        current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
+        #print j, current_min_max
+        current_universe = geometry.getUniverse(int(current_UID))
+        cloned_universe = current_universe.clone()
+        pinCellArray [i,j] = cloned_universe.getId()
+ 
+        num_cells = cloned_universe.getNumCells()
+        current_cell_ids = current_universe.getCellIds(num_cells)
+        cell_ids = cloned_universe.getCellIds(num_cells)
+        #print cell_ids
+        #current_materials = []
+        current_material_ids = []
+        for k in range(len(current_min_max)):
+            if 'microregion-%d' % (current_min_max[k]) in materials.keys():
+                current_material_ids.append(materials['microregion-%d' % (current_min_max[k])].getId())
+        
+        for k, cell_id in enumerate(cell_ids):
+            cloned_cell = cloned_universe.getCellBasic(int(cell_id))
+            #print cloned_cell
+            cloned_cell.setMaterial(current_material_ids[k])
+            geometry.addCell(cloned_cell)
+            #if k == 0:
+                #cloned_cell.setNumRings(num_rings)        
+            cloned_cell.setNumSectors(num_sectors)
+lattice.setLatticeCells(pinCellArray)
 geometry.addLattice(lattice)
+
 geometry.initializeFlatSourceRegions()
+
+plotter.plotCells(geometry, gridsize = 200 )
+plotter.plotMaterials(geometry, gridsize = 200)
+
 
 ###############################################################################
 ########################   Creating the TrackGenerator   ######################
