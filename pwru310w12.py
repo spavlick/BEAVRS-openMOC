@@ -189,7 +189,6 @@ cells[14].addSurface(halfspace=-1, surface=circles[12])
 cells[14].addSurface(halfspace=+1, surface=circles[11])
 
 #region with water
-cells[15].addSurface(halfspace=-1, surface=circles[13])
 cells[15].addSurface(halfspace=+1, surface=circles[12])
 
 #creates cells that are filled by the lattice universe

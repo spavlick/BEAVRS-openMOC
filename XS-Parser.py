@@ -50,13 +50,13 @@ for casmo_files in casmo_list:
     lines = []
     counter = 0
     for line in f: #finds line with "full assembly" and parses the next one
-        if "full assembly" in line:
+        if "Micro-region" in line:
             counter += 1
             continue 
         if counter == 1:
             words = line.split()
             #returns number of fuel pins in assembly
-            numregions = int(words[4])
+            numregions = int(words[1])
             break
     f.close()
 

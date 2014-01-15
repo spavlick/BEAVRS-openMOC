@@ -211,17 +211,16 @@ cells[14].addSurface(halfspace=-1, surface=circles[12])
 cells[14].addSurface(halfspace=+1, surface=circles[11])
 
 #region with water
-cells[15].addSurface(halfspace=-1, surface=circles[13])
 cells[15].addSurface(halfspace=+1, surface=circles[12])
 
 #creates cells that are filled by the lattice universe
 cells.append(CellFill(universe=0, universe_fill=3))
 
 #giant cell
-cells[7].addSurface(halfspace=+1, surface=planes[0])
-cells[7].addSurface(halfspace=-1, surface=planes[1])
-cells[7].addSurface(halfspace=+1, surface=planes[2])
-cells[7].addSurface(halfspace=-1, surface=planes[3])
+cells[16].addSurface(halfspace=+1, surface=planes[0])
+cells[16].addSurface(halfspace=-1, surface=planes[1])
+cells[16].addSurface(halfspace=+1, surface=planes[2])
+cells[16].addSurface(halfspace=-1, surface=planes[3])
 
 ###############################################################################
 ###########################   Creating Lattices   #############################
@@ -296,7 +295,7 @@ for i, row in enumerate(pinCellArray):
         current_universe = geometry.getUniverse(int(current_UID))
         cloned_universe = current_universe.clone()
         pinCellArray [i,j] = cloned_universe.getId()
- 
+        
         num_cells = cloned_universe.getNumCells()
         current_cell_ids = current_universe.getCellIds(num_cells)
         cell_ids = cloned_universe.getCellIds(num_cells)
@@ -304,12 +303,13 @@ for i, row in enumerate(pinCellArray):
         #current_materials = []
         current_material_ids = []
         for k in range(len(current_min_max)):
+        print current_min_max[k]
             if 'microregion-%d' % (current_min_max[k]) in materials.keys():
+                print current_min_max[k], "MINMAX"
                 current_material_ids.append(materials['microregion-%d' % (current_min_max[k])].getId())
-        
+        print current_material_ids
         for k, cell_id in enumerate(cell_ids):
             cloned_cell = cloned_universe.getCellBasic(int(cell_id))
-            #print cloned_cell
             cloned_cell.setMaterial(current_material_ids[k])
             geometry.addCell(cloned_cell)
             #if k == 0:
