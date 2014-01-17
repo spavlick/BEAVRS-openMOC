@@ -4,6 +4,9 @@ import os
 import matplotlib.pyplot as plt
 from os import walk
 
+#sets the number of energy groups
+numgroups = str(raw_input('How many energy groups? '))
+
 #sets directory to the directory location of the file
 directory = "Cross-Section-Output/%s-group/" % (numgroups)
 directory1 = "geo-data/%s-group/" % (numgroups)
@@ -30,10 +33,9 @@ def multi_file_lister(path):
         print 'Please enter file name manually'
         break
     else:
-        print 'Invalid response, please enter file name manually.''''
+        print "Invalid response, please enter file name manually."'''
 
-#sets the number of energy groups
-numgroups = str(raw_input('How many energy groups? '))
+
 
 #sets cell_data variable to the file name used
 cell_data = raw_input('What is/are the file names? (Enter each one separated by a space without \'c4.\' or the file extension.) ')
@@ -110,7 +112,6 @@ for cell_data in cell_data_list:
             break
         if "Micro-region" in line:
             counter += 1
-            print line
             continue
         if counter >= 1:
             powers = line.split()

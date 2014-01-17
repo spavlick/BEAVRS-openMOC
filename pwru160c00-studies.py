@@ -249,9 +249,10 @@ for i, row in enumerate(pinCellArray):
             #print cloned_cell
             cloned_cell.setMaterial(current_material_ids[k])
             geometry.addCell(cloned_cell)
+            cloned_cell.setNumSectors(num_sectors)
             #if k == 0:
                 #cloned_cell.setNumRings(num_rings)        
-            cloned_cell.setNumSectors(num_sectors)
+            
 lattice.setLatticeCells(pinCellArray)
 geometry.addLattice(lattice)
 
