@@ -114,17 +114,14 @@ def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materi
     for i, row in enumerate(pinCellArray):
         for j, col in enumerate(row):
             current_UID = pinCellArray[i,j]
-            #print current_UID
             current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
-            #print j, current_min_max
             current_universe = geometry.getUniverse(int(current_UID))
             cloned_universe = current_universe.clone()
             pinCellArray [i,j] = cloned_universe.getId()
+            print pinCellArray[i,j]
             num_cells = cloned_universe.getNumCells()
             current_cell_ids = current_universe.getCellIds(num_cells)
             cell_ids = cloned_universe.getCellIds(num_cells)
-            #print cell_ids
-            #current_materials = []
             current_material_ids = []
             for k in range(len(current_min_max)):
                 if 'microregion-%d' % (current_min_max[k]) in materials.keys():

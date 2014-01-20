@@ -256,10 +256,9 @@ geometry.addLattice(lattice)
 
 geometry.initializeFlatSourceRegions()
 
-#plotter.plotCells(geometry, gridsize = 200 )
-#plotter.plotMaterials(geometry, gridsize = 200)
-
-#print pinCellArray
+plotter.plotCells(geometry, gridsize = 200 )
+plotter.plotMaterials(geometry, gridsize = 200)
+print pinCellArray
 
 
 
@@ -291,3 +290,5 @@ solver.setSourceConvergenceThreshold(tolerance)
 solver.convergeSource(max_iters)
 #Prints a report with time elapsed 
 solver.printTimerReport()
+
+plotter.plotFluxes(geometry, solver, energy_groups=[1,2])

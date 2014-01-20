@@ -205,9 +205,96 @@ num_sectors = [8,16]
 angle = 4
 track_spacing = 0.1
 
-for num_sector in num_sectors:
+'''for num_sector in num_sectors:
     new_pinCellArray = copy.deepcopy(pinCellArray)
     geometry, lattice = createGeometry(num_rings, num_sector, geoDirectory, assembly, dummy, materials, cells, new_pinCellArray)
     track_generator = createTrackGen(angle, geometry, track_spacing)
     solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
-    del geometry
+    del geometry'''
+
+num_sector = 16
+angles = numpy.arange(4, 260, 4, dtype = numpy.int32)
+############################################################################
+##########################   Creating the Geometry   #######################
+############################################################################
+lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
+#lattice.printString()
+f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+log.py_printf('NORMAL', 'Creating geometry...')
+
+geometry = Geometry() 
+
+#adds dummy material to geometry
+geometry.addMaterial(dummy)
+
+for material in materials.values(): geometry.addMaterial(material)
+
+for cell in cells: geometry.addCell(cell)
+
+#extracts the range of microregions for each unit in the array
+min_values = f['minregions'][...]
+max_values = f['maxregions'][...]
+f.close()
+
+#finds microregions, clones universe, adds materials to cells in universes
+for i, row in enumerate(pinCellArray):
+    for j, col in enumerate(row):
+        current_UID = pinCellArray[i,j]
+        current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
+        current_universe = geometry.getUniverse(int(current_UID))
+        cloned_universe = current_universe.clone()
+        pinCellArray [i,j] = cloned_universe.getId()
+        print pinCellArray[i,j]
+        num_cells = cloned_universe.getNumCells()
+        current_cell_ids = current_universe.getCellIds(num_cells)
+        cell_ids = cloned_universe.getCellIds(num_cells)
+        current_material_ids = []
+        for k in range(len(current_min_max)):
+            if 'microregion-%d' % (current_min_max[k]) in materials.keys():
+                current_material_ids.append(materials['microregion-%d' % (current_min_max[k])].getId())
+        
+        for k, cell_id in enumerate(cell_ids):
+            cloned_cell = cloned_universe.getCellBasic(int(cell_id))
+            #print cloned_cell
+            cloned_cell.setMaterial(current_material_ids[k])
+            geometry.addCell(cloned_cell)
+            cloned_cell.setNumSectors(num_sector)
+            #if k == 0:
+                #cloned_cell.setNumRings(num_rings)        
+            
+lattice.setLatticeCells(pinCellArray)
+#lattice.printString()
+geometry.addLattice(lattice)
+
+geometry.initializeFlatSourceRegions()
+
+
+for angle in angles:
+    ###########################################################################
+    #######################   Creating the TrackGenerator   ###################
+    ###########################################################################
+
+    #The following runs the simulation for changes in FSR
+
+    log.py_printf('NORMAL', 'Initializing the track generator...')
+
+    #Creates an instance of the TrackGenerator class, takes three parameters
+    track_generator = TrackGenerator(geometry, int(angle), track_spacing)
+    #Runs the generateTracks() method of the TrackGenerator class
+    track_generator.generateTracks()
+    ############################################################################
+    #########################   Running a Simulation ###########################
+    ############################################################################
+
+    #Creates an instance of the ThreadPrivateSolver class with two parameters
+    solver = ThreadPrivateSolver(geometry, track_generator)
+    #Sets the number of threads with the number imported from options
+    solver.setNumThreads(num_threads)
+    #sets the convergence threshold with tolerance imported from options
+    solver.setSourceConvergenceThreshold(tolerance)
+    #This is where the simulation is actually run. max_iters here is the 
+    #number of iterations for the simulation.
+    solver.convergeSource(max_iters)
+    #Prints a report with time elapsed 
+    solver.printTimerReport()
+
