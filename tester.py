@@ -1,8 +1,11 @@
 from openmoc import *
+import openmoc.plotter as plotter
+import openmoc.log as log
+import openmoc.process as process
 import subprocess
 import tester_options
 import h5py
-import openmoc.log as log
+import numpy
 
 #Instantiates "options" object from "options" module and assigns it to options
 options = tester_options.options()
@@ -53,59 +56,108 @@ def tracks_tester(filename, tracksvalues, energygroups):
         f.close()
         print 'hi'
 
-def createTrackGen(angle, geometry, track_spacing):
-    ###########################################################################
-    #######################   Creating the TrackGenerator   ###################
-    ###########################################################################
 
-    #The following runs the simulation for changes in FSR
 
-    log.py_printf('NORMAL', 'Initializing the track generator...')
+                     #### convergence test functions ####
+def createCells(dummy_id, circles, planes):
 
-    #Creates an instance of the TrackGenerator class, takes three parameters
-    track_generator = TrackGenerator(geometry, int(angle), track_spacing)
-    #Runs the generateTracks() method of the TrackGenerator class
-    track_generator.generateTracks()
-    return track_generator
+    #creates cells corresponding to the fuel pin
+    cells = []
+    #corresponds to fuel
+    cells.append(CellBasic(universe=1, material=dummy_id))
+    #corresponds to Helium
+    cells.append(CellBasic(universe=1, material=dummy_id))
+    #corresponds to cladding
+    cells.append(CellBasic(universe=1, material=dummy_id))
+    #corresponds to water
+    cells.append(CellBasic(universe=1, material=dummy_id))
 
-def createSolver(geometry, track_generator, num_threads, tolerance, max_iters):   
-    ############################################################################
-    #########################   Running a Simulation ###########################
-    ############################################################################
+    #first cell, region with fuel
+    cells[0].addSurface(halfspace=-1, surface=circles[0])
 
-    #Creates an instance of the ThreadPrivateSolver class with two parameters
-    solver = ThreadPrivateSolver(geometry, track_generator)
-    #Sets the number of threads with the number imported from options
-    solver.setNumThreads(num_threads)
-    #sets the convergence threshold with tolerance imported from options
-    solver.setSourceConvergenceThreshold(tolerance)
-    #This is where the simulation is actually run. max_iters here is the 
-    #number of iterations for the simulation.
-    solver.convergeSource(max_iters)
-    #Prints a report with time elapsed 
-    solver.printTimerReport()
+    #second cell, region with helium
+    cells[1].addSurface(halfspace=-1, surface=circles[1])
+    cells[1].addSurface(halfspace=+1, surface=circles[0])
 
-    process.storeSimulationState(solver, use_hdf5 = True)
+    #third cell, region with cladding
+    cells[2].addSurface(halfspace=-1, surface=circles[2])
+    cells[2].addSurface(halfspace=+1, surface=circles[1])
 
-def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materials, cells, pinCellArray):
-    ############################################################################
-    ##########################   Creating the Geometry   #######################
-    ############################################################################
+    #region with water
+    cells[3].addSurface(halfspace=+1, surface=circles[2])
+
+    #creates cells corresponding to the guide tube
+    #inner region with water
+    cells.append(CellBasic(universe=2, material=dummy_id))
+    #region with cladding
+    cells.append(CellBasic(universe=2, material=dummy_id))
+    #outside region with water
+    cells.append(CellBasic(universe=2, material=dummy_id))
+
+    #first cell, inner water region
+    cells[4].addSurface(halfspace=-1, surface=circles[3])
+
+    #next cell with cladding
+    cells[5].addSurface(halfspace=-1, surface=circles[4])
+    cells[5].addSurface(halfspace=+1, surface=circles[3])
+
+    #outer cell with water
+    cells[6].addSurface(halfspace=+1, surface=circles[4])
+
+    #creates cells that are filled by the lattice universe
+    cells.append(CellFill(universe=0, universe_fill=100))
+
+    #giant cell
+    cells[7].addSurface(halfspace=+1, surface=planes[0])
+    cells[7].addSurface(halfspace=-1, surface=planes[1])
+    cells[7].addSurface(halfspace=+1, surface=planes[2])
+    cells[7].addSurface(halfspace=-1, surface=planes[3])
+
+    return cells
+
+
+def createLattice(geoDirectory, assembly):
+    log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
     lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
-    #lattice.printString()
+
     f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+    cellData = f['cell_types']
+    pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
+    burnablePoisons = False
+
+    #checks to see if there are burnable poisons in cellData
+    if 4 in cellData[:,:]:
+        burnablePoisons = True
+
+    #changes values in pinCellArray to be consistent in this code
+    for i, row in enumerate(cellData):
+        for j, col in enumerate(row):
+            if cellData[i,j] == 1:
+                pinCellArray[i,j] = 1
+            elif cellData[i,j] == 2:
+                pinCellArray[i,j] = 2
+            elif burnablePoisons == False and cellData[i,j] == 3:
+                pinCellArray[i,j] = 2
+            elif burnablePoisons == True and cellData[i,j] == 3:
+                pinCellArray[i,j] = 3
+            else:
+                pinCellArray[i,j] = 2
+
+    f.close()
+
+    return pinCellArray, lattice
+
+def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice):
+
     log.py_printf('NORMAL', 'Creating geometry...')
-
     geometry = Geometry() 
-
-    #adds dummy material to geometry
     geometry.addMaterial(dummy)
 
     for material in materials.values(): geometry.addMaterial(material)
-
     for cell in cells: geometry.addCell(cell)
-
-    #extracts the range of microregions for each unit in the array
+    
+    #extracts microregion ranges
+    f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
     min_values = f['minregions'][...]
     max_values = f['maxregions'][...]
     f.close()
@@ -117,8 +169,7 @@ def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materi
             current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
             current_universe = geometry.getUniverse(int(current_UID))
             cloned_universe = current_universe.clone()
-            pinCellArray [i,j] = cloned_universe.getId()
-            print pinCellArray[i,j]
+            pinCellArray [i,j] = cloned_universe.getId()    
             num_cells = cloned_universe.getNumCells()
             current_cell_ids = current_universe.getCellIds(num_cells)
             cell_ids = cloned_universe.getCellIds(num_cells)
@@ -126,19 +177,45 @@ def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materi
             for k in range(len(current_min_max)):
                 if 'microregion-%d' % (current_min_max[k]) in materials.keys():
                     current_material_ids.append(materials['microregion-%d' % (current_min_max[k])].getId())
-            
             for k, cell_id in enumerate(cell_ids):
                 cloned_cell = cloned_universe.getCellBasic(int(cell_id))
-                #print cloned_cell
                 cloned_cell.setMaterial(current_material_ids[k])
                 geometry.addCell(cloned_cell)
-                cloned_cell.setNumSectors(num_sectors)
                 #if k == 0:
                     #cloned_cell.setNumRings(num_rings)        
-                
+                cloned_cell.setNumSectors(num_sectors)
+
+
     lattice.setLatticeCells(pinCellArray)
-    #lattice.printString()
     geometry.addLattice(lattice)
 
     geometry.initializeFlatSourceRegions()
-    return geometry, lattice
+
+    #plotter.plotCells(geometry, gridsize = 200 )
+    #plotter.plotMaterials(geometry, gridsize = 200)
+
+    return geometry
+
+
+def createTrackGen(num_azim, geometry, track_spacing):
+
+    log.py_printf('NORMAL', 'Initializing the track generator...')
+    track_generator = TrackGenerator(geometry, num_azim, track_spacing)
+    track_generator.generateTracks()
+    return track_generator
+
+def createSolver(geometry, track_generator, num_threads, tolerance, max_iters):   
+
+    solver = ThreadPrivateSolver(geometry, track_generator)
+    solver.setNumThreads(num_threads)
+    solver.setSourceConvergenceThreshold(tolerance)
+    solver.convergeSource(max_iters)
+    solver.printTimerReport()
+
+    process.storeSimulationState(solver, use_hdf5 = True)
+
+def plot_things(geometry, solver, egs, gs):
+    
+    plotter.plotCells(geometry, gridsize = gs ) #gs --> gridsize
+    plotter.plotMaterials(geometry, gridsize = gs)
+    plotter.plotFluxes(geometry, solver, energy_groups=egs) #egs --> energy_groups

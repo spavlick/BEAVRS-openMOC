@@ -105,8 +105,8 @@ for plane in planes:plane.setBoundaryType(REFLECTIVE)
 #############################   Creating Cells   ##############################
 ###############################################################################
 
-num_sectors = 8
-num_rings = 3
+#num_sectors = 8
+#num_rings = 3
 
 #creates cells corresponding to the fuel pin
 cells = []
@@ -200,20 +200,7 @@ for i, row in enumerate(cellData):
         else:
             pinCellArray[i,j] = 2
 
-num_rings = 3
-num_sectors = [8,16]
-angle = 4
-track_spacing = 0.1
 
-'''for num_sector in num_sectors:
-    new_pinCellArray = copy.deepcopy(pinCellArray)
-    geometry, lattice = createGeometry(num_rings, num_sector, geoDirectory, assembly, dummy, materials, cells, new_pinCellArray)
-    track_generator = createTrackGen(angle, geometry, track_spacing)
-    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
-    del geometry'''
-
-num_sector = 16
-angles = numpy.arange(4, 260, 4, dtype = numpy.int32)
 ############################################################################
 ##########################   Creating the Geometry   #######################
 ############################################################################
@@ -223,6 +210,7 @@ f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
 log.py_printf('NORMAL', 'Creating geometry...')
 
 geometry = Geometry() 
+num_sector = 8
 
 #adds dummy material to geometry
 geometry.addMaterial(dummy)
@@ -269,6 +257,22 @@ geometry.addLattice(lattice)
 geometry.initializeFlatSourceRegions()
 
 
+#num_rings = 3
+angle = 4
+track_spacing = 0.1
+
+'''for num_sector in num_sectors:
+    new_pinCellArray = copy.deepcopy(pinCellArray)
+    geometry, lattice = createGeometry(num_rings, num_sector, geoDirectory, assembly, dummy, materials, cells, new_pinCellArray)
+    track_generator = createTrackGen(angle, geometry, track_spacing)
+    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
+    del geometry'''
+
+
+angles = numpy.arange(4, 260, 4, dtype = numpy.int32)
+
+
+
 for angle in angles:
     ###########################################################################
     #######################   Creating the TrackGenerator   ###################
@@ -297,4 +301,51 @@ for angle in angles:
     solver.convergeSource(max_iters)
     #Prints a report with time elapsed 
     solver.printTimerReport()
+    process.storeSimulationState(solver, use_hdf5 = True, filename = "angles")
+
+
+#num_rings = 3
+angle = 4
+track_spacing = 0.1
+
+'''for num_sector in num_sectors:
+    new_pinCellArray = copy.deepcopy(pinCellArray)
+    geometry, lattice = createGeometry(num_rings, num_sector, geoDirectory, assembly, dummy, materials, cells, new_pinCellArray)
+    track_generator = createTrackGen(angle, geometry, track_spacing)
+    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
+    del geometry'''
+
+
+tracks = [.1, .05, .01, .005, .001, .0005]
+
+
+for track in tracks:
+    ###########################################################################
+    #######################   Creating the TrackGenerator   ###################
+    ###########################################################################
+
+    #The following runs the simulation for changes in FSR
+
+    log.py_printf('NORMAL', 'Initializing the track generator...')
+
+    #Creates an instance of the TrackGenerator class, takes three parameters
+    track_generator = TrackGenerator(geometry, int(angle), track)
+    #Runs the generateTracks() method of the TrackGenerator class
+    track_generator.generateTracks()
+    ############################################################################
+    #########################   Running a Simulation ###########################
+    ############################################################################
+
+    #Creates an instance of the ThreadPrivateSolver class with two parameters
+    solver = ThreadPrivateSolver(geometry, track_generator)
+    #Sets the number of threads with the number imported from options
+    solver.setNumThreads(num_threads)
+    #sets the convergence threshold with tolerance imported from options
+    solver.setSourceConvergenceThreshold(tolerance)
+    #This is where the simulation is actually run. max_iters here is the 
+    #number of iterations for the simulation.
+    solver.convergeSource(max_iters)
+    #Prints a report with time elapsed 
+    solver.printTimerReport()
+    process.storeSimulationState(solver, use_hdf5 = True, filename = "trackspacing")
 

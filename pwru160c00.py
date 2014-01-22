@@ -7,8 +7,10 @@ import openmoc.plotter as plotter
 import openmoc.materialize as materialize
 import numpy
 import h5py
+import copy
 from openmoc.options import Options
 import openmoc.plotter as plotter
+from tester import *
 
 options = Options()
 
@@ -35,7 +37,7 @@ num_azim = options.num_azim
 tolerance = options.tolerance
 max_iters = options.max_iters
 
-log.setLogLevel('NORMAL')
+log.setLogLevel('INFO')
 
 ###############################################################################
 ###########################   Creating Materials   ############################
@@ -199,96 +201,20 @@ for i, row in enumerate(cellData):
         else:
             pinCellArray[i,j] = 2
 
-
-###############################################################################
-##########################   Creating the Geometry   ##########################
-###############################################################################
-
-log.py_printf('NORMAL', 'Creating geometry...')
-
-geometry = Geometry() 
-"""Creates an instance of the Geometry class. This is a 
-class in the openmoc file."""
-
-#adds dummy matterial to geometry
-geometry.addMaterial(dummy)
-
-for material in materials.values(): geometry.addMaterial(material)
-
-for cell in cells: geometry.addCell(cell)
-
-#extracts the range of microregions for each unit in the array
-min_values = f['minregions'][...]
-max_values = f['maxregions'][...]
 f.close()
 
-#finds microregions, clones universe, adds materials to cells in universes
-for i, row in enumerate(pinCellArray):
-    for j, col in enumerate(row):
-        current_UID = pinCellArray[i,j]
-        #print current_UID
-        current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
-        #print j, current_min_max
-        current_universe = geometry.getUniverse(int(current_UID))
-        cloned_universe = current_universe.clone()
-        pinCellArray [i,j] = cloned_universe.getId()
- 
-        num_cells = cloned_universe.getNumCells()
-        current_cell_ids = current_universe.getCellIds(num_cells)
-        cell_ids = cloned_universe.getCellIds(num_cells)
-        #print cell_ids
-        #current_materials = []
-        current_material_ids = []
-        for k in range(len(current_min_max)):
-            if 'microregion-%d' % (current_min_max[k]) in materials.keys():
-                current_material_ids.append(materials['microregion-%d' % (current_min_max[k])].getId())
-        
-        for k, cell_id in enumerate(cell_ids):
-            cloned_cell = cloned_universe.getCellBasic(int(cell_id))
-            #print cloned_cell
-            cloned_cell.setMaterial(current_material_ids[k])
-            geometry.addCell(cloned_cell)
-            #if k == 0:
-                #cloned_cell.setNumRings(num_rings)        
-            cloned_cell.setNumSectors(num_sectors)
-lattice.setLatticeCells(pinCellArray)
-geometry.addLattice(lattice)
+#convergence tests begin here
+num_azims = [4,8,16]
 
-geometry.initializeFlatSourceRegions()
+clean_pinCellArray = copy.deepcopy(pinCellArray)
+for num_azim in num_azims:
+    
+    geometry = createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
+    track_generator = createTrackGen(num_azim, geometry, track_spacing)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
+    pinCellArray = copy.deepcopy(clean_pinCellArray)
 
-plotter.plotCells(geometry, gridsize = 200 )
-plotter.plotMaterials(geometry, gridsize = 200)
-print pinCellArray
+gs = 200
+egs = [1,2]
 
-
-
-###############################################################################
-#######################   Creating the TrackGenerator   #######################
-###############################################################################
-
-#The following runs the simulation for changes in FSR
-
-log.py_printf('NORMAL', 'Initializing the track generator...')
-
-#Creates an instance of the TrackGenerator class, takes three parameters
-track_generator = TrackGenerator(geometry, num_azim, track_spacing)
-#Runs the generateTracks() method of the TrackGenerator class
-track_generator.generateTracks()
-
-###############################################################################
-#########################   Running a Simulation ##############################
-###############################################################################
-
-#Creates an instance of the ThreadPrivateSolver class with two parameters
-solver = ThreadPrivateSolver(geometry, track_generator)
-#Sets the number of threads with the number imported from options
-solver.setNumThreads(num_threads)
-#sets the convergence threshold with tolerance imported from options
-solver.setSourceConvergenceThreshold(tolerance)
-#This is where the simulation is actually run. max_iters here is the 
-#number of iterations for the simulation.
-solver.convergeSource(max_iters)
-#Prints a report with time elapsed 
-solver.printTimerReport()
-
-plotter.plotFluxes(geometry, solver, energy_groups=[1,2])
+#plot_things(geometry, solver, egs, gs)
