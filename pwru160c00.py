@@ -140,5 +140,19 @@ for num_azim in num_azims:
 
 gs = 200
 egs = [1,2]
-
 #plot_things(geometry, solver, egs, gs)
+
+###For Paper###
+
+#plot with 3 rings, 8 sectors, and 32 angles
+
+#storeSimulationState (SSS) parameter info:
+    #instead of appending, we can make SSS override the data before each simulation by adding the argument:
+        #append = False (default is True)
+    #to add a note, argument is:
+        #note = '(insert stuff here)'
+            #useful for rings and sectors and whatever else we need for each run
+
+
+
+
