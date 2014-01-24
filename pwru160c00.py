@@ -37,7 +37,7 @@ num_azim = options.num_azim
 tolerance = options.tolerance
 max_iters = options.max_iters
 
-log.setLogLevel('INFO')
+log.setLogLevel('NORMAL')
 
 ###############################################################################
 ###########################   Creating Materials   ############################
@@ -99,120 +99,44 @@ circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
 #sets the boundary type for the planes to be reflective (neutrons bounce back)
 for plane in planes:plane.setBoundaryType(REFLECTIVE)
 
-
-###############################################################################
-#############################   Creating Cells   ##############################
-###############################################################################
-
-num_sectors = 8
-num_rings = 3
-
-#creates cells corresponding to the fuel pin
-cells = []
-#corresponds to fuel
-cells.append(CellBasic(universe=1, material=dummy_id))
-#corresponds to Helium
-cells.append(CellBasic(universe=1, material=dummy_id))
-#corresponds to cladding
-cells.append(CellBasic(universe=1, material=dummy_id))
-#corresponds to water
-cells.append(CellBasic(universe=1, material=dummy_id))
-
-#first cell, region with fuel
-cells[0].addSurface(halfspace=-1, surface=circles[0])
-
-#second cell, region with helium
-cells[1].addSurface(halfspace=-1, surface=circles[1])
-cells[1].addSurface(halfspace=+1, surface=circles[0])
-
-#third cell, region with cladding
-cells[2].addSurface(halfspace=-1, surface=circles[2])
-cells[2].addSurface(halfspace=+1, surface=circles[1])
-
-#region with water
-cells[3].addSurface(halfspace=+1, surface=circles[2])
-
-#creates cells corresponding to the guide tube
-#inner region with water
-cells.append(CellBasic(universe=2, material=dummy_id))
-#region with cladding
-cells.append(CellBasic(universe=2, material=dummy_id))
-#outside region with water
-cells.append(CellBasic(universe=2, material=dummy_id))
-
-#first cell, inner water region
-cells[4].addSurface(halfspace=-1, surface=circles[3])
-
-#next cell with cladding
-cells[5].addSurface(halfspace=-1, surface=circles[4])
-cells[5].addSurface(halfspace=+1, surface=circles[3])
-
-#outer cell with water
-cells[6].addSurface(halfspace=+1, surface=circles[4])
-
-#creates cells that are filled by the lattice universe
-cells.append(CellFill(universe=0, universe_fill=100))
-
-#giant cell
-cells[7].addSurface(halfspace=+1, surface=planes[0])
-cells[7].addSurface(halfspace=-1, surface=planes[1])
-cells[7].addSurface(halfspace=+1, surface=planes[2])
-cells[7].addSurface(halfspace=-1, surface=planes[3])
-
-
-
-###############################################################################
-###########################   Creating Lattices   #############################
-###############################################################################
-
-log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
-
-"""A universe is a space containing a fuel pin within our 4x4 lattice. Further 
-comments below on how the lattice was created."""
-
-lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
-
-#reads data from hdf5 file
-f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
-
-#extracts cell_types data set from file and assigns it to cellData
-cellData = f['cell_types']
-
-#creates an array of zeros in the same shape as cellData
-pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
-
-burnablePoisons = False
-
-#checks to see if there are burnable poisons in cellData
-if 4 in cellData[:,:]:
-    burnablePoisons = True
-
-#changes values in pinCellArray to be consistent in this code
-for i, row in enumerate(cellData):
-    for j, col in enumerate(row):
-        if cellData[i,j] == 1:
-            pinCellArray[i,j] = 1
-        elif cellData[i,j] == 2:
-            pinCellArray[i,j] = 2
-        elif burnablePoisons == False and cellData[i,j] == 3:
-            pinCellArray[i,j] = 2
-        elif burnablePoisons == True and cellData[i,j] == 3:
-            pinCellArray[i,j] = 3
-        else:
-            pinCellArray[i,j] = 2
-
-f.close()
-
 #convergence tests begin here
-num_azims = [4,8,16]
 
-clean_pinCellArray = copy.deepcopy(pinCellArray)
-for num_azim in num_azims:
+rings_list = [1,]
+sectors_list = [4, 8]
+
+for rings in rings_list:
+    for sectors in sectors_list:
     
-    geometry = createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
+        cells = createCells(rings, sectors, dummy_id, circles, planes)
+        pinCellArray, lattice = createLattice(geoDirectory, assembly)
+        geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
+        track_generator = createTrackGen(num_azim, geometry, track_spacing)
+        createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
+
+
+
+cells = createCells(3, 8, dummy_id, circles, planes)
+pinCellArray, lattice = createLattice(geoDirectory, assembly)
+geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
+
+
+track_spacings = [0.1, 0.05]
+
+for track_spacing in track_spacings:
+
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
-    pinCellArray = copy.deepcopy(clean_pinCellArray)
+
+
+
+num_azims = [4,8]
+
+for num_azim in num_azims:
+
+    track_generator = createTrackGen(num_azim, geometry, track_spacing)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
+
+
 
 gs = 200
 egs = [1,2]

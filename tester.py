@@ -59,18 +59,18 @@ def tracks_tester(filename, tracksvalues, energygroups):
 
 
                      #### convergence test functions ####
-def createCells(dummy_id, circles, planes):
+def createCells(rings, sectors, dummy_id, circles, planes):
 
     #creates cells corresponding to the fuel pin
     cells = []
     #corresponds to fuel
-    cells.append(CellBasic(universe=1, material=dummy_id))
+    cells.append(CellBasic(universe=1, material=dummy_id, rings = rings, sectors = sectors))
     #corresponds to Helium
-    cells.append(CellBasic(universe=1, material=dummy_id))
+    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
     #corresponds to cladding
-    cells.append(CellBasic(universe=1, material=dummy_id))
+    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
     #corresponds to water
-    cells.append(CellBasic(universe=1, material=dummy_id))
+    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
 
     #first cell, region with fuel
     cells[0].addSurface(halfspace=-1, surface=circles[0])
@@ -88,11 +88,11 @@ def createCells(dummy_id, circles, planes):
 
     #creates cells corresponding to the guide tube
     #inner region with water
-    cells.append(CellBasic(universe=2, material=dummy_id))
+    cells.append(CellBasic(universe=2, material=dummy_id, rings = rings, sectors = sectors))
     #region with cladding
-    cells.append(CellBasic(universe=2, material=dummy_id))
+    cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
     #outside region with water
-    cells.append(CellBasic(universe=2, material=dummy_id))
+    cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
 
     #first cell, inner water region
     cells[4].addSurface(halfspace=-1, surface=circles[3])
@@ -147,7 +147,7 @@ def createLattice(geoDirectory, assembly):
 
     return pinCellArray, lattice
 
-def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice):
+def createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice):
 
     log.py_printf('NORMAL', 'Creating geometry...')
     geometry = Geometry() 
@@ -181,11 +181,9 @@ def createGeometry(num_rings, num_sectors, geoDirectory, assembly, dummy, materi
                 cloned_cell = cloned_universe.getCellBasic(int(cell_id))
                 cloned_cell.setMaterial(current_material_ids[k])
                 geometry.addCell(cloned_cell)
-                #if k == 0:
-                    #cloned_cell.setNumRings(num_rings)        
-                cloned_cell.setNumSectors(num_sectors)
 
-
+    #lattice.printString()
+    print pinCellArray
     lattice.setLatticeCells(pinCellArray)
     geometry.addLattice(lattice)
 

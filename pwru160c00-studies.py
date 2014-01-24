@@ -105,19 +105,19 @@ for plane in planes:plane.setBoundaryType(REFLECTIVE)
 #############################   Creating Cells   ##############################
 ###############################################################################
 
-#num_sectors = 8
-#num_rings = 3
+num_sectors = 8
+num_rings = 3
 
 #creates cells corresponding to the fuel pin
 cells = []
 #corresponds to fuel
-cells.append(CellBasic(universe=1, material=dummy_id))
+cells.append(CellBasic(universe=1, material=dummy_id, rings = num_rings, sectors = num_sectors))
 #corresponds to Helium
-cells.append(CellBasic(universe=1, material=dummy_id))
+cells.append(CellBasic(universe=1, material=dummy_id, sectors = num_sectors))
 #corresponds to cladding
-cells.append(CellBasic(universe=1, material=dummy_id))
+cells.append(CellBasic(universe=1, material=dummy_id, sectors = num_sectors))
 #corresponds to water
-cells.append(CellBasic(universe=1, material=dummy_id))
+cells.append(CellBasic(universe=1, material=dummy_id, sectors = num_sectors))
 
 #first cell, region with fuel
 cells[0].addSurface(halfspace=-1, surface=circles[0])
@@ -135,11 +135,11 @@ cells[3].addSurface(halfspace=+1, surface=circles[2])
 
 #creates cells corresponding to the guide tube
 #inner region with water
-cells.append(CellBasic(universe=2, material=dummy_id))
+cells.append(CellBasic(universe=2, material=dummy_id, sectors = num_sectors, rings = num_rings))
 #region with cladding
-cells.append(CellBasic(universe=2, material=dummy_id))
+cells.append(CellBasic(universe=2, material=dummy_id, sectors = num_sectors))
 #outside region with water
-cells.append(CellBasic(universe=2, material=dummy_id))
+cells.append(CellBasic(universe=2, material=dummy_id, sectors = num_sectors))
 
 #first cell, inner water region
 cells[4].addSurface(halfspace=-1, surface=circles[3])
@@ -246,7 +246,7 @@ for i, row in enumerate(pinCellArray):
             #print cloned_cell
             cloned_cell.setMaterial(current_material_ids[k])
             geometry.addCell(cloned_cell)
-            cloned_cell.setNumSectors(num_sector)
+            #cloned_cell.setNumSectors(num_sector)
             #if k == 0:
                 #cloned_cell.setNumRings(num_rings)        
             
