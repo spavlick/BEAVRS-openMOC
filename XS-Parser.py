@@ -1,4 +1,4 @@
-import numpy as np
+import numpy
 import h5py
 import os
 
@@ -61,14 +61,14 @@ for casmo_files in casmo_list:
     f.close()
 
     #creates empty arrays for XS data using variables read from file
-    siga = np.zeros((numregions, numgroups))
-    sigd = np.zeros((numregions, numgroups))
-    sigt = np.zeros((numregions, numgroups))
-    sigf = np.zeros((numregions, numgroups))
-    signf = np.zeros((numregions, numgroups))
-    sigs = np.zeros((numregions, numgroups, numgroups))
-    chi = np.array([1.0, 0.0])
-    chi_dummy = np.array([0.0, 0.0])
+    siga = numpy.zeros((numregions, numgroups))
+    sigd = numpy.zeros((numregions, numgroups))
+    sigt = numpy.zeros((numregions, numgroups))
+    sigf = numpy.zeros((numregions, numgroups))
+    signf = numpy.zeros((numregions, numgroups))
+    sigs = numpy.zeros((numregions, numgroups, numgroups))
+    chi = numpy.array([1.0, 0.0])
+    chi_dummy = numpy.array([0.0, 0.0])
 
     #function to read XS data from file
     def parseXS(name, array):
@@ -125,7 +125,7 @@ for casmo_files in casmo_list:
         material.create_dataset('Absorption XS', data=siga[region, :])
         material.create_dataset('Fission XS', data=sigf[region, :])
         material.create_dataset('Nu Fission XS', data=signf[region, :])
-        material.create_dataset('Scattering XS', data=np.ravel(sigs[region, :, :]))
+        material.create_dataset('Scattering XS', data=numpy.ravel(sigs[region, :, :]))
         material.create_dataset('Dif Coefficient', data=sigd[region, :])
         if numgroups == 2:
             if sigf[region, 0] == 0.0 and sigf[region, 1] == 0.0:

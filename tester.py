@@ -3,7 +3,6 @@ from openmoc import options
 import openmoc.plotter as plotter
 import openmoc.log as log
 import openmoc.process as process
-import subprocess
 import h5py
 import numpy
 
