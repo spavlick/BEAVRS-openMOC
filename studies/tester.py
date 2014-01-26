@@ -33,101 +33,265 @@ def createMaterials(directory, assembly):
 
 
 def createSurfaces(numgroups, bp=False):
+    
+    if bp == False:
+        log.py_printf('NORMAL', 'Creating Surfaces...')
 
-    log.py_printf('NORMAL', 'Creating Surfaces...')
+        #creates list of circle and plane surfaces
+        circles = [] 
+        planes = []
 
-    #creates list of circle and plane surfaces
-    circles = [] 
-    planes = []
+        #creates empty Material object as a dummy to fill the fuel cells
+        dummy_id = material_id()
+        dummy = Material(dummy_id)
 
-    #creates empty Material object as a dummy to fill the fuel cells
-    dummy_id = material_id()
-    dummy = Material(dummy_id)
+        #gives dummy material stupid cross sections
+        dummy.setNumEnergyGroups(int(numgroups))
+        dummyxs = numpy.zeros(int(numgroups))
+        dummyscatter = numpy.zeros((int(numgroups))**2)
+        dummy.setSigmaT(dummyxs)
+        dummy.setSigmaS(dummyscatter)
+        dummy.setSigmaF(dummyxs)
+        dummy.setSigmaA(dummyxs)
+        dummy.setNuSigmaF(dummyxs)
+        dummy.setChi(dummyxs)
 
-    #gives dummy material stupid cross sections
-    dummy.setNumEnergyGroups(int(numgroups))
-    dummyxs = numpy.zeros(int(numgroups))
-    dummyscatter = numpy.zeros((int(numgroups))**2)
-    dummy.setSigmaT(dummyxs)
-    dummy.setSigmaS(dummyscatter)
-    dummy.setSigmaF(dummyxs)
-    dummy.setSigmaA(dummyxs)
-    dummy.setNuSigmaF(dummyxs)
-    dummy.setChi(dummyxs)
+        #appends surfaces to lists
+        planes.append(XPlane(x=-0.62992*17))
+        planes.append(XPlane(x=0.62992*17))
+        planes.append(YPlane(y=-0.62992*17))
+        planes.append(YPlane(y=0.62992*17))
+        #Radii for fuel cells
+        circles.append(Circle(x=0.0, y=0.0, radius=0.39218))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.40005))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.45720))
+        #Radii for guide tubes (also use for instrument tube)
+        circles.append(Circle(x=0.0, y=0.0, radius=0.56134))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
 
-    #appends surfaces to lists
-    planes.append(XPlane(x=-0.62992*17))
-    planes.append(XPlane(x=0.62992*17))
-    planes.append(YPlane(y=-0.62992*17))
-    planes.append(YPlane(y=0.62992*17))
-    #Radii for fuel cells
-    circles.append(Circle(x=0.0, y=0.0, radius=0.39218))
-    circles.append(Circle(x=0.0, y=0.0, radius=0.40005))
-    circles.append(Circle(x=0.0, y=0.0, radius=0.45720))
-    #Radii for guide tubes (also use for instrument tube)
-    circles.append(Circle(x=0.0, y=0.0, radius=0.56134))
-    circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
+        for plane in planes:plane.setBoundaryType(REFLECTIVE)
 
-    #sets the boundary type for the planes to be reflective (neutrons bounce back)
-    for plane in planes:plane.setBoundaryType(REFLECTIVE)
+        return dummy, dummy_id, circles, planes
+    
+    elif bp == True:
 
-    return dummy, dummy_id, circles, planes
+        log.py_printf('NORMAL', 'Creating Surfaces...')
 
-def createCells(rings, sectors, dummy_id, circles, planes):
+        #creates list of circle and plane surfaces
+        circles = []
+        planes = []
 
-    #creates cells corresponding to the fuel pin
-    cells = []
-    #corresponds to fuel
-    cells.append(CellBasic(universe=1, material=dummy_id, rings = rings, sectors = sectors))
-    #corresponds to Helium
-    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
-    #corresponds to cladding
-    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
-    #corresponds to water
-    cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
+        #creates empty Material object as a dummy to fill the fuel cells
+        dummy_id = material_id()
+        dummy = Material(dummy_id)
 
-    #first cell, region with fuel
-    cells[0].addSurface(halfspace=-1, surface=circles[0])
+        #gives dummy material stupid cross sections
+        dummy.setNumEnergyGroups(int(numgroups))
+        dummyxs = numpy.zeros(int(numgroups))
+        dummyscatter = numpy.zeros((int(numgroups))**2)
+        dummy.setSigmaT(dummyxs)
+        dummy.setSigmaS(dummyscatter)
+        dummy.setSigmaF(dummyxs)
+        dummy.setSigmaA(dummyxs)
+        dummy.setNuSigmaF(dummyxs)
+        dummy.setChi(dummyxs)
 
-    #second cell, region with helium
-    cells[1].addSurface(halfspace=-1, surface=circles[1])
-    cells[1].addSurface(halfspace=+1, surface=circles[0])
+        #appends surfaces to lists
+        planes.append(XPlane(x=-0.62992*17))
+        planes.append(XPlane(x=0.62992*17))
+        planes.append(YPlane(y=-0.62992*17))
+        planes.append(YPlane(y=0.62992*17))
+        #Radii for fuel cells
+        circles.append(Circle(x=0.0, y=0.0, radius=0.39218))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.40005))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.45720))
+        #Radii for guide tubes (also use for instrument tube)
+        circles.append(Circle(x=0.0, y=0.0, radius=0.56134))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
+        #Radii for burnable poisons
+        circles.append(Circle(x=0.0, y=0.0, radius=0.21400))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.23051))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.24130))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.42672))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.43688))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.48387))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.56134))
+        circles.append(Circle(x=0.0, y=0.0, radius=0.60198))
 
-    #third cell, region with cladding
-    cells[2].addSurface(halfspace=-1, surface=circles[2])
-    cells[2].addSurface(halfspace=+1, surface=circles[1])
+        for plane in planes:plane.setBoundaryType(REFLECTIVE)
 
-    #region with water
-    cells[3].addSurface(halfspace=+1, surface=circles[2])
+        return dummy, dummy_id, circles, planes
 
-    #creates cells corresponding to the guide tube
-    #inner region with water
-    cells.append(CellBasic(universe=2, material=dummy_id, rings = rings, sectors = sectors))
-    #region with cladding
-    cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
-    #outside region with water
-    cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
 
-    #first cell, inner water region
-    cells[4].addSurface(halfspace=-1, surface=circles[3])
+def createCells(rings, sectors, dummy_id, circles, planes, bp=False):
 
-    #next cell with cladding
-    cells[5].addSurface(halfspace=-1, surface=circles[4])
-    cells[5].addSurface(halfspace=+1, surface=circles[3])
+    if bp == False:
 
-    #outer cell with water
-    cells[6].addSurface(halfspace=+1, surface=circles[4])
+        #creates cells corresponding to the fuel pin
+        cells = []
+        #corresponds to fuel
+        cells.append(CellBasic(universe=1, material=dummy_id, rings = rings, sectors = sectors))
+        #corresponds to Helium
+        cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
+        #corresponds to cladding
+        cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
+        #corresponds to water
+        cells.append(CellBasic(universe=1, material=dummy_id, sectors = sectors))
 
-    #creates cells that are filled by the lattice universe
-    cells.append(CellFill(universe=0, universe_fill=100))
+        #first cell, region with fuel
+        cells[0].addSurface(halfspace=-1, surface=circles[0])
 
-    #giant cell
-    cells[7].addSurface(halfspace=+1, surface=planes[0])
-    cells[7].addSurface(halfspace=-1, surface=planes[1])
-    cells[7].addSurface(halfspace=+1, surface=planes[2])
-    cells[7].addSurface(halfspace=-1, surface=planes[3])
+        #second cell, region with helium
+        cells[1].addSurface(halfspace=-1, surface=circles[1])
+        cells[1].addSurface(halfspace=+1, surface=circles[0])
 
-    return cells
+        #third cell, region with cladding
+        cells[2].addSurface(halfspace=-1, surface=circles[2])
+        cells[2].addSurface(halfspace=+1, surface=circles[1])
+
+        #region with water
+        cells[3].addSurface(halfspace=+1, surface=circles[2])
+
+        #creates cells corresponding to the guide tube
+        #inner region with water
+        cells.append(CellBasic(universe=2, material=dummy_id, rings = rings, sectors = sectors))
+        #region with cladding
+        cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
+        #outside region with water
+        cells.append(CellBasic(universe=2, material=dummy_id, sectors = sectors))
+
+        #first cell, inner water region
+        cells[4].addSurface(halfspace=-1, surface=circles[3])
+
+        #next cell with cladding
+        cells[5].addSurface(halfspace=-1, surface=circles[4])
+        cells[5].addSurface(halfspace=+1, surface=circles[3])
+
+        #outer cell with water
+        cells[6].addSurface(halfspace=+1, surface=circles[4])
+
+        #creates cells that are filled by the lattice universe
+        cells.append(CellFill(universe=0, universe_fill=100))
+
+        #giant cell
+        cells[7].addSurface(halfspace=+1, surface=planes[0])
+        cells[7].addSurface(halfspace=-1, surface=planes[1])
+        cells[7].addSurface(halfspace=+1, surface=planes[2])
+        cells[7].addSurface(halfspace=-1, surface=planes[3])
+
+        return cells
+
+    elif bp == True:
+
+        cells = []
+        #corresponds to fuel
+        cells.append(CellBasic(universe=1, material=dummy_id))
+        #corresponds to Helium
+        cells.append(CellBasic(universe=1, material=dummy_id))
+        #corresponds to cladding
+        cells.append(CellBasic(universe=1, material=dummy_id))
+        #corresponds to water
+        cells.append(CellBasic(universe=1, material=dummy_id))
+
+        #first cell, region with fuel
+        cells[0].addSurface(halfspace=-1, surface=circles[0])
+
+        #second cell, region with helium
+        cells[1].addSurface(halfspace=-1, surface=circles[1])
+        cells[1].addSurface(halfspace=+1, surface=circles[0])
+
+        #third cell, region with cladding
+        cells[2].addSurface(halfspace=-1, surface=circles[2])
+        cells[2].addSurface(halfspace=+1, surface=circles[1])
+
+        #region with water
+        cells[3].addSurface(halfspace=+1, surface=circles[2])
+
+
+        #creates cells corresponding to the guide tube
+        #inner region with water
+        cells.append(CellBasic(universe=2, material=dummy_id))
+        #region with cladding
+        cells.append(CellBasic(universe=2, material=dummy_id))
+        #outside region with water
+        cells.append(CellBasic(universe=2, material=dummy_id))
+
+        #first cell, inner water region
+        cells[4].addSurface(halfspace=-1, surface=circles[3])
+
+        #next cell with cladding
+        cells[5].addSurface(halfspace=-1, surface=circles[4])
+        cells[5].addSurface(halfspace=+1, surface=circles[3])
+
+        #outer cell with water
+        cells[6].addSurface(halfspace=+1, surface=circles[4])
+
+
+        #creates cells corresponding to the burnable poison
+
+        #inner region with air
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with SS304
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with air
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with burnable poison
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with air
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with SS304
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with water
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #region with Zircaloy
+        cells.append(CellBasic(universe=3, material=dummy_id))
+        #outside region with water
+        cells.append(CellBasic(universe=3, material=dummy_id))
+
+        #first cell, region with air
+        cells[7].addSurface(halfspace=-1, surface=circles[5])
+
+        #second cell, region with SS304
+        cells[8].addSurface(halfspace=-1, surface=circles[6])
+        cells[8].addSurface(halfspace=+1, surface=circles[5])
+
+        #third cell, region with air
+        cells[9].addSurface(halfspace=-1, surface=circles[7])
+        cells[9].addSurface(halfspace=+1, surface=circles[6])
+
+        #region with burnable poison
+        cells[10].addSurface(halfspace=-1, surface=circles[8])
+        cells[10].addSurface(halfspace=+1, surface=circles[7])
+
+        #region with air
+        cells[11].addSurface(halfspace=-1, surface=circles[9])
+        cells[11].addSurface(halfspace=+1, surface=circles[8])
+
+        #region with SS304
+        cells[12].addSurface(halfspace=-1, surface=circles[10])
+        cells[12].addSurface(halfspace=+1, surface=circles[9])
+
+        #region with water
+        cells[13].addSurface(halfspace=-1, surface=circles[11])
+        cells[13].addSurface(halfspace=+1, surface=circles[10])
+
+        #region with Zircaloy
+        cells[14].addSurface(halfspace=-1, surface=circles[12])
+        cells[14].addSurface(halfspace=+1, surface=circles[11])
+
+        #region with water
+        cells[15].addSurface(halfspace=+1, surface=circles[12])
+
+        #creates cells that are filled by the lattice universe
+        cells.append(CellFill(universe=0, universe_fill=100))
+
+        #giant cell
+        cells[16].addSurface(halfspace=+1, surface=planes[0])
+        cells[16].addSurface(halfspace=-1, surface=planes[1])
+        cells[16].addSurface(halfspace=+1, surface=planes[2])
+        cells[16].addSurface(halfspace=-1, surface=planes[3])
+
+        return cells
 
 
 def createLattice(geoDirectory, assembly):
@@ -197,14 +361,10 @@ def createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray
                 geometry.addCell(cloned_cell)
 
     #lattice.printString()
-    print pinCellArray
     lattice.setLatticeCells(pinCellArray)
     geometry.addLattice(lattice)
 
     geometry.initializeFlatSourceRegions()
-
-    #plotter.plotCells(geometry, gridsize = 200 )
-    #plotter.plotMaterials(geometry, gridsize = 200)
 
     return geometry
 

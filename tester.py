@@ -283,7 +283,7 @@ def createCells(rings, sectors, dummy_id, circles, planes, bp=False):
         cells[15].addSurface(halfspace=+1, surface=circles[12])
 
         #creates cells that are filled by the lattice universe
-        cells.append(CellFill(universe=0, universe_fill=3))
+        cells.append(CellFill(universe=0, universe_fill=100))
 
         #giant cell
         cells[16].addSurface(halfspace=+1, surface=planes[0])
@@ -361,14 +361,10 @@ def createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray
                 geometry.addCell(cloned_cell)
 
     #lattice.printString()
-    print pinCellArray
     lattice.setLatticeCells(pinCellArray)
     geometry.addLattice(lattice)
 
     geometry.initializeFlatSourceRegions()
-
-    #plotter.plotCells(geometry, gridsize = 200 )
-    #plotter.plotMaterials(geometry, gridsize = 200)
 
     return geometry
 

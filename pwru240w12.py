@@ -1,6 +1,3 @@
-"""Imports all modules from OpenMOC, as well as the individual functions log,
-plotter, and materialize, all of which are part of submodules within OpenMoc"""
-
 from openmoc import *
 import openmoc.log as log # this module stores data printed during simulation
 import openmoc.plotter as plotter
