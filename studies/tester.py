@@ -438,14 +438,12 @@ def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
     f = h5py.File('results/errors.h5')
     f.attrs['Energy Groups'] = 2
     del f[study_name]
-    '''
     current_test = f.create_group(study_name)
     keys = max_errors.keys()
     for key in keys:
-        current_test.create_dataset('%s_max' % (study_name), data=max_errors[key])
-        current_test.create_dataset('%s_mean' % (study_name), data=mean_errors[key])
-        current_test.create_dataset('%s_kinf' % (study_name), data=kinf_errors[key])
-    '''
+        current_test.create_dataset('%s_max_%s' % (study_name, key), data=max_errors[key])
+        current_test.create_dataset('%s_mean' % (study_name, key), data=mean_errors[key])
+        current_test.create_dataset('%s_kinf' % (study_name, key), data=kinf_errors[key])
     f.close()
 
 
