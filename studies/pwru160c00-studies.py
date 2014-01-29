@@ -93,6 +93,9 @@ print ts_pinmax
 print ts_pinmean
 print ts_kinf
 
+storeError(assembly, 'az', az_pinmax, az_pinmean, az_kinf)
+storeError(assembly, 'ts', ts_pinmax, ts_pinmean, ts_kinf)
+
 '''
 #simulation
 for rings in rings_list:

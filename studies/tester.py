@@ -424,13 +424,29 @@ def computeKinfError(solver, pin_directory, assembly):
 
     #finds kinf from simulation
     calculated_kinf = solver.getKeff()
-
     #finds kinf from casmo
     f = h5py.File(pin_directory + assembly + '-results.hdf5')
     actual_kinf = f.attrs['K-Infinity']
     f.close()
 
-    kinf_error = (calculated_kinf - actual_kinf)/(actual_kinf)
+    kinf_error = abs((calculated_kinf - actual_kinf)/(actual_kinf))
 
     return kinf_error
+
+def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
+    
+    f = h5py.File('results/errors.h5')
+    f.attrs['Energy Groups'] = 2
+    del f[study_name]
+    '''
+    current_test = f.create_group(study_name)
+    keys = max_errors.keys()
+    for key in keys:
+        current_test.create_dataset('%s_max' % (study_name), data=max_errors[key])
+        current_test.create_dataset('%s_mean' % (study_name), data=mean_errors[key])
+        current_test.create_dataset('%s_kinf' % (study_name), data=kinf_errors[key])
+    '''
+    f.close()
+
+
 
