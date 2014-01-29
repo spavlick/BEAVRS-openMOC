@@ -70,9 +70,9 @@ for track_spacing in track_spacings:
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
-    ts_pinmax['track_spacing = %d' % (track_spacing)] = max_error
-    ts_pinmean['track_spacing = %d' % (track_spacing)] = mean_error
-    ts_kinf['track_spacing = %d' % (track_spacing)] = kinf_error
+    ts_pinmax['track_spacing = %f' % (track_spacing)] = max_error
+    ts_pinmean['track_spacing = %f' % (track_spacing)] = mean_error
+    ts_kinf['track_spacing = %f' % (track_spacing)] = kinf_error
 
 #reset
 track_spacing = 0.1
