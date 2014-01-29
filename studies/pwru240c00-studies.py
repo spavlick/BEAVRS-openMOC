@@ -22,7 +22,14 @@ geoDirectory = "../geo-data/%s-group/" % (numgroups)
 
 rings = 3
 sectors = 8
+note = 'blah'
 
+num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters()
+materials = createMaterials(directory, assembly)
+dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
+cells = createCells(rings, sectors, dummy_id, circles, planes)
+pinCellArray, lattice = createLattice(geoDirectory, assembly)
+geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
 
 #num_azim test values
 num_azims = [i for i in range(4, 260, 4)]
@@ -32,7 +39,7 @@ print num_azims
 for num_azim in num_azims:
 
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters,  note, data = True)
 
 #reset
 num_azim = 32

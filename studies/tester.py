@@ -376,7 +376,7 @@ def createTrackGen(num_azim, geometry, track_spacing):
     track_generator.generateTracks()
     return track_generator
 
-def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data=False):   
+def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note, data=False):   
 
     solver = ThreadPrivateSolver(geometry, track_generator)
     solver.setNumThreads(num_threads)
@@ -385,10 +385,52 @@ def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, d
     solver.printTimerReport()
     
     if data == True:    
-        process.storeSimulationState(solver, use_hdf5 = True)
+        process.storeSimulationState(solver, use_hdf5 = True, note = note, pin_powers = True)
+
+    return solver
 
 def plot_things(geometry, solver, egs, gs):
     
-    plotter.plotCells(geometry, gridsize = gs ) #gs --> gridsize
+    plotter.plotCells(geometry, gridsize = gs ) #gs->gridsize
     plotter.plotMaterials(geometry, gridsize = gs)
-    plotter.plotFluxes(geometry, solver, energy_groups=egs) #egs --> energy_groups
+    plotter.plotFluxes(geometry, solver, energy_groups=egs) #egs->energy_groups
+
+def computePinPowerError(solver, pin_directory, assembly):
+
+    #finds pin powers from simulation
+    process.computeFSRPinPowers(solver, use_hdf5=True)      
+    f = h5py.File('pin-powers/fission-rates.h5', 'r') 
+    calculatedPinPowers = f['universe0']['fission-rates'][...]
+    normalizedPinPowers = calculatedPinPowers/numpy.sum(calculatedPinPowers)
+    f.close()
+
+    #finds pin powers from casmo
+    f = h5py.File(pin_directory + assembly + '-results.hdf5')
+    actualPinPowers = f['Pin Powers'][...]
+    f.close()
+    normalized_actualPinPowers = actualPinPowers/numpy.sum(actualPinPowers)
+
+
+    #finds pinError
+    pinError = (normalizedPinPowers - normalized_actualPinPowers) / normalized_actualPinPowers
+    pinError = numpy.nan_to_num(pinError)
+    max_error = numpy.max(abs(pinError))
+    mean_error = numpy.mean(abs(pinError))
+    
+    return max_error, mean_error
+
+
+def computeKinfError(solver, pin_directory, assembly):
+
+    #finds kinf from simulation
+    calculated_kinf = solver.getKeff()
+
+    #finds kinf from casmo
+    f = h5py.File(pin_directory + assembly + '-results.hdf5')
+    actual_kinf = f.attrs['K-Infinity']
+    f.close()
+
+    kinf_error = (calculated_kinf - actual_kinf)/(actual_kinf)
+
+    return kinf_error
+
