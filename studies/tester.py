@@ -6,6 +6,7 @@ import openmoc.process as process
 import subprocess
 import h5py
 import numpy
+import matplotlib.pyplot as plt
 
 options = options.Options()
 
@@ -446,5 +447,11 @@ def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
         current_test.create_dataset('%s_kinf' % (study_name, key), data=kinf_errors[key])
     f.close()
 
-
-
+def plotter(variables, kinf):
+    kinf_values = kinf.values()
+    plt.plot(variables, kinf_values, 'ro')
+    plt.axis([0, 10, 0, 1])
+    plt.show()
+    fig = plt.figure()
+    filename = 'plot.png'
+    fig.savefig(filename)

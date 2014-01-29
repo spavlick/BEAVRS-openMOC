@@ -8,6 +8,7 @@ import copy
 from openmoc.options import Options
 import openmoc.plotter as plotter
 from tester import *
+import matplotlib
 
 options = Options()
 
@@ -50,6 +51,9 @@ for num_azim in num_azims:
     az_pinmax['num_azim = %d' % (num_azim)] = max_error
     az_pinmean['num_azim = %d' % (num_azim)] = mean_error
     az_kinf['num_azim = %d' % (num_azim)] = kinf_error
+
+#plotting
+plotter(num_azims, az_kinf)
     
 
 #reset
