@@ -38,6 +38,8 @@ for num_azim in num_azims:
 
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
+    max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
+    kinf_error = computeKinfError(solver, pin_directory, assembly)
 
 #reset
 num_azim = 32
@@ -50,6 +52,8 @@ for track_spacing in track_spacings:
     
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
+    max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
+    kinf_error = computeKinfError(solver, pin_directory, assembly)
 
 #reset
 track_spacing = 0.1
@@ -58,6 +62,7 @@ track_spacing = 0.1
 rings_list = [1,2,3,4]
 sectors_list = [4, 8, 12, 16]
 
+"""
 #simulation
 for rings in rings_list:
     for sectors in sectors_list:
@@ -66,4 +71,5 @@ for rings in rings_list:
         geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
         track_generator = createTrackGen(num_azim, geometry, track_spacing)
         createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
+"""
 
