@@ -11,7 +11,7 @@ from tester import *
 options = Options()
 
 #sets the number of energy groups
-numgroups = str(raw_input('How many energy groups? '))
+numgroups = 2
 
 #sets geometry variable to the file name used
 assembly = 'pwru240w12'
