@@ -13,7 +13,7 @@ import matplotlib
 options = Options()
 
 #sets the number of energy groups
-numgroups = str(raw_input('How many energy groups?'))
+numgroups = 2
 
 #sets assembly variable to the file name used
 assembly = "pwru160c00"
@@ -33,7 +33,7 @@ pinCellArray, lattice = createLattice(geoDirectory, assembly)
 geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
 
 #num_azim test values
-num_azims = [4]#[i for i in range(4, 260, 4)]
+num_azims = [4,8,12,16,20]#[i for i in range(4, 260, 4)]
 
 
 #dictionaries that will contain pin errors and k-inf errors
@@ -60,7 +60,7 @@ plotter(num_azims, az_kinf)
 num_azim = 32
 
 #track_spacing test values
-track_spacings = [0.5,0.1] #[0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
+track_spacings = [0.5,0.25,0.1] #[0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
 
 #dictionaries that will contain pin errors and k-inf errors
 ts_pinmax = {}
@@ -89,13 +89,6 @@ sectors_list = [4,8]#[4, 8, 12, 16]
 fsr_pinmax = {}
 fsr_pinmean = {}
 fsr_kinf = {}
-
-print az_pinmax
-print az_pinmean
-print az_kinf
-print ts_pinmax
-print ts_pinmean
-print ts_kinf
 
 storeError(assembly, 'az', az_pinmax, az_pinmean, az_kinf)
 storeError(assembly, 'ts', ts_pinmax, ts_pinmean, ts_kinf)
