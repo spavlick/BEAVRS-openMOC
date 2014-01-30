@@ -33,6 +33,8 @@ geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCe
 #num_azim test values
 num_azims = [i for i in range(4, 260, 4)]
 
+az_kinf = []
+
 #simulation
 for num_azim in num_azims:
 
@@ -40,12 +42,17 @@ for num_azim in num_azims:
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
+    az_kinf.append(kinf_error)
+
+plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles")
 
 #reset
 num_azim = 32
 
 #track_spacing test values
 track_spacings = [0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
+
+ts_kinf = []
 
 #simulation
 for track_spacing in track_spacings:
@@ -54,6 +61,9 @@ for track_spacing in track_spacings:
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
+    ts_kinf.append(kinf_error)
+
+plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing")
 
 #reset
 track_spacing = 0.1
