@@ -53,7 +53,7 @@ for num_azim in num_azims:
     az_kinf.append(kinf_error)
 
 #plotting
-plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles")
+plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles", "pwru160c00-angles.png")
     
 
 #reset
@@ -78,7 +78,7 @@ for track_spacing in track_spacings:
     ts_pinmean['track_spacing = %f' % (track_spacing)] = mean_error
     ts_kinf.append(kinf_error)
 
-plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing")
+plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing", "pwru160c00-tracks.png")
 
 #reset
 track_spacing = 0.1

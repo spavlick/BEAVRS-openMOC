@@ -44,7 +44,7 @@ for num_azim in num_azims:
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     az_kinf.append(kinf_error)
 
-plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles")
+plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles", "pwru240w12-angles.png")
 
 #reset
 num_azim = 32
@@ -63,7 +63,7 @@ for track_spacing in track_spacings:
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     ts_kinf.append(kinf_error)
 
-plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing")
+plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing", "pwru240w12-tracks.png")
 
 #reset
 track_spacing = 0.1
