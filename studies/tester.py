@@ -377,7 +377,7 @@ def createTrackGen(num_azim, geometry, track_spacing):
     track_generator.generateTracks()
     return track_generator
 
-def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note, data=False):   
+def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = "", data=False):   
 
     solver = ThreadPrivateSolver(geometry, track_generator)
     solver.setNumThreads(num_threads)
