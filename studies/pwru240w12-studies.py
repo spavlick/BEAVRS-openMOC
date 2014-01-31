@@ -18,6 +18,7 @@ assembly = 'pwru240w12'
 
 directory = "../materials/%s-group/" % (numgroups)
 geoDirectory = "../geo-data/%s-group/" % (numgroups)
+pin_directory = 'casmo-reference/%s-group/' % (numgroups)
 
 rings = 3
 sectors = 8
