@@ -446,12 +446,17 @@ def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
         current_test.require_dataset('%s_kinf_%s' % (study_name, key), (), '=f8', exact=False, data=kinf_errors[key])
     f.close()
 
-def plotter(variables, kinf, title, x, filename):
+def plotter(X, Y, title, x_name, y_name, y_scale, filename, num_datasets, legend = []):
     fig = plt.figure()
-    plt.plot(variables, kinf, 'm-')
-    plt.axis([0, max(variables), 0, max(kinf)])
+    colors = ['b', 'g', 'r', 'k', 'm']
+    for i in range(num_datasets):
+        plt.plot(X[i], Y[i], colors[i] + 'o-', ms = 10, lw = 2)
+    plt.axis([0, 130, 0, y_scale])
     plt.title(title)
-    plt.xlabel(x)
-    plt.ylabel("K-effective")
+    plt.xlabel(x_name)
+    plt.ylabel(y_name)
+    plt.grid()
+    if num_datasets > 1:
+        plt.legend(legend)
     plt.show()
     fig.savefig(filename)
