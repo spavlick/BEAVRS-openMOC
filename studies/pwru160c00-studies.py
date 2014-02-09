@@ -1,12 +1,11 @@
 from openmoc import * 
 import openmoc.log as log
-import openmoc.plotter as plotter
+import openmoc.plotter as plot
 import openmoc.materialize as materialize
 import numpy
 import h5py
 import copy
 from openmoc.options import Options
-import openmoc.plotter as plotter
 from tester import *
 import matplotlib
 
@@ -32,6 +31,8 @@ cells = createCells(rings, sectors, dummy_id, circles, planes)
 pinCellArray, lattice = createLattice(geoDirectory, assembly)
 geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
 
+plot.plotFlatSourceRegions(geometry, gridsize = 250)
+plot.plotFluxes(geometry, solver, energy_groups=[2], gridsize=250)
 #num_azim test values
 num_azims = [i for i in range(4, 128, 4)]
 
@@ -45,16 +46,12 @@ az_kinf = {}
 for num_azim in num_azims:
 
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note, data = True)
+    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     az_pinmax['num_azim = %d' % (num_azim)] = max_error
     az_pinmean['num_azim = %d' % (num_azim)] = mean_error
     az_kinf['num_azim = %d' % (num_azim)] = kinf_error
-
-#plotting
-#plotter(num_azims, az_kinf, "Effect of Angle Variation on K-effective", "Azimuthal angles", "pwru160c00-angles.png")
-    
 
 #reset
 num_azim = 32
@@ -71,14 +68,12 @@ ts_kinf = {}
 for track_spacing in track_spacings:
     
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note, data = True)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     ts_pinmax['track_spacing = %f' % (track_spacing)] = max_error
     ts_pinmean['track_spacing = %f' % (track_spacing)] = mean_error
     ts_kinf['track_spacing = %f' % (track_spacing)] = kinf_error
-
-#plotter(track_spacings, ts_kinf, "Effect of Track Spacing Variation on K-effective", "Track spacing", "pwru160c00-tracks.png")
 
 #reset
 track_spacing = 0.1

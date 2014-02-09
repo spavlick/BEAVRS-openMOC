@@ -413,10 +413,22 @@ def computePinPowerError(solver, pin_directory, assembly):
 
 
     #finds pinError
-    pinError = (normalizedPinPowers - normalized_actualPinPowers) / normalized_actualPinPowers
-    pinError = numpy.nan_to_num(pinError)
+    pinError = numpy.zeros(normalized_actualPinPowers.shape)
+    for i in range(len(normalized_actualPinPowers.shape[0])):
+        for j in range(len(normalized_actualPinPowers.shape[1])):
+            if normalized_actualPinPowers[i][j] != 0:
+                pinError[i][j] = (normalizedPinPowers[i][j] - normalized_actualPinPowers[i][j]) / normalized_actualPinPowers[i][j]
+            elif normalized_actualPinPowers[i][j] == 0:
+                pinError[i][j] = 0
     max_error = numpy.max(abs(pinError))
-    mean_error = numpy.mean(abs(pinError))
+    pinError_sum = 0
+    numErrors = 0
+    for i in range(len(pinError.shape[0])):
+        for j in range(len(pinError.shape[1])):
+            pinError_sum += pinError[i][j]
+            if pinError[i][j] != 0:
+                numErrors += 1
+    mean_error = pinError_sum / numErrors
     
     return max_error, mean_error
 
@@ -446,12 +458,15 @@ def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
         current_test.require_dataset('%s_kinf_%s' % (study_name, key), (), '=f8', exact=False, data=kinf_errors[key])
     f.close()
 
-def plotter(X, Y, title, x_name, y_name, y_scale, filename, num_datasets, legend = []):
+def plotter(X, Y, title, x_name, y_name, x_scale, y_scale, filename, num_datasets, legend = []):
     fig = plt.figure()
     colors = ['b', 'g', 'r', 'k', 'm']
     for i in range(num_datasets):
         plt.plot(X[i], Y[i], colors[i] + 'o-', ms = 10, lw = 2)
-    plt.axis([0, 130, 0, y_scale])
+    if x_name == 'Track Spacing':
+        plt.axis([x_scale, 0, 0, y_scale])
+    else:
+        plt.axis([0, x_scale, 0, y_scale])
     plt.title(title)
     plt.xlabel(x_name)
     plt.ylabel(y_name)
