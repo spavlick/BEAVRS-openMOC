@@ -31,7 +31,7 @@ plotter([angles], [az_kinf_errors], "Azimuthal Angle Convergence Study (" + asse
 "Azimuthal Angles", "Error in K-effective [pcm]", max(angles), max(az_kinf_errors) + 10, assembly + "-kinf-angles.png", 1)
 
 plotter([angles, angles], [az_max_errors, az_mean_errors], "Relative Percent Pin Power Error (" + assembly + " assembly)", \
-"Azimuthal Angles", "Pin Power Errors", max(angles), max(az_max_errors) + .2, assembly + "-powers-angles.png", 2, ['Max', 'Min'])
+"Azimuthal Angles", "Pin Power Errors", max(angles), max(az_max_errors) + .2, assembly + "-powers-angles.png", 2, ['Max', 'Mean'])
 
 keys_ts = f['ts'].keys()
 
@@ -65,4 +65,4 @@ plotter([tracks], [ts_kinf_errors], "Track Spacing Convergence Study (" + assemb
 "Track Spacing", "Error in K-effective [pcm]", max(tracks), max(ts_kinf_errors) + 10, assembly + "-kinf-tracks.png", 1)
 
 plotter([tracks, tracks], [ts_max_errors, ts_mean_errors], "Relative Percent Pin Power Error (" + assembly + " assembly)", \
-"Track Spacing", "Pin Power Errors", max(tracks), max(ts_max_errors) + .2, assembly + "-powers-tracks.png", 2, ['Max', 'Min'])
+"Track Spacing", "Pin Power Errors", max(tracks), max(ts_max_errors) + .2, assembly + "-powers-tracks.png", 2, ['Max', 'Mean'])
