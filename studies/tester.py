@@ -414,8 +414,8 @@ def computePinPowerError(solver, pin_directory, assembly):
 
     #finds pinError
     pinError = numpy.zeros(normalized_actualPinPowers.shape)
-    for i in range(len(normalized_actualPinPowers.shape[0])):
-        for j in range(len(normalized_actualPinPowers.shape[1])):
+    for i in range(normalized_actualPinPowers.shape[0]):
+        for j in range(normalized_actualPinPowers.shape[1]):
             if normalized_actualPinPowers[i][j] != 0:
                 pinError[i][j] = (normalizedPinPowers[i][j] - normalized_actualPinPowers[i][j]) / normalized_actualPinPowers[i][j]
             elif normalized_actualPinPowers[i][j] == 0:
@@ -423,8 +423,8 @@ def computePinPowerError(solver, pin_directory, assembly):
     max_error = numpy.max(abs(pinError))
     pinError_sum = 0
     numErrors = 0
-    for i in range(len(pinError.shape[0])):
-        for j in range(len(pinError.shape[1])):
+    for i in range(pinError.shape[0]):
+        for j in range(pinError.shape[1]):
             pinError_sum += pinError[i][j]
             if pinError[i][j] != 0:
                 numErrors += 1
