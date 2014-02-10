@@ -27,10 +27,14 @@ for key in keys_az:
         num_azim = int(key.strip("az_mean_num_azim = "))
         az_mean_errors[num_azim / 4 - 1] = f['az'][key][...] * 10**2
 
-plotter([angles], [az_kinf_errors], "Azimuthal Angle Convergence Study (" + assembly + " assembly)", \
+if assembly == 'pwru160c00':
+    bp = 'Without Burnable Poison'
+elif assembly == 'pwru240c00':
+    bp = 'With Burnable Poison'
+plotter([angles], [az_kinf_errors], "Azimuthal Angle Convergence Study " + bp, \
 "Azimuthal Angles", "Error in K-effective [pcm]", max(angles), max(az_kinf_errors) + 10, assembly + "-kinf-angles.png", 1)
 
-plotter([angles, angles], [az_max_errors, az_mean_errors], "Relative Percent Pin Power Error (" + assembly + " assembly)", \
+plotter([angles, angles], [az_max_errors, az_mean_errors], "Relative Percent Pin Power Error " + bp, \
 "Azimuthal Angles", "Pin Power Errors", max(angles), max(az_max_errors) + .2, assembly + "-powers-angles.png", 2, ['Max', 'Mean'])
 
 keys_ts = f['ts'].keys()
@@ -61,8 +65,8 @@ for key in keys_ts:
         ts_mean_errors[counter] = f['ts'][key][...] * 10**2
         counter += 1
 
-plotter([tracks], [ts_kinf_errors], "Track Spacing Convergence Study (" + assembly + " assembly)", \
+plotter([tracks], [ts_kinf_errors], "Track Spacing Convergence Study " + bp, \
 "Track Spacing", "Error in K-effective [pcm]", max(tracks), max(ts_kinf_errors) + 10, assembly + "-kinf-tracks.png", 1)
 
-plotter([tracks, tracks], [ts_max_errors, ts_mean_errors], "Relative Percent Pin Power Error (" + assembly + " assembly)", \
+plotter([tracks, tracks], [ts_max_errors, ts_mean_errors], "Relative Percent Pin Power Error " + bp, \
 "Track Spacing", "Pin Power Errors", max(tracks), max(ts_max_errors) + .2, assembly + "-powers-tracks.png", 2, ['Max', 'Mean'])
