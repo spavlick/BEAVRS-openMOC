@@ -6,3 +6,5 @@
 */*.log
 *.data
 */*.data
+*.png
+*/*.png
