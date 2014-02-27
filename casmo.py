@@ -19,6 +19,7 @@ class Casmo(object):
     self._max_microregions = None
     self._kinf = None
     self._pin_powers = None
+    self._cell_type_array = None #this will be stored as an array of strings
 
   def parseNumRegions(self):
     '''Parses CASMO for total number of microregions in assembly.'''
@@ -264,4 +265,56 @@ class Casmo(object):
 
   def setPinPowers(self,pin_power_array): self._pin_powers = pin_power_array
   def getPinPowers(self): return self._pin_powers
-  def importPinPowers(self): self.setPinPowers(self.parsePinPowers)
+  def importPinPowers(self): self.setPinPowers(self.parsePinPowers())
+
+  def stringCellTypeArray(self):
+    dimension = self.parseDimensions()
+    full_dimension = self.fullDimensions()
+    cell_type_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
+    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+
+    '''parses cell types from CASMO output file'''
+    counter = 0
+    f = open(self._directory + self._filename, 'r')
+    for line in f:
+        if counter >=1 and line == '\n':
+            break
+        if 'Layout' in line:
+            counter += 1
+            continue
+        if counter >= 1:
+            cell_types = line.split()
+            for index, cell_type in enumerate(cell_types):
+                cell_type = cell_type.strip('*')
+                small_array[counter-1, index] = int(cell_type)
+            counter += 1
+    f.close()
+    
+    '''creates an array of all the cell types represented by whole numbers'''
+    cell_type_array[(dimension-1):,(dimension-1):] = small_array
+    cell_type_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
+    cell_type_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
+    cell_type_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+    
+    '''converts numerical array to strings'''
+    #id of 1 corresponds to fuel (string of fuel)
+    #id of 2 corresponds to guide tube (string of gt)
+    #id of 3 corresponds to burnable poison (string of bp)
+    string_cell_type_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
+    for i, row in enumerate(cell_type_array):
+      for j, cell in enumerate(row):
+        if cell_type_array[i,j] == 1:
+          string_cell_type_array[i,j] = 'fuel'
+        elif cell_type_array[i,j] == 2:
+          string_cell_type_array[i,j] = 'gt'
+        elif cell_type_array[i,j] == 3:
+          string_cell_type_array[i,j] = 'bp'
+
+    #center cell treated as a guide tube
+    string_cell_type_array[dimension-1,dimension-1] = 'gt'
+    
+    return string_cell_type_array
+
+  def getCellTypes(self): return self._cell_types
+  def setCellTypes(self,cell_type_array): self._cell_types = cell_type_array
+  def importCellTypes(self): self.setCellTypes(self.stringCellTypeArray())
