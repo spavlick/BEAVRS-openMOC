@@ -13,13 +13,13 @@ options = options.Options()
 
 def defineParameters():
 
-    num_threads = options.num_omp_threads
-    track_spacing = options.track_spacing
-    num_azim = options.num_azim
-    tolerance = options.tolerance
-    max_iters = options.max_iters
+    num_threads = options.getNumThreads()
+    track_spacing = options.getTrackSpacing()
+    num_azim = options.getNumAzimAngles()
+    tolerance = options.getTolerance()
+    max_iters = options.getMaxIterations()
 
-    log.setLogLevel('NORMAL')
+    log.set_log_level('NORMAL')
 
     return num_threads, track_spacing, num_azim, tolerance, max_iters
 
@@ -386,7 +386,7 @@ def createSolver(geometry, track_generator, num_threads, tolerance, max_iters, n
     solver.printTimerReport()
     
     if data == True:    
-        process.storeSimulationState(solver, use_hdf5 = True, note = note, pin_powers = True)
+        process.store_simulation_state(solver, use_hdf5 = True, note = note, pin_powers = True, fluxes = True)
 
     return solver
 
@@ -399,7 +399,7 @@ def plot_things(geometry, solver, egs, gs):
 def computePinPowerError(solver, pin_directory, assembly):
 
     #finds pin powers from simulation
-    process.computeFSRPinPowers(solver, use_hdf5=True)      
+    process.compute_pin_powers(solver, use_hdf5=True)      
     f = h5py.File('pin-powers/fission-rates.h5', 'r') 
     calculatedPinPowers = f['universe0']['fission-rates'][...]
     normalizedPinPowers = calculatedPinPowers/numpy.sum(calculatedPinPowers)

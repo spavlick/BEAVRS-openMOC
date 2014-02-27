@@ -17,6 +17,8 @@ class Casmo(object):
     self._chi = None
     self._min_microregions = None
     self._max_microregions = None
+    self._kinf = None
+    self._pin_powers = None
 
   def parseNumRegions(self):
     '''Parses CASMO for total number of microregions in assembly.'''
@@ -210,3 +212,56 @@ class Casmo(object):
   def setMaxMicroregions(self, max_array): self._max_microregions = max_array
   def importMaxMicroregions(self): self.setMaxMicroregions(self.parseMaxMicroRegions())
   def importMicroregions(self): self.importMinMicroregions(), self.setMaxMicroregions()
+
+  def parseKinf(self):
+    f = open(self._directory + self._filename, 'r')
+
+    '''parses k-infinity from CASMO output file'''
+    for line in f:
+        if "k-infinity" in line:
+            tokens = line.split()
+            kinf = float(tokens[2])
+            break
+    f.close()
+    return kinf
+
+  def getKinf(self): return self._kinf
+  def setKinf(self,kinf): self._kinf = kinf
+  def importKinf(self): self.setKinf(self.parseKinf())
+
+  def parsePinPowers(self):
+    f = open(self._directory + self._filename, 'r')
+
+    dimension = self.parseDimensions()
+    full_dimension = self.fullDimensions()
+    pin_power_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
+    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+
+    counter = 0
+    '''parses pin powers from the CASMO output file'''
+    for line in f:
+        if counter >= 1 and line == "\n":
+            break
+        if "Power Distribution" in line:
+            counter += 1
+            continue
+        if counter >= 1:
+            powers = line.split()
+            for index, power in enumerate(powers):
+                power = power.strip("*")
+                small_array[counter-1, index] = float(power)
+                small_array[index, counter-1] = float(power)
+            counter += 1
+    f.close()
+    
+    '''creates a 17x17 array and systematically fills with small_array'''
+    pin_power_array[(dimension-1):,(dimension-1):] = small_array
+    pin_power_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
+    pin_power_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
+    pin_power_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+
+    return pin_power_array
+
+  def setPinPowers(self,pin_power_array): self._pin_powers = pin_power_array
+  def getPinPowers(self): return self._pin_powers
+  def importPinPowers(self): self.setPinPowers(self.parsePinPowers)
