@@ -46,7 +46,7 @@ az_kinf = {}
 for num_azim in num_azims:
 
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note, data = True)
+    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     az_pinmax['num_azim = %d' % (num_azim)] = max_error

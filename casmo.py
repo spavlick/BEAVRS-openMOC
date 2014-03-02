@@ -37,7 +37,12 @@ class Casmo(object):
     f.close()
     return num_regions
 
-  def setNumRegions(self): self._num_regions = self.parseNumRegions()
+  def getNumRegions(self): return self._num_regions
+  def setNumRegions(self, num_regions): self._num_regions = num_regions
+
+  def importNumRegions(self):
+    self.setNumRegions(self.parseNumRegions())
+
 
   def parseXS(self, xs_name):
     '''Takes name of cross-section to be parsed, returns numpy array of
@@ -143,10 +148,11 @@ class Casmo(object):
   def parseMicroregions(self):
     '''Parses minimum microregions for each assembly component.'''
 
-    half_width = self.parsehalf_widths()
-    full_width = self.fullhalf_widths()
-    min_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
-    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
+    half_width = (self._width+1)/2
+    min_array = numpy.zeros((self._width,self._width), dtype=numpy.int32)
+    max_array = numpy.zeros((self._width,self._width), dtype=numpy.int32)
+    min_quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
+    max_quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     f = open(self._directory + self._filename, 'r')
     counter = 0
@@ -162,64 +168,40 @@ class Casmo(object):
           token = token.strip("*")
           token = token.strip("-")
           if index%2 ==0:
-            quadrant4[counter-1, index/2] = float(token)
-            quadrant4[index/2, counter-1] = float(token)
+            min_quadrant4[counter-1, index/2] = float(token)
+            min_quadrant4[index/2, counter-1] = float(token)
+          else:
+            max_quadrant4[counter-1, (index-1)/2] = float(token)
+            max_quadrant4[(index-1)/2, counter-1] = float(token)
         counter += 1
     f.close()
 
-    min_array[(half_width-1):,(half_width-1):] = quadrant4
-    min_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
-    min_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
-    min_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
+    min_array[(half_width-1):,(half_width-1):] = min_quadrant4
+    min_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(min_quadrant4)
+    min_array[0:(half_width), (half_width-1):] = numpy.flipud(min_quadrant4)
+    min_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(min_quadrant4))
 
-    return min_array
+    max_array[(half_width-1):,(half_width-1):] = max_quadrant4
+    max_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(max_quadrant4)
+    max_array[0:(half_width), (half_width-1):] = numpy.flipud(max_quadrant4)
+    max_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(max_quadrant4))
 
-  def parseMaxMicroRegions(self):
-    '''Parses maximum microregions for each assembly component.'''
+    return min_array, max_array
 
-    half_width = self.parsehalf_widths()
-    full_width = self.fullhalf_widths()
-    max_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
-    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
-
-    f = open(self._directory + self._filename, 'r')
-    counter = 0
-    for line in f:
-      if counter >= 1 and "1_________" in line:
-        break
-      if "Micro-region" in line:
-        counter += 1
-        continue
-      if counter >= 1:
-        tokens = line.split()
-        for index, token in enumerate(tokens):
-          token = token.strip("*")
-          token = token.strip("-")
-          if index%2 !=0:
-            max_array[counter-1, (index-1)/2] = float(token)
-            max_array[(index-1)/2, counter-1] = float(token)
-        counter += 1
-    f.close()
-
-    max_array[(half_width-1):,(half_width-1):] = quadrant4
-    max_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
-    max_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
-    max_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
-
-    return max_array
 
   def getMinMicroregions(self): return self._min_microregions
   def setMinMicroregions(self, min_array): self._min_microregions = min_array
-  def importMinMicroregions(self): self.setMinMicroregions(self.parseMinMicroregions())
   def getMaxMicroregions(self): return self._max_microregions
   def setMaxMicroregions(self, max_array): self._max_microregions = max_array
-  def importMaxMicroregions(self): self.setMaxMicroregions(self.parseMaxMicroRegions())
-  def importMicroregions(self): self.importMinMicroregions(), self.setMaxMicroregions()
+  def importMicroregions(self):
+      self.setMinMicroregions(self.parseMicroregions()[0])
+      self.setMinMicroregions(self.parseMicroregions()[1])
 
   def parseKinf(self):
+    '''parses k-infinity from CASMO output file'''
+
     f = open(self._directory + self._filename, 'r')
 
-    '''parses k-infinity from CASMO output file'''
     for line in f:
         if "k-infinity" in line:
             tokens = line.split()
@@ -233,15 +215,15 @@ class Casmo(object):
   def importKinf(self): self.setKinf(self.parseKinf())
 
   def parsePinPowers(self):
+    '''parses pin powers from the CASMO output file'''
+
     f = open(self._directory + self._filename, 'r')
 
-    half_width = self.parsehalf_widths()
-    full_width = self.fullhalf_widths()
-    pin_power_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
+    half_width = (self._width+1)/2
+    pin_power_array = numpy.zeros((self._width,self._width), dtype=numpy.int32)
     quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     counter = 0
-    '''parses pin powers from the CASMO output file'''
     for line in f:
         if counter >= 1 and line == "\n":
             break
@@ -257,7 +239,6 @@ class Casmo(object):
             counter += 1
     f.close()
     
-    '''creates a 17x17 array and systematically fills with quadrant4'''
     pin_power_array[(half_width-1):,(half_width-1):] = quadrant4
     pin_power_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
     pin_power_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
@@ -323,12 +304,15 @@ class Casmo(object):
 
   def importCASMOData(self):
     self.importNumRegions()
-    xs_list = ['SIGA', 'SIGD', 'SIGT', 'SIGF', 'SIGNF', 'SIGS', 'CHI']
-    for xs_name in xs_list:
-      self.importXS(self, xs_name)
+    self.importAllXS()
     self.importWidth()
-    self.importMinMicroregions()
-    self.importMaxMicroregions()
+    self.importMicroregions()
     self.importKinf()
     self.importPinPowers()
     self.importCellTypes()
+
+'''
+ def exportHDF5(self, directory = '/casmo-data', filename = 'casmo-data.h5'):
+  f = h5py.File(directory + filename)
+'''
+
