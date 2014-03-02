@@ -15,6 +15,7 @@ class Casmo(object):
     self._signf = None
     self._sigs = None
     self._chi = None
+    self._width = None
     self._min_microregions = None
     self._max_microregions = None
     self._kinf = None
@@ -120,31 +121,32 @@ class Casmo(object):
     for xs_name in xs_list:
       self.importXS(self, xs_name)
 
-  def parseDimensions(self):
-    '''Parses dimensions of one fourth the full array from CASMO.'''
+  def parseWidth(self):
+    '''Parses half_widths of one fourth the full array from CASMO.'''
 
-    dimension = -1
+    half_width = -1
     f = open(self._directory + self._filename, "r")
     for line in f:
       if "Layout" in line:
-        dimension += 1
+        half_width += 1
         continue
-      if dimension>=0 and line == '\n':
+      if half_width>=0 and line == '\n':
         break
-      if dimension>=0:
-        dimension += 1
+      if half_width>=0:
+        half_width += 1
     f.close()
-    return dimension
+    return half_width*2-1
 
-  def fullDimensions(self): return (self.parseDimensions()*2-1)
+  def setWidth(self,width): self._width = width
+  def importWidth(self): self.setWidth(self.parseWidth())
 
-  def parseMinMicroregions(self):
+  def parseMicroregions(self):
     '''Parses minimum microregions for each assembly component.'''
 
-    dimension = self.parseDimensions()
-    full_dimension = self.fullDimensions()
-    min_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
-    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+    half_width = self.parsehalf_widths()
+    full_width = self.fullhalf_widths()
+    min_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
+    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     f = open(self._directory + self._filename, 'r')
     counter = 0
@@ -160,25 +162,25 @@ class Casmo(object):
           token = token.strip("*")
           token = token.strip("-")
           if index%2 ==0:
-            small_array[counter-1, index/2] = float(token)
-            small_array[index/2, counter-1] = float(token)
+            quadrant4[counter-1, index/2] = float(token)
+            quadrant4[index/2, counter-1] = float(token)
         counter += 1
     f.close()
 
-    min_array[(dimension-1):,(dimension-1):] = small_array
-    min_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
-    min_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
-    min_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+    min_array[(half_width-1):,(half_width-1):] = quadrant4
+    min_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
+    min_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
+    min_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
 
     return min_array
 
   def parseMaxMicroRegions(self):
     '''Parses maximum microregions for each assembly component.'''
 
-    dimension = self.parseDimensions()
-    full_dimension = self.fullDimensions()
-    max_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
-    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+    half_width = self.parsehalf_widths()
+    full_width = self.fullhalf_widths()
+    max_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
+    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     f = open(self._directory + self._filename, 'r')
     counter = 0
@@ -199,10 +201,10 @@ class Casmo(object):
         counter += 1
     f.close()
 
-    max_array[(dimension-1):,(dimension-1):] = small_array
-    max_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
-    max_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
-    max_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+    max_array[(half_width-1):,(half_width-1):] = quadrant4
+    max_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
+    max_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
+    max_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
 
     return max_array
 
@@ -233,10 +235,10 @@ class Casmo(object):
   def parsePinPowers(self):
     f = open(self._directory + self._filename, 'r')
 
-    dimension = self.parseDimensions()
-    full_dimension = self.fullDimensions()
-    pin_power_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
-    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+    half_width = self.parsehalf_widths()
+    full_width = self.fullhalf_widths()
+    pin_power_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
+    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     counter = 0
     '''parses pin powers from the CASMO output file'''
@@ -250,16 +252,16 @@ class Casmo(object):
             powers = line.split()
             for index, power in enumerate(powers):
                 power = power.strip("*")
-                small_array[counter-1, index] = float(power)
-                small_array[index, counter-1] = float(power)
+                quadrant4[counter-1, index] = float(power)
+                quadrant4[index, counter-1] = float(power)
             counter += 1
     f.close()
     
-    '''creates a 17x17 array and systematically fills with small_array'''
-    pin_power_array[(dimension-1):,(dimension-1):] = small_array
-    pin_power_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
-    pin_power_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
-    pin_power_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+    '''creates a 17x17 array and systematically fills with quadrant4'''
+    pin_power_array[(half_width-1):,(half_width-1):] = quadrant4
+    pin_power_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
+    pin_power_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
+    pin_power_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
 
     return pin_power_array
 
@@ -268,10 +270,10 @@ class Casmo(object):
   def importPinPowers(self): self.setPinPowers(self.parsePinPowers())
 
   def stringCellTypeArray(self):
-    dimension = self.parseDimensions()
-    full_dimension = self.fullDimensions()
-    cell_type_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
-    small_array = numpy.zeros((dimension,dimension), dtype=numpy.int32)
+    half_width = self.parsehalf_widths()
+    full_width = self.fullhalf_widths()
+    cell_type_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
+    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
 
     '''parses cell types from CASMO output file'''
     counter = 0
@@ -286,21 +288,21 @@ class Casmo(object):
             cell_types = line.split()
             for index, cell_type in enumerate(cell_types):
                 cell_type = cell_type.strip('*')
-                small_array[counter-1, index] = int(cell_type)
+                quadrant4[counter-1, index] = int(cell_type)
             counter += 1
     f.close()
     
     '''creates an array of all the cell types represented by whole numbers'''
-    cell_type_array[(dimension-1):,(dimension-1):] = small_array
-    cell_type_array[(dimension-1):, 0:(dimension)] = numpy.fliplr(small_array)
-    cell_type_array[0:(dimension), (dimension-1):] = numpy.flipud(small_array)
-    cell_type_array[0:(dimension), 0:(dimension)] = numpy.flipud(numpy.fliplr(small_array))
+    cell_type_array[(half_width-1):,(half_width-1):] = quadrant4
+    cell_type_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
+    cell_type_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
+    cell_type_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
     
     '''converts numerical array to strings'''
     #id of 1 corresponds to fuel (string of fuel)
     #id of 2 corresponds to guide tube (string of gt)
     #id of 3 corresponds to burnable poison (string of bp)
-    string_cell_type_array = numpy.zeros((full_dimension,full_dimension), dtype=numpy.int32)
+    string_cell_type_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
     for i, row in enumerate(cell_type_array):
       for j, cell in enumerate(row):
         if cell_type_array[i,j] == 1:
@@ -311,10 +313,22 @@ class Casmo(object):
           string_cell_type_array[i,j] = 'bp'
 
     #center cell treated as a guide tube
-    string_cell_type_array[dimension-1,dimension-1] = 'gt'
+    string_cell_type_array[half_width-1,half_width-1] = 'gt'
     
     return string_cell_type_array
 
   def getCellTypes(self): return self._cell_types
   def setCellTypes(self,cell_type_array): self._cell_types = cell_type_array
   def importCellTypes(self): self.setCellTypes(self.stringCellTypeArray())
+
+  def importCASMOData(self):
+    self.importNumRegions()
+    xs_list = ['SIGA', 'SIGD', 'SIGT', 'SIGF', 'SIGNF', 'SIGS', 'CHI']
+    for xs_name in xs_list:
+      self.importXS(self, xs_name)
+    self.importWidth()
+    self.importMinMicroregions()
+    self.importMaxMicroregions()
+    self.importKinf()
+    self.importPinPowers()
+    self.importCellTypes()
