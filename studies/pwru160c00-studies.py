@@ -49,7 +49,7 @@ az_kinf = {}
 for num_azim in num_azims:
 
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
+    solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     #az_pinmax['num_azim = %d' % (num_azim)] = max_error
@@ -76,7 +76,7 @@ current_test = f.require_group('ts')
 for track_spacing in track_spacings:
     
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note, data = True)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
     #ts_pinmax['track_spacing = %f' % (track_spacing)] = max_error
