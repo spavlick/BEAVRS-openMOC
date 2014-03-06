@@ -3,11 +3,11 @@ import h5py
 import os
 
 class Casmo(object):
-  def __init__(self, filename, directory):
-    self._filename = filename
-    self._directory = directory
+  def __init__(self):
+    self._filename = None
+    self._directory = None
     self._energy_groups = None
-    self._num_regions = None
+    self._num_micro_regions = None
     self._siga = None
     self._sigd = None
     self._sigt = None
@@ -46,13 +46,13 @@ class Casmo(object):
         continue
       if counter == 1:
         tokens = line.split()
-        num_regions = int(tokens[1])
+        num_micro_regions = int(tokens[1])
         break
     f.close()
-    return num_regions
+    return num_micro_regions
 
-  def getNumRegions(self): return self._num_regions
-  def setNumRegions(self, num_regions): self._num_regions = num_regions
+  def getNumRegions(self): return self._num_micro_regions
+  def setNumRegions(self, num_micro_regions): self._num_micro_regions = num_micro_regions
 
   def importNumRegions(self):
     self.setNumRegions(self.parseNumRegions())
@@ -65,7 +65,7 @@ class Casmo(object):
     # Specify in documentation that xs should be ALLCAPSONEWORD
 
     if xs_name != 'SIGS':
-      xs_array = numpy.zeros(self._num_regions, self._energy_groups)
+      xs_array = numpy.zeros(self._num_micro_regions, self._energy_groups)
       f = open(self._directory + self._filename, 'r')
       counter = 0
       for line in f:
@@ -73,13 +73,13 @@ class Casmo(object):
           tokens = line.split()
           xs_array[counter, :] = [float(xs) for xs in tokens[2:2+self._energy_groups]]
           counter += 1
-        if counter == self._num_regions:
+        if counter == self._num_micro_regions:
           break
       f.close()
       return xs_array
 
     if xs_name == 'SIGS':
-      xs_array = numpy.zeros(self._num_regions, self._energy_groups, self._energy_groups)
+      xs_array = numpy.zeros(self._num_micro_regions, self._energy_groups, self._energy_groups)
       f = open(self._directory + self._filename, "r")
       cur_region = 0
       cur_group = 0
@@ -91,7 +91,7 @@ class Casmo(object):
         if cur_group == self._energy_groups:
           cur_region += 1
           cur_group = 0
-        if cur_region == self._num_regions:
+        if cur_region == self._num_micro_regions:
           break
 
     f.close()
@@ -316,7 +316,9 @@ class Casmo(object):
   def setCellTypes(self,cell_type_array): self._cell_types = cell_type_array
   def importCellTypes(self): self.setCellTypes(self.stringCellTypeArray())
 
-  def importCASMOData(self):
+  def importFromCASMO(self, filename, directory):
+    self._filename = filename
+    self._directory = directory
     self.importEnergyGroups()
     self.importNumRegions()
     self.importAllXS()
@@ -326,7 +328,7 @@ class Casmo(object):
     self.importPinPowers()
     self.importCellTypes()
 
-  def exportHDF5(self, directory = '/casmo-data', filename = 'casmo-data.h5'):
+  def export(self, directory = '/casmo-data', filename = 'casmo-data.h5'):
     f = h5py.File(directory + filename)
     f.attrs['Energy Groups'] = self._energy_groups
     f.attrs['K-Infinity'] = self._kinf
@@ -354,17 +356,34 @@ class Casmo(object):
     max_microregions.create_dataset('Max Microregions', data=self._max_microregions)
     f.close()
 
-  #def readHDF5(self, directory = '/casmo-data', filename = 'casmo-data.h5'):
-    #f = h5py.File(directory+'/'+filename, 'r')
-    #self._energy_groups = 
+  def importFromHDF5(self, directory = '/casmo-data', filename = 'casmo-data.h5'):
+    f = h5py.File(directory+'/'+filename, 'r')
+    self._directory = directory    
+    self._filename = filename
+    self._energy_groups = f['Energy Groups']
+    self._kinf = f['K-Infinity']
+    self._sigt = f['Total XS'][...]
+    self._siga = f['Absorption XS'][...]
+    self._sigf = f['Fission XS'][...]
+    self._signf = f['Nu Fission XS'][...]
+    self._sigs = f['Scattering XS'][...]
+    self._sigd = f['Dif Coefficient'][...]
+    self._chi = f['Chi'][...]
+    self._pin_powers = f['Pin Powers'][...]
+    self._cell_type_array = f['Cell Types'][...]
+    self._min_microregions = f['Min Microregions'][...]
+    self._max_microregions = f['Max Microregions'][...]
+    self._width = self._max_microregions.shape[0]
+    self._num_micro_regions = self._sigt.shape[0]
+    f.close()
     
 
   def xsToHDF5(self, directory = '/casmo-data', assembly):
-    f = h5py.File(directory + assembly + '-materials.hdf5')
+    f = h5py.File(directory + '/' + assembly + '-materials.hdf5')
 
     f.attrs['Energy Groups'] = self._energy_groups
 
-    for region in range(self._num_regions):
+    for region in range(self._num_micro_regions):
       material = f.create_group('microregion-' + str((region + 1)))
       material.create_dataset('Total XS', data=self._sigt[region, :])
       material.create_dataset('Absorption XS', data=self._siga[region, :])
