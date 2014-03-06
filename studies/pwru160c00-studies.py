@@ -31,11 +31,14 @@ cells = createCells(rings, sectors, dummy_id, circles, planes)
 pinCellArray, lattice = createLattice(geoDirectory, assembly)
 geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
 
-plot.plotFlatSourceRegions(geometry, gridsize = 250)
-plot.plotFluxes(geometry, solver, energy_groups=[2], gridsize=250)
+#plot.plot_flat_source_regions(geometry, gridsize = 250)
+#plot.plot_fluxes(geometry, solver, energy_groups=[2], gridsize=250)
 #num_azim test values
 num_azims = [i for i in range(4, 128, 4)]
 
+f = h5py.File('results/' + assembly + '-errors.h5')
+f.attrs['Energy Groups'] = 2
+current_test = f.require_group('az')
 
 #dictionaries that will contain pin errors and k-inf errors
 az_pinmax = {}
@@ -49,9 +52,12 @@ for num_azim in num_azims:
     solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
-    az_pinmax['num_azim = %d' % (num_azim)] = max_error
-    az_pinmean['num_azim = %d' % (num_azim)] = mean_error
-    az_kinf['num_azim = %d' % (num_azim)] = kinf_error
+    #az_pinmax['num_azim = %d' % (num_azim)] = max_error
+    #az_pinmean['num_azim = %d' % (num_azim)] = mean_error
+    #az_kinf['num_azim = %d' % (num_azim)] = kinf_error
+    current_test.require_dataset('az_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=max_error)
+    current_test.require_dataset('az_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=mean_error)
+    current_test.require_dataset('az_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=kinf_error)
 
 #reset
 num_azim = 32
@@ -64,6 +70,8 @@ ts_pinmax = {}
 ts_pinmean = {}
 ts_kinf = {}
 
+current_test = f.require_group('ts')
+
 #simulation
 for track_spacing in track_spacings:
     
@@ -71,9 +79,12 @@ for track_spacing in track_spacings:
     createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = note, data = True)
     max_error, mean_error = computePinPowerError(solver, pin_directory, assembly)
     kinf_error = computeKinfError(solver, pin_directory, assembly)
-    ts_pinmax['track_spacing = %f' % (track_spacing)] = max_error
-    ts_pinmean['track_spacing = %f' % (track_spacing)] = mean_error
-    ts_kinf['track_spacing = %f' % (track_spacing)] = kinf_error
+    #ts_pinmax['track_spacing = %f' % (track_spacing)] = max_error
+    #ts_pinmean['track_spacing = %f' % (track_spacing)] = mean_error
+    #ts_kinf['track_spacing = %f' % (track_spacing)] = kinf_error
+    current_test.require_dataset('ts_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=max_error)
+    current_test.require_dataset('ts_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=mean_error)
+    current_test.require_dataset('ts_max_num_azim=%d' % (num_azim), (), '=f8', exact=False, data=kinf_error)
 
 #reset
 track_spacing = 0.1
@@ -87,8 +98,9 @@ fsr_pinmax = {}
 fsr_pinmean = {}
 fsr_kinf = {}
 
-storeError(assembly, 'az', az_pinmax, az_pinmean, az_kinf)
-storeError(assembly, 'ts', ts_pinmax, ts_pinmean, ts_kinf)
+f.close()
+#storeError(assembly, 'az', az_pinmax, az_pinmean, az_kinf)
+#storeError(assembly, 'ts', ts_pinmax, ts_pinmean, ts_kinf)
 
 '''
 #simulation
