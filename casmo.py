@@ -33,7 +33,7 @@ class Casmo(object):
     return energy_groups
   
   def getEnergyGroups(self): return self._energy_groups
-  def setEnergyGroups(self, num_groups): self._energy_groups = energy_groups
+  def setEnergyGroups(self, energy_groups): self._energy_groups = energy_groups
   def importEnergyGroups(self): self.setEnergyGroups(self.parseEnergyGroups())
 
   def parseNumRegions(self):
@@ -378,7 +378,7 @@ class Casmo(object):
     f.close()
     
 
-  def xsToHDF5(self, directory = '/casmo-data', assembly):
+  def xsToHDF5(self, assembly, directory = '/casmo-data'):
     f = h5py.File(directory + '/' + assembly + '-materials.hdf5')
 
     f.attrs['Energy Groups'] = self._energy_groups

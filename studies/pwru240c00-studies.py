@@ -51,14 +51,14 @@ track_spacings = [0.1]
 for track_spacing in track_spacings:
     
     track_generator = createTrackGen(num_azim, geometry, track_spacing)
-    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = False)
+    createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = True)
 
 #reset
 track_spacing = 0.1
 
 #rings and sectors test values
-rings_list = [1]
-sectors_list = [4]
+rings_list = [1,2]
+sectors_list = [4,8]
 
 #simulation
 for rings in rings_list:
@@ -67,5 +67,5 @@ for rings in rings_list:
         pinCellArray, lattice = createLattice(geoDirectory, assembly)
         geometry = createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice)
         track_generator = createTrackGen(num_azim, geometry, track_spacing)
-        createSolver(geometry, track_generator, num_threads, tolerance, max_iters, data = False)
+        createSolver(geometry, track_generator, num_threads, tolerance, max_iters, note = ('rings = %d, sectors = %d' % (rings, sectors)), data = True)
 

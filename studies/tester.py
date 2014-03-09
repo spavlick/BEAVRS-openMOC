@@ -430,7 +430,7 @@ def computePinPowerError(solver, pin_directory, assembly):
                 numErrors += 1
     mean_error = pinError_sum / numErrors
     
-    return max_error, mean_error
+    return max_error, mean_error, calculatedPinPowers
 
 
 def computeKinfError(solver, pin_directory, assembly):
