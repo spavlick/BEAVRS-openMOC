@@ -3,11 +3,10 @@ from openmoc import options
 import openmoc.plotter as plotter
 import openmoc.log as log
 import openmoc.process as process
-import subprocess
 import h5py
 import numpy
 import matplotlib.pyplot as plt
-
+from casmo import *
 options = options.Options()
 
 
@@ -23,12 +22,19 @@ def defineParameters():
 
     return num_threads, track_spacing, num_azim, tolerance, max_iters
 
+def importxsFromCasmo(assembly_name):
 
-def createMaterials(directory, assembly):
+    assembly = Casmo()
+    assembly.importFromCasmo('c4' + assembly_name + '.out', '../Cross-Section-Output/2-group/')
+    assembly.setXS('CHI', numpy.array([7.560E-01, 2.438E-01, 1.808E-04, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00]))
+    assembly.xsToHDF5(assembly_name)
+
+
+def createMaterials(directory, assembly_name):
 
     log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
-    materials = materialize.materialize(directory + assembly + '-materials.hdf5')
+    materials = materialize.materialize(directory + assembly_name + '-materials.hdf5')
     
     return materials
 
@@ -295,11 +301,11 @@ def createCells(rings, sectors, dummy_id, circles, planes, bp=False):
         return cells
 
 
-def createLattice(geoDirectory, assembly):
+def createLattice(geoDirectory, assembly_name):
     log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
     lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
 
-    f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+    f = h5py.File(geoDirectory + assembly_name + '-minmax.hdf5', "r")
     cellData = f['cell_types']
     pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
     burnablePoisons = False
@@ -326,7 +332,7 @@ def createLattice(geoDirectory, assembly):
 
     return pinCellArray, lattice
 
-def createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray, lattice):
+def createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice):
 
     log.py_printf('NORMAL', 'Creating geometry...')
     geometry = Geometry() 
@@ -336,7 +342,7 @@ def createGeometry(geoDirectory, assembly, dummy, materials, cells, pinCellArray
     for cell in cells: geometry.addCell(cell)
     
     #extracts microregion ranges
-    f = h5py.File(geoDirectory + assembly + '-minmax.hdf5', "r")
+    f = h5py.File(geoDirectory + assembly_name + '-minmax.hdf5', "r")
     min_values = f['minregions'][...]
     max_values = f['maxregions'][...]
     f.close()
@@ -396,7 +402,7 @@ def plot_things(geometry, solver, egs, gs):
     plotter.plotMaterials(geometry, gridsize = gs)
     plotter.plotFluxes(geometry, solver, energy_groups=egs) #egs->energy_groups
 
-def computePinPowerError(solver, pin_directory, assembly):
+def computePinPowerError(solver, pin_directory, assembly_name):
 
     #finds pin powers from simulation
     process.compute_pin_powers(solver, use_hdf5=True)      
@@ -406,7 +412,7 @@ def computePinPowerError(solver, pin_directory, assembly):
     f.close()
 
     #finds pin powers from casmo
-    f = h5py.File(pin_directory + assembly + '-results.hdf5')
+    f = h5py.File(pin_directory + assembly_name + '-results.hdf5')
     actualPinPowers = f['Pin Powers'][...]
     f.close()
     normalized_actualPinPowers = actualPinPowers/numpy.sum(actualPinPowers)
@@ -433,12 +439,12 @@ def computePinPowerError(solver, pin_directory, assembly):
     return max_error, mean_error, calculatedPinPowers
 
 
-def computeKinfError(solver, pin_directory, assembly):
+def computeKinfError(solver, pin_directory, assembly_name):
 
     #finds kinf from simulation
     calculated_kinf = solver.getKeff()
     #finds kinf from casmo
-    f = h5py.File(pin_directory + assembly + '-results.hdf5')
+    f = h5py.File(pin_directory + assembly_name + '-results.hdf5')
     actual_kinf = f.attrs['K-Infinity']
     f.close()
 
@@ -446,9 +452,9 @@ def computeKinfError(solver, pin_directory, assembly):
 
     return kinf_error
 
-def storeError(assembly, study_name, max_errors, mean_errors, kinf_errors):
+def storeError(assembly_name, study_name, max_errors, mean_errors, kinf_errors):
     
-    f = h5py.File('results/' + assembly + '-errors.h5')
+    f = h5py.File('results/' + assembly_name + '-errors.h5')
     f.attrs['Energy Groups'] = 2
     current_test = f.require_group(study_name)
     keys = max_errors.keys()
