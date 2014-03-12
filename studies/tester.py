@@ -3,6 +3,7 @@ from openmoc import options
 import openmoc.plotter as plotter
 import openmoc.log as log
 import openmoc.process as process
+import openmoc.materialize as materialize
 import h5py
 import numpy
 import matplotlib.pyplot as plt
@@ -27,7 +28,7 @@ def importxsFromCasmo(assembly_name):
     assembly = Casmo()
     assembly.importFromCasmo('c4' + assembly_name + '.out', '../Cross-Section-Output/2-group/')
     assembly.setXS('CHI', numpy.array([7.560E-01, 2.438E-01, 1.808E-04, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00]))
-    assembly.xsToHDF5(assembly_name)
+    assembly.xsToHDF5(assembly_name, directory = '/casmo-data/%d-group/' % (assembly.getEnergyGroups()))
 
 
 def createMaterials(directory, assembly_name):

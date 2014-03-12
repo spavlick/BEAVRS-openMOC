@@ -4,17 +4,28 @@ from casmo import *
 
 options = Options()
 
-#sets the number of energy groups
-numgroups = 2
 
 #parses Casmo data
 pwru160c00 = Casmo()
 pwru160c00.importFromCASMO('c4.pwru160c00.out', '../Cross-Section-Output/2-group/')
+f_temp = pwru160c00.getXS('SIGF')
+chi_temp = pwru160c00.getXS('CHI')
+fission_counter = 0
+for region in range(pwru160c00._num_micro_regions):
+    for group in range(pwru160c00._energy_groups):
+        fission_counter+=f_temp[region, group]
+    if abs(fission_counter) > 0:
+        chi_temp[region:] = numpy.array([1,0])
+    fission_counter = 0
+pwru160c00.setXS('CHI', chi_temp)
 pwru160c00.xsToHDF5('pwru160c00')
+
+#sets the number of energy groups
+numgroups = pwru160c00._energy_groups
 
 #sets assembly variable to the file name used
 assembly_name = "pwru160c00"
-directory = "casmo-data/materials/%s-group/" % (numgroups)
+directory = "casmo-data/"
 geoDirectory = "../geo-data/%s-group/" % (numgroups)
 pin_directory = 'casmo-reference/%s-group/' % (numgroups)
 
@@ -32,7 +43,11 @@ geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, 
 #plot.plot_flat_source_regions(geometry, gridsize = 250)
 #plot.plot_fluxes(geometry, solver, energy_groups=[2], gridsize=250)
 #num_azim test values
-num_azims = [i for i in range(4, 128, 4)]
+num_azims = [4]#[i for i in range(4, 128, 4)]
+
+os.system('rm ' + 'results/' + assembly_name + '-errors.h5')
+if not os.path.exists('results'):
+    os.makedirs('results')
 
 f = h5py.File('results/' + assembly_name + '-errors.h5')
 f.attrs['Energy Groups'] = 2
@@ -57,7 +72,7 @@ for num_azim in num_azims:
 num_azim = 32
 
 #track_spacing test values
-track_spacings = [0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
+track_spacings = [0.5]#[0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
 
 current_test = f.create_group('Track Spacing Tests')
 
