@@ -1,9 +1,11 @@
 import numpy
 import h5py
 import os
+import openmoc.log as log
 
 class Casmo(object):
   def __init__(self):
+    self._assembly_name = None
     self._filename = None
     self._directory = None
     self._energy_groups = None
@@ -20,7 +22,11 @@ class Casmo(object):
     self._max_microregions = None
     self._kinf = None
     self._pin_powers = None
+    self._cell_types = {}
     self._cell_type_array = None #this will be stored as an array of strings
+
+  def setAssemblyName(self, assembly_name): self._assembly_name = assembly_name
+  def getAssemblyname(self): return self._assembly_name
 
   def parseEnergyGroups(self):
     f = open(self._directory + self._filename,'r')
@@ -263,6 +269,10 @@ class Casmo(object):
   def getPinPowers(self): return self._pin_powers
   def importPinPowers(self): self.setPinPowers(self.parsePinPowers())
 
+  def setCellTypes(self, cell_types_id, name):
+    self._cell_types[cell_types_id] = name
+  def getCellTypes(self): return self._cell_types
+
   def stringCellTypeArray(self):
     half_width = (self._width+1)/2
     full_width = self._width
@@ -291,29 +301,52 @@ class Casmo(object):
     cell_type_array[(half_width-1):, 0:(half_width)] = numpy.fliplr(quadrant4)
     cell_type_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
     cell_type_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
-    
+
     '''converts numerical array to strings'''
     #id of 1 corresponds to fuel (string of fuel)
     #id of 2 corresponds to guide tube (string of gt)
     #id of 3 corresponds to burnable poison (string of bp)
     string_cell_type_array = numpy.zeros((full_width,full_width), dtype=numpy.str)
+
+
+    for i, row in enumerate(cell_type_array):
+      for j, cell in enumerate(row):
+        if cell_type_array[i,j] in self._cell_types.keys():
+          string_cell_type_array[i,j] = self._cell_types[cell_type_array[i,j]]
+        else:
+          log.py_printf('WARNING', 'Cell type id %d does not exist. Call setCellTypes to set cell name for id.', cell_type_array[i,j])
+
+    return string_cell_type_array
+
+    bp_counter = 0
+    for i, row in enumerate(cell_type_array):
+      for j, cell in enumerate(row):
+        if cell_type_array[i,j] == 3:
+          bp_counter += 1
+
     for i, row in enumerate(cell_type_array):
       for j, cell in enumerate(row):
         if cell_type_array[i,j] == 1:
           string_cell_type_array[i,j] = 'fuel'
         elif cell_type_array[i,j] == 2:
           string_cell_type_array[i,j] = 'gt'
-        elif cell_type_array[i,j] == 3:
+        elif cell_type_array[i,j] == 3 and bp_counter != 1:
           string_cell_type_array[i,j] = 'bp'
+        #this else statement changes the center instrument tube to a gt
+        #this is a temporary hack
+        elif cell_type_array[i,j] == 3 and bp_counter == 1:
+          string_cell_type_array[i,j] = 'gt'
+        elif cell_type_array[i,j] == 4:
+          string_cell_type_array[i,j] = 'gt'
 
     #center cell treated as a guide tube
     string_cell_type_array[half_width-1,half_width-1] = 'gt'
     
-    return string_cell_type_array
+    return string_cell_type_array, cell_type_array
 
-  def getCellTypes(self): return self._cell_types
-  def setCellTypes(self,cell_type_array): self._cell_types = cell_type_array
-  def importCellTypes(self): self.setCellTypes(self.stringCellTypeArray())
+  def getCellTypeArray(self): return self._cell_type_array
+  def setCellTypeArray(self,cell_type_array): self._cell_type_array = cell_type_array
+  def importCellTypeArray(self): self.setCellTypeArray(self.stringCellTypeArray())
 
   def importFromCASMO(self, filename, directory):
     self._filename = filename
@@ -325,7 +358,7 @@ class Casmo(object):
     self.importMicroregions()
     self.importKinf()
     self.importPinPowers()
-    self.importCellTypes()
+    self.importCellTypeArray()
 
   def export(self, directory = 'casmo-data/', filename = 'casmo-data.h5'):
     f = h5py.File(directory + filename)

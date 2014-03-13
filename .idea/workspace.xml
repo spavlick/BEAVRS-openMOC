@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9df5873-fee6-4773-a86d-3a8cda50eaf0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/studies/casmo-data/pwru160c00-materials.hdf5" afterPath="$PROJECT_DIR$/studies/casmo-data/pwru160c00-materials.hdf5" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/studies/casmo.py" afterPath="$PROJECT_DIR$/studies/casmo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/studies/pwru160c00-studies.py" afterPath="$PROJECT_DIR$/studies/pwru160c00-studies.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/studies/tester.py" afterPath="$PROJECT_DIR$/studies/tester.py" />
@@ -28,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tester.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="tester.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/studies/tester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="500" column="0" selection-start="18963" selection-end="18963" vertical-scroll-proportion="0.0" vertical-offset="8650" max-vertical-offset="9108">
+            <state line="381" column="0" selection-start="14280" selection-end="14280" vertical-scroll-proportion="0.47817838" vertical-offset="6606" max-vertical-offset="9036">
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -39,28 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="openmoc.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/openmoc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="391" column="0" selection-start="20084" selection-end="20084" vertical-scroll-proportion="0.0" vertical-offset="6894" max-vertical-offset="19188">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XS-Parser.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/XS-Parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="56" selection-start="4887" selection-end="4887" vertical-scroll-proportion="0.0" vertical-offset="1941" max-vertical-offset="2520">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="casmo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/studies/casmo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="381" column="13" selection-start="13534" selection-end="13604" vertical-scroll-proportion="0.0" vertical-offset="6837" max-vertical-offset="7308">
+            <state line="338" column="7" selection-start="11665" selection-end="11665" vertical-scroll-proportion="-5.142857" vertical-offset="5796" max-vertical-offset="7902">
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -68,19 +51,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="materialize.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/materialize.py">
+      <file leaf-file-name="pydevd.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2359" selection-end="2359" vertical-scroll-proportion="0.0" vertical-offset="1023" max-vertical-offset="3600">
+            <state line="1144" column="0" selection-start="47625" selection-end="47625" vertical-scroll-proportion="0.0" vertical-offset="19282" max-vertical-offset="26550">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pwru160c00-studies.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pwru160c00-studies.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/studies/pwru160c00-studies.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="24" selection-start="3547" selection-end="3547" vertical-scroll-proportion="0.34394905" vertical-offset="1530" max-vertical-offset="2070">
+            <state line="97" column="0" selection-start="3718" selection-end="3718" vertical-scroll-proportion="0.0" vertical-offset="1149" max-vertical-offset="1872">
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -107,9 +90,9 @@
         <option value="$PROJECT_DIR$/pwru160c00.py" />
         <option value="$PROJECT_DIR$/casmo.py" />
         <option value="$PROJECT_DIR$/Results-Parser.py" />
+        <option value="$PROJECT_DIR$/studies/pwru160c00-studies.py" />
         <option value="$PROJECT_DIR$/studies/tester.py" />
         <option value="$PROJECT_DIR$/studies/casmo.py" />
-        <option value="$PROJECT_DIR$/studies/pwru160c00-studies.py" />
       </list>
     </option>
   </component>
@@ -145,6 +128,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -207,7 +191,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,22 +479,22 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20318726" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20318726" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24945454" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10846561" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38379815" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33466136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33466136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -530,60 +513,80 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/pwru160c00.py</url>
           <line>18</line>
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/pwru160c00.py</url>
           <line>29</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/pwru160c00.py</url>
           <line>32</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/XS-Parser.py</url>
           <line>65</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/XS-Parser.py</url>
           <line>69</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/XS-Parser.py</url>
           <line>88</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/XS-Parser.py</url>
           <line>89</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/studies/pwru240c00-studies.py</url>
           <line>63</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/studies/casmo.py</url>
-          <line>95</line>
+          <line>101</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/studies/casmo.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="32" />
+          <line>313</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/studies/tester.py</url>
+          <line>327</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/studies/casmo.py</url>
+          <line>271</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/studies/tester.py</url>
+          <line>325</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/studies/pwru160c00-studies.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="33" />
+      <option name="time" value="39" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -782,11 +785,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710" />
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1144" column="0" selection-start="47625" selection-end="47625" vertical-scroll-proportion="0.33333334" vertical-offset="16043" max-vertical-offset="22125" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geo_parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="132" column="43" selection-start="4333" selection-end="4333" vertical-scroll-proportion="1.2681992" vertical-offset="1649" max-vertical-offset="2370" />
@@ -833,37 +831,27 @@
     </entry>
     <entry file="file:///usr/lib/python2.7/getopt.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="3422" selection-end="3422" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="3888">
-          <folding />
-        </state>
+        <state line="91" column="0" selection-start="3422" selection-end="3422" vertical-scroll-proportion="0.0" vertical-offset="1500" max-vertical-offset="3888" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="4878">
-          <folding />
-        </state>
+        <state line="52" column="0" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="4878" />
       </provider>
     </entry>
     <entry file="file:///usr/lib/python2.7/genericpath.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1980">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0" vertical-offset="177" max-vertical-offset="1980" />
       </provider>
     </entry>
     <entry file="file:///usr/lib/python2.7/os.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="0" selection-start="4254" selection-end="4254" vertical-scroll-proportion="0.0" vertical-offset="2670" max-vertical-offset="13428">
-          <folding />
-        </state>
+        <state line="156" column="0" selection-start="4254" selection-end="4254" vertical-scroll-proportion="0.0" vertical-offset="2670" max-vertical-offset="13428" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/studies/pwru160c00.pbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="504" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pwru160c00.py">
@@ -875,21 +863,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Results-Parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="35" selection-start="2336" selection-end="2336" vertical-scroll-proportion="0.0" vertical-offset="1383" max-vertical-offset="1854">
+        <state line="81" column="35" selection-start="2336" selection-end="2336" vertical-scroll-proportion="0.0" vertical-offset="1383" max-vertical-offset="1854" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/openmoc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="391" column="0" selection-start="20084" selection-end="20084" vertical-scroll-proportion="0.3057325" vertical-offset="6894" max-vertical-offset="19188">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/materialize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="2359" selection-end="2359" vertical-scroll-proportion="0.0" vertical-offset="1023" max-vertical-offset="3600">
+        <state line="66" column="0" selection-start="2359" selection-end="2359" vertical-scroll-proportion="0.3121019" vertical-offset="1023" max-vertical-offset="3600" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/XS-Parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="51" selection-start="4735" selection-end="4735" vertical-scroll-proportion="0.0" vertical-offset="2049" max-vertical-offset="2520">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1144" column="0" selection-start="47625" selection-end="47625" vertical-scroll-proportion="0.0" vertical-offset="19282" max-vertical-offset="26550">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/studies/pwru160c00-studies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="0" selection-start="3718" selection-end="3718" vertical-scroll-proportion="0.0" vertical-offset="1149" max-vertical-offset="1872">
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/studies/casmo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="381" column="13" selection-start="13534" selection-end="13604" vertical-scroll-proportion="0.0" vertical-offset="6837" max-vertical-offset="7308">
+        <state line="338" column="7" selection-start="11665" selection-end="11665" vertical-scroll-proportion="-5.142857" vertical-offset="5796" max-vertical-offset="7902">
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -898,32 +912,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/studies/tester.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="500" column="0" selection-start="18963" selection-end="18963" vertical-scroll-proportion="0.0" vertical-offset="8656" max-vertical-offset="9108">
+        <state line="381" column="0" selection-start="14280" selection-end="14280" vertical-scroll-proportion="0.47817838" vertical-offset="6606" max-vertical-offset="9036">
           <folding>
             <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/XS-Parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="56" selection-start="4887" selection-end="4887" vertical-scroll-proportion="0.0" vertical-offset="2013" max-vertical-offset="2520">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/openmoc/openmoc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="391" column="0" selection-start="20084" selection-end="20084" vertical-scroll-proportion="0.0" vertical-offset="6783" max-vertical-offset="19188">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/studies/pwru160c00-studies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="24" selection-start="3547" selection-end="3547" vertical-scroll-proportion="0.34394905" vertical-offset="1530" max-vertical-offset="2070">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

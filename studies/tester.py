@@ -26,9 +26,28 @@ def defineParameters():
 def importxsFromCasmo(assembly_name):
 
     assembly = Casmo()
-    assembly.importFromCasmo('c4' + assembly_name + '.out', '../Cross-Section-Output/2-group/')
-    assembly.setXS('CHI', numpy.array([7.560E-01, 2.438E-01, 1.808E-04, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00, 0.000E+00]))
-    assembly.xsToHDF5(assembly_name, directory = '/casmo-data/%d-group/' % (assembly.getEnergyGroups()))
+    assembly.setCellTypes(1, 'fuel')
+    assembly.setCellTypes(2, 'gt')
+    assembly.setCellTypes(3, 'gt')
+
+    assembly.importFromCASMO('c4.' + assembly_name + '.out', '../Cross-Section-Output/2-group/')
+    f_temp = assembly.getXS('SIGF')
+    chi_temp = assembly.getXS('CHI')
+    fission_counter = 0
+    for region in range(assembly._num_micro_regions):
+        for group in range(assembly._energy_groups):
+            fission_counter+=f_temp[region, group]
+        if abs(fission_counter) > 0:
+            if assembly._energy_groups == 2:
+                chi_temp[region:] = numpy.array([1,0])
+            if assembly._energy_groups == 8:
+                chi_temp[region:] = numpy.array([7.560E-01, 2.438E-01, 1.808E-04, 0.000E+00, 0.000E+00, 0.000E+00,
+0.000E+00, 0.000E+00])
+        fission_counter = 0
+    assembly.setXS('CHI', chi_temp)
+    assembly.xsToHDF5(assembly_name)
+
+    return assembly
 
 
 def createMaterials(directory, assembly_name):
@@ -302,36 +321,13 @@ def createCells(rings, sectors, dummy_id, circles, planes, bp=False):
         return cells
 
 
-def createLattice(geoDirectory, assembly_name):
+def createLattice(assembly):
     log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
     lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
 
-    f = h5py.File(geoDirectory + assembly_name + '-minmax.hdf5', "r")
-    cellData = f['cell_types']
-    pinCellArray = numpy.zeros(cellData.shape, dtype=numpy.int32)
-    burnablePoisons = False
+    string_cell_type_array = assembly.stringCellTypeArray()
 
-    #checks to see if there are burnable poisons in cellData
-    if 4 in cellData[:,:]:
-        burnablePoisons = True
-
-    #changes values in pinCellArray to be consistent in this code
-    for i, row in enumerate(cellData):
-        for j, col in enumerate(row):
-            if cellData[i,j] == 1:
-                pinCellArray[i,j] = 1
-            elif cellData[i,j] == 2:
-                pinCellArray[i,j] = 2
-            elif burnablePoisons == False and cellData[i,j] == 3:
-                pinCellArray[i,j] = 2
-            elif burnablePoisons == True and cellData[i,j] == 3:
-                pinCellArray[i,j] = 3
-            else:
-                pinCellArray[i,j] = 2
-
-    f.close()
-
-    return pinCellArray, lattice
+    return string_cell_type_array, lattice
 
 def createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice):
 

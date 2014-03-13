@@ -6,19 +6,8 @@ options = Options()
 
 
 #parses Casmo data
-pwru160c00 = Casmo()
-pwru160c00.importFromCASMO('c4.pwru160c00.out', '../Cross-Section-Output/2-group/')
-f_temp = pwru160c00.getXS('SIGF')
-chi_temp = pwru160c00.getXS('CHI')
-fission_counter = 0
-for region in range(pwru160c00._num_micro_regions):
-    for group in range(pwru160c00._energy_groups):
-        fission_counter+=f_temp[region, group]
-    if abs(fission_counter) > 0:
-        chi_temp[region:] = numpy.array([1,0])
-    fission_counter = 0
-pwru160c00.setXS('CHI', chi_temp)
-pwru160c00.xsToHDF5('pwru160c00')
+pwru160c00 = importxsFromCasmo('pwru160c00')
+pwru160c00.setAssemblyName('pwru160c00')
 
 #sets the number of energy groups
 numgroups = pwru160c00._energy_groups
@@ -37,7 +26,7 @@ num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters()
 materials = createMaterials(directory, assembly_name)
 dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
 cells = createCells(rings, sectors, dummy_id, circles, planes)
-pinCellArray, lattice = createLattice(geoDirectory, assembly_name)
+pinCellArray, lattice = createLattice(pwru160c00)
 geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice)
 
 #plot.plot_flat_source_regions(geometry, gridsize = 250)
