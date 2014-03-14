@@ -23,7 +23,8 @@ class Casmo(object):
     self._kinf = None
     self._pin_powers = None
     self._cell_types = {}
-    self._cell_type_array = None #this will be stored as an array of strings
+    self._cell_type_array = None 
+    self._string_cell_type_array = None #this will be stored as an array of strings
 
   def setAssemblyName(self, assembly_name): self._assembly_name = assembly_name
   def getAssemblyname(self): return self._assembly_name
@@ -273,7 +274,7 @@ class Casmo(object):
     self._cell_types[cell_types_id] = name
   def getCellTypes(self): return self._cell_types
 
-  def stringCellTypeArray(self):
+  def parseCellTypeArray(self):
     half_width = (self._width+1)/2
     full_width = self._width
     cell_type_array = numpy.zeros((full_width,full_width), dtype=numpy.int32)
@@ -302,51 +303,44 @@ class Casmo(object):
     cell_type_array[0:(half_width), (half_width-1):] = numpy.flipud(quadrant4)
     cell_type_array[0:(half_width), 0:(half_width)] = numpy.flipud(numpy.fliplr(quadrant4))
 
+    cell_type_array[half_width-1,half_width-1] = 2
+	
+    return cell_type_array
+
+  def setCellTypeArray(self, cell_type_array): self._cell_type_array = cell_type_array
+  def getCellTypeArray(self): return self._cell_type_array
+  def importCellTypeArray(self): self.setCellTypeArray(self.parseCellTypeArray())
+
+  def stringCellTypeArray(self):
+
     '''converts numerical array to strings'''
     #id of 1 corresponds to fuel (string of fuel)
     #id of 2 corresponds to guide tube (string of gt)
     #id of 3 corresponds to burnable poison (string of bp)
-    string_cell_type_array = numpy.zeros((full_width,full_width), dtype=numpy.str)
+    string_cell_type_array = numpy.zeros((self._width,self._width), dtype=numpy.str)
 
 
-    for i, row in enumerate(cell_type_array):
+    for i, row in enumerate(self._cell_type_array):
       for j, cell in enumerate(row):
-        if cell_type_array[i,j] in self._cell_types.keys():
-          string_cell_type_array[i,j] = self._cell_types[cell_type_array[i,j]]
+        if self._cell_type_array[i,j] in self._cell_types.keys():
+          string_cell_type_array[i,j] = self._cell_types[self._cell_type_array[i,j]]
         else:
           log.py_printf('WARNING', 'Cell type id %d does not exist. Call setCellTypes to set cell name for id.', cell_type_array[i,j])
 
     return string_cell_type_array
-
-    bp_counter = 0
-    for i, row in enumerate(cell_type_array):
-      for j, cell in enumerate(row):
-        if cell_type_array[i,j] == 3:
-          bp_counter += 1
-
+    '''
     for i, row in enumerate(cell_type_array):
       for j, cell in enumerate(row):
         if cell_type_array[i,j] == 1:
           string_cell_type_array[i,j] = 'fuel'
         elif cell_type_array[i,j] == 2:
           string_cell_type_array[i,j] = 'gt'
-        elif cell_type_array[i,j] == 3 and bp_counter != 1:
+        elif cell_type_array[i,j] == 3:
           string_cell_type_array[i,j] = 'bp'
-        #this else statement changes the center instrument tube to a gt
-        #this is a temporary hack
-        elif cell_type_array[i,j] == 3 and bp_counter == 1:
-          string_cell_type_array[i,j] = 'gt'
-        elif cell_type_array[i,j] == 4:
-          string_cell_type_array[i,j] = 'gt'
+    '''
 
-    #center cell treated as a guide tube
-    string_cell_type_array[half_width-1,half_width-1] = 'gt'
-    
-    return string_cell_type_array, cell_type_array
-
-  def getCellTypeArray(self): return self._cell_type_array
-  def setCellTypeArray(self,cell_type_array): self._cell_type_array = cell_type_array
-  def importCellTypeArray(self): self.setCellTypeArray(self.stringCellTypeArray())
+  def getStringCellTypeArray(self): return self._string_cell_type_array
+  def setStringCellTypeArray(self,string_cell_type_array): self._string_cell_type_array = string_cell_type_array
 
   def importFromCASMO(self, filename, directory):
     self._filename = filename

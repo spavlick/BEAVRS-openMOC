@@ -28,7 +28,6 @@ def importxsFromCasmo(assembly_name):
     assembly = Casmo()
     assembly.setCellTypes(1, 'fuel')
     assembly.setCellTypes(2, 'gt')
-    assembly.setCellTypes(3, 'gt')
 
     assembly.importFromCASMO('c4.' + assembly_name + '.out', '../Cross-Section-Output/2-group/')
     f_temp = assembly.getXS('SIGF')
@@ -325,9 +324,7 @@ def createLattice(assembly):
     log.py_printf('NORMAL', 'Creating simple 4x4 lattice...')
     lattice = Lattice(id=100, width_x=0.62992*2, width_y=0.62992*2)
 
-    string_cell_type_array = assembly.stringCellTypeArray()
-
-    return string_cell_type_array, lattice
+    return lattice
 
 def createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice):
 
