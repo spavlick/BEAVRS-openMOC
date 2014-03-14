@@ -348,7 +348,7 @@ def createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCell
             current_min_max = [y for y in range(min_values[i,j], max_values[i,j]+1)]
             current_universe = geometry.getUniverse(int(current_UID))
             cloned_universe = current_universe.clone()
-            pinCellArray [i,j] = cloned_universe.getId()    
+            pinCellArray [i,j] = cloned_universe.getId()
             num_cells = cloned_universe.getNumCells()
             current_cell_ids = current_universe.getCellIds(num_cells)
             cell_ids = cloned_universe.getCellIds(num_cells)
