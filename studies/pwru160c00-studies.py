@@ -37,7 +37,7 @@ geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, 
 #plot.plot_flat_source_regions(geometry, gridsize = 250)
 #plot.plot_fluxes(geometry, solver, energy_groups=[2], gridsize=250)
 #num_azim test values
-num_azims = [4]#[i for i in range(4, 128, 4)]
+num_azims = [i for i in range(4, 128, 4)]
 
 os.system('rm ' + 'results/' + assembly_name + '-errors.h5')
 if not os.path.exists('results'):
@@ -66,7 +66,7 @@ for num_azim in num_azims:
 num_azim = 32
 
 #track_spacing test values
-track_spacings = [0.5]#[0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
+track_spacings = [0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
 
 current_test = f.create_group('Track Spacing Tests')
 
