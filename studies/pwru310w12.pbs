@@ -19,4 +19,4 @@ PATH=$PBS_O_PATH
 ######################################
  
 #PBS -k eo
-python pwru160c00-studies.py
+python pwru310c00-studies.py
