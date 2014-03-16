@@ -27,7 +27,7 @@ cellTypeArray = pwru240w12.getCellTypeArray()
 
 pinCellArray = copy.deepcopy(cellTypeArray)
 
-num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name)
+num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-studies')
 materials = createMaterials(directory, assembly_name)
 dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=True)
 cells = createCells(rings, sectors, dummy_id, circles, planes, bp=True)

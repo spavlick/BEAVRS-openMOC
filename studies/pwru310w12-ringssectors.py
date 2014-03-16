@@ -27,7 +27,7 @@ cellTypeArray = pwru310w12.getCellTypeArray()
 
 pinCellArray = copy.deepcopy(cellTypeArray)
 
-num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name)
+num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-ringssectors')
 materials = createMaterials(directory, assembly_name)
 dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
 
@@ -38,6 +38,8 @@ if not os.path.exists('results'):
 f = h5py.File('results/' + assembly_name + '-ringssectors-errors.h5')
 f.attrs['Energy Groups'] = numgroups
 current_test = f.create_group('Flat Source Region Tests')
+
+track_spacing = 0.05
 
 #rings and sectors test values
 rings_list = [1,2,3,4]
