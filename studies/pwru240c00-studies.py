@@ -77,7 +77,7 @@ for track_spacing in track_spacings:
     solver = createSolver(geometry, track_generator, num_threads, tolerance, max_iters)
     max_error, mean_error, calculatedPinPowers= computePinPowerError(solver, pin_directory, assembly_name)
     kinf_error = computeKinfError(solver, pin_directory, assembly_name)
-    track_test = current_test.create_group('Track Spacing = %d' % (track_spacing))
+    track_test = current_test.create_group('Track Spacing = %f' % (track_spacing))
     track_test.create_dataset('Pin Powers', data = calculatedPinPowers)
     track_test.create_dataset('Max Error', data = max_error)
     track_test.create_dataset('Min Error', data = mean_error)
