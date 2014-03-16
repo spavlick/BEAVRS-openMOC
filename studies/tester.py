@@ -11,7 +11,7 @@ from casmo import *
 options = options.Options()
 
 
-def defineParameters():
+def defineParameters(assembly_name):
 
     num_threads = options.getNumThreads()
     track_spacing = options.getTrackSpacing()
@@ -20,6 +20,7 @@ def defineParameters():
     max_iters = options.getMaxIterations()
 
     log.set_log_level('NORMAL')
+    set_log_filename(assembly_name + '-log')
 
     return num_threads, track_spacing, num_azim, tolerance, max_iters
 
