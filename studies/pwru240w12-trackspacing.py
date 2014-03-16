@@ -7,14 +7,14 @@ options = Options()
 
 
 #parses Casmo data
-pwru160c00 = importxsFromCasmo('pwru160c00')
-pwru160c00.setAssemblyName('pwru160c00')
+pwru240w12 = importxsFromCasmo('pwru240w12')
+pwru240w12.setAssemblyName('pwru240w12')
 
 #sets the number of energy groups
-numgroups = pwru160c00.getEnergyGroups()
+numgroups = pwru240w12.getEnergyGroups()
 
 #sets assembly variable to the file name used
-assembly_name = "pwru160c00"
+assembly_name = "pwru240w12"
 directory = "casmo-data/"
 geoDirectory = "../geo-data/%s-group/" % (numgroups)
 pin_directory = 'casmo-reference/%s-group/' % (numgroups)
@@ -23,7 +23,7 @@ rings = 3
 sectors = 8
 note = 'rings = %d, sectors= %d' % (rings, sectors)
 
-cellTypeArray = pwru160c00.getCellTypeArray()
+cellTypeArray = pwru240w12.getCellTypeArray()
 
 pinCellArray = copy.deepcopy(cellTypeArray)
 
@@ -31,7 +31,7 @@ num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(as
 materials = createMaterials(directory, assembly_name)
 dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
 cells = createCells(rings, sectors, dummy_id, circles, planes)
-lattice = createLattice(pwru160c00)
+lattice = createLattice(pwru240w12)
 geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice)
 
 os.system('rm ' + 'results/' + assembly_name + '-trackspacing-errors.h5')

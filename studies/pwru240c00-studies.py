@@ -66,7 +66,7 @@ for num_azim in num_azims:
 num_azim = 32
 
 #track_spacing test values
-track_spacings = [0.5, 0.25, 0.1, 0.05, 0.01, 0.005]
+track_spacings = [0.1, 0.05, 0.01, 0.005]
 
 current_test = f.create_group('Track Spacing Tests')
 
@@ -84,7 +84,7 @@ for track_spacing in track_spacings:
     track_test.create_dataset('Kinf_Error', data = kinf_error)
 
 #reset
-track_spacing = 0.1
+track_spacing = 0.05
 
 #rings and sectors test values
 rings_list = [1,2,3,4]
