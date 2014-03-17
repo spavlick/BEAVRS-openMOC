@@ -14,10 +14,10 @@ pwru310w12.setAssemblyName('pwru310w12')
 numgroups = pwru310w12.getEnergyGroups()
 
 #sets assembly variable to the file name used
-assembly_name = "pwru310w12"
-directory = "casmo-data/"
-geoDirectory = "../geo-data/%s-group/" % (numgroups)
-pin_directory = 'casmo-reference/%s-group/' % (numgroups)
+assembly_name = 'pwru310w12'
+directory = '../casmo-data/'
+geoDirectory = "../../geo-data/%s-group/" % (numgroups)
+pin_directory = '../casmo-reference/%s-group/' % (numgroups)
 
 rings = 3
 sectors = 8
@@ -27,10 +27,10 @@ cellTypeArray = pwru310w12.getCellTypeArray()
 
 pinCellArray = copy.deepcopy(cellTypeArray)
 
-num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-numazim')
+num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-studies')
 materials = createMaterials(directory, assembly_name)
-dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
-cells = createCells(rings, sectors, dummy_id, circles, planes)
+dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=True)
+cells = createCells(rings, sectors, dummy_id, circles, planes, bp=True)
 lattice = createLattice(pwru310w12)
 geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice)
 

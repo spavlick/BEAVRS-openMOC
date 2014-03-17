@@ -14,10 +14,10 @@ pwru240w12.setAssemblyName('pwru240w12')
 numgroups = pwru240w12.getEnergyGroups()
 
 #sets assembly variable to the file name used
-assembly_name = "pwru240w12"
-directory = "casmo-data/"
-geoDirectory = "../geo-data/%s-group/" % (numgroups)
-pin_directory = 'casmo-reference/%s-group/' % (numgroups)
+assembly_name = 'pwru240w12'
+directory = '../casmo-data/'
+geoDirectory = "../../geo-data/%s-group/" % (numgroups)
+pin_directory = '../casmo-reference/%s-group/' % (numgroups)
 
 rings = 3
 sectors = 8
@@ -27,10 +27,10 @@ cellTypeArray = pwru240w12.getCellTypeArray()
 
 pinCellArray = copy.deepcopy(cellTypeArray)
 
-num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-numazim')
+num_threads, track_spacing, num_azim, tolerance, max_iters = defineParameters(assembly_name, '-studies')
 materials = createMaterials(directory, assembly_name)
-dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=False)
-cells = createCells(rings, sectors, dummy_id, circles, planes)
+dummy, dummy_id, circles, planes = createSurfaces(numgroups, bp=True)
+cells = createCells(rings, sectors, dummy_id, circles, planes, bp=True)
 lattice = createLattice(pwru240w12)
 geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, pinCellArray, lattice)
 
@@ -39,11 +39,11 @@ geometry = createGeometry(geoDirectory, assembly_name, dummy, materials, cells, 
 #num_azim test values
 num_azims = [i for i in range(4, 128, 4)]
 
-os.system('rm ' + 'results/' + assembly_name + '-numazim-errors.h5')
+os.system('rm ' + 'results/' + assembly_name + '-errors.h5')
 if not os.path.exists('results'):
     os.makedirs('results')
 
-f = h5py.File('results/' + assembly_name + '-numazim-errors.h5')
+f = h5py.File('results/' + assembly_name + '-errors.h5')
 f.attrs['Energy Groups'] = numgroups
 current_test = f.create_group('Azimuthal Angles Tests')
 
