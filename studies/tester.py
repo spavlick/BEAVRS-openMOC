@@ -54,6 +54,7 @@ def createMaterials(directory, assembly_name):
 
     log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
+    print directory, assembly_name
     materials = materialize.materialize(directory + assembly_name + '-materials.hdf5')
     
     return materials

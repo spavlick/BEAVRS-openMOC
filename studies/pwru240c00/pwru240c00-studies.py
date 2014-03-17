@@ -15,7 +15,7 @@ numgroups = pwru240c00.getEnergyGroups()
 
 #sets assembly variable to the file name used
 assembly_name = 'pwru240c00'
-directory = '../casmo-data/'
+directory = 'casmo-data/'
 geoDirectory = "../../geo-data/%s-group/" % (numgroups)
 pin_directory = '../casmo-reference/%s-group/' % (numgroups)
 
