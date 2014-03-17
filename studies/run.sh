@@ -1,0 +1,14 @@
+qsub pwru160c00-trackspacing.pbs
+qsub pwru160c00-ringssectors.pbs
+qsub pwru240c00-numazim.pbs
+qsub pwru240c00-trackspacing.pbs
+qsub pwru240c00-ringssectors.pbs
+qsub pwru240w12-numazim.pbs
+qsub pwru240w12-trackspacing.pbs
+qsub pwru240w12-ringssectors.pbs
+qsub pwru310c00-numazim.pbs
+qsub pwru310c00-trackspacing.pbs
+qsub pwru310c00-ringssectors.pbs
+qsub pwru310w12-numazim.pbs
+qsub pwru310w12-trackspacing.pbs
+qsub pwru310w12-ringssectors.pbs
