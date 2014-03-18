@@ -58,7 +58,7 @@ for num_azim in num_azims:
     azim_test = current_test.create_group('Num Azim = %d' % (num_azim))
     azim_test.create_dataset('Pin Powers', data = calculatedPinPowers)
     azim_test.create_dataset('Max Error', data = max_error)
-    azim_test.create_dataset('Min Error', data = mean_error)
+    azim_test.create_dataset('Mean Error', data = mean_error)
     azim_test.create_dataset('Kinf_Error', data = kinf_error)
 
 f.close()

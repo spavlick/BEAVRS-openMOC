@@ -39,11 +39,11 @@ for i, assembly in enumerate(assembly_list):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
             if 'Kinf_Error' in key:
-                kinf_list.append(f[test][sorted_keys[j]][key][...])
+                kinf_list.append(f[test][sorted_keys[j]][key][...]*10**5)
     plt.plot(x_axis,kinf_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, 0, 10])
+plt.axis([0, 130, 0, 450])
 plt.title('K-Infinity Error')
 plt.xlabel(test)
 plt.ylabel('K-Infinity Error [pcm]')
@@ -64,11 +64,11 @@ for i, assembly in enumerate(assembly_list):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
             if 'Min' in key:
-                mean_list.append(f[test][sorted_keys[j]][key][...])
+                mean_list.append(f[test][sorted_keys[j]][key][...]*10**2)
     plt.plot(x_axis,mean_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, -5, .5])
+plt.axis([0, 130, 0, 400])
 plt.title('Mean Pin Power Error')
 plt.xlabel(test)
 plt.ylabel('Mean Pin Power Error')
@@ -89,11 +89,11 @@ for i, assembly in enumerate(assembly_list):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
             if 'Max' in key:
-                max_list.append(f[test][sorted_keys[j]][key][...])
+                max_list.append(f[test][sorted_keys[j]][key][...]*10**2)
     plt.plot(x_axis,max_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, 0, .05])
+plt.axis([0, 130, 0, 5])
 plt.title('Max Pin Power Error')
 plt.xlabel(test)
 plt.ylabel('Max Pin Power Error')

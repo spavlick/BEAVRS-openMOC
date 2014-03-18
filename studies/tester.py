@@ -427,7 +427,7 @@ def computePinPowerError(solver, pin_directory, assembly_name):
     numErrors = 0
     for i in range(pinError.shape[0]):
         for j in range(pinError.shape[1]):
-            pinError_sum += pinError[i][j]
+            pinError_sum += abs(pinError[i][j])
             if pinError[i][j] != 0:
                 numErrors += 1
     mean_error = pinError_sum / numErrors
@@ -445,6 +445,7 @@ def computeKinfError(solver, pin_directory, assembly_name):
     f.close()
 
     kinf_error = abs((calculated_kinf - actual_kinf)/(actual_kinf))
+    print kinf_error
 
     return kinf_error
 
