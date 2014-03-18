@@ -11,7 +11,7 @@ assembly_list = ['pwru160c00','pwru240c00','pwru240w12','pwru310c00','pwru310w12
 
 x_axis = []
 
-f = h5py.File('results/' + assembly_list[0] + 'num-azim-errors.h5', 'r')
+f = h5py.File('results/' + assembly_list[0] + '-numazim-errors.h5', 'r')
 keys = f[test].keys()
 for key in keys:
     current_value = float(key.strip(strip))
@@ -30,20 +30,20 @@ fig = plt.figure()
 colors = ['b', 'g', 'r', 'k', 'm']
 for i, assembly in enumerate(assembly_list):
     kinf_list = []
-    filename = assembly + 'num-azim-errors.h5'
+    filename = assembly + '-numazim-errors.h5'
     if os.path.isfile('results/' + filename):
         f = h5py.File('results/' + filename, 'r')
     else:
         f = h5py.File('results/' + assembly + '-errors.h5', 'r')
-    for j, x in enumerate(x_values):
+    for j, x in enumerate(x_axis):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
-            if 'Kinf' in key:
+            if 'Kinf_Error' in key:
                 kinf_list.append(f[test][sorted_keys[j]][key][...])
     plt.plot(x_axis,kinf_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, x_scale, 0, y_scale])
+plt.axis([0, 130, 0, 10])
 plt.title('K-Infinity Error')
 plt.xlabel(test)
 plt.ylabel('K-Infinity Error [pcm]')
@@ -53,19 +53,22 @@ plt.show()
 fig.savefig('K-Infinity-Error.png')
 
 fig = plt.figure()
-colors = ['b', 'g', 'r', 'k', 'm']
 for i, assembly in enumerate(assembly_list):
     mean_list = []
-    f = h5py.File('results/' + assembly + testname, 'r')
-    for j, x in enumerate(x_values):
+    filename = assembly + '-numazim-errors.h5'
+    if os.path.isfile('results/' + filename):
+        f = h5py.File('results/' + filename, 'r')
+    else:
+        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+    for j, x in enumerate(x_axis):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
-            if 'Mean' in key:
+            if 'Min' in key:
                 mean_list.append(f[test][sorted_keys[j]][key][...])
-    plt.plot(x_axis,kinf_list, colors[i] + 'o-', ms = 10, lw = 2)
+    plt.plot(x_axis,mean_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, x_scale, 0, y_scale])
+plt.axis([0, 130, -5, .5])
 plt.title('Mean Pin Power Error')
 plt.xlabel(test)
 plt.ylabel('Mean Pin Power Error')
@@ -75,19 +78,22 @@ plt.show()
 fig.savefig('Mean-Error.png')
 
 fig = plt.figure()
-colors = ['b', 'g', 'r', 'k', 'm']
 for i, assembly in enumerate(assembly_list):
     max_list = []
-    f = h5py.File('results/' + assembly + testname, 'r')
-    for j, x in enumerate(x_values):
+    filename = assembly + '-numazim-errors.h5'
+    if os.path.isfile('results/' + filename):
+        f = h5py.File('results/' + filename, 'r')
+    else:
+        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+    for j, x in enumerate(x_axis):
         value_keys = f[test][sorted_keys[j]].keys()
         for key in value_keys:
             if 'Max' in key:
                 max_list.append(f[test][sorted_keys[j]][key][...])
-    plt.plot(x_axis,kinf_list, colors[i] + 'o-', ms = 10, lw = 2)
+    plt.plot(x_axis,max_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, x_scale, 0, y_scale])
+plt.axis([0, 130, 0, .05])
 plt.title('Max Pin Power Error')
 plt.xlabel(test)
 plt.ylabel('Max Pin Power Error')
