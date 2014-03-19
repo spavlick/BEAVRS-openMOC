@@ -110,5 +110,5 @@ for rings in rings_list:
         sector_test.create_dataset('Min Error', data = mean_error)
         sector_test.create_dataset('Kinf_Error', data = kinf_error)
 
-
+f.close()
 f.close()

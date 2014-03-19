@@ -25,7 +25,7 @@ for key in keys:
         if x == float(key.strip(strip)):
             sorted_keys[i] = key
 
-legend = ['1.6% w/ BP','2.4% w/o BP', '2.4% w/ BP', '3.1% w/o BP', '3.1% w/ BP']
+legend = ['1.6% w/o BP','2.4% w/o BP', '2.4% w/ BP', '3.1% w/o BP', '3.1% w/ BP']
 fig = plt.figure()
 colors = ['b', 'g', 'r', 'k', 'm']
 for i, assembly in enumerate(assembly_list):
