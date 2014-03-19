@@ -4,14 +4,14 @@ import matplotlib as plt
 from tester import *
 import os.path
 
-test = 'Azimuthal Angles Tests'
-strip = 'Num Azim = '
-
-assembly_list = ['pwru160c00','pwru240c00','pwru240w12','pwru310c00','pwru310w12']
+test = 'Track Spacing Tests'
+strip = 'Track Spacing = '
 
 x_axis = []
 
-f = h5py.File('results/' + assembly_list[4] + '-numazim-errors.h5', 'r')
+assembly_list = ['pwru160c00','pwru240c00','pwru240w12','pwru310c00','pwru310w12']
+
+f = h5py.File('results/' + assembly_list[4] + '-trackspacing-errors.h5', 'r')
 keys = f[test].keys()
 for key in keys:
     current_value = float(key.strip(strip))
@@ -30,7 +30,7 @@ fig = plt.figure()
 colors = ['b', 'g', 'r', 'k', 'm']
 for i, assembly in enumerate(assembly_list):
     kinf_list = []
-    filename = assembly + '-numazim-errors.h5'
+    filename = assembly + '-trackspacing-errors.h5'
     if os.path.isfile('results/' + filename):
         f = h5py.File('results/' + filename, 'r')
     else:
@@ -43,19 +43,19 @@ for i, assembly in enumerate(assembly_list):
     plt.plot(x_axis,kinf_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, 0, 500])
+plt.axis([max(x_axis), 0, 0, 400])
 plt.title('Error in K-Infinity')
-plt.xlabel('Number of Azimuthal Angles')
+plt.xlabel('Track Spacing [cm]')
 plt.ylabel('K-Infinity Error [pcm]')
 plt.grid()
 plt.legend(legend)
 plt.show()
-fig.savefig('K-Infinity-Error-Azim.png')
+fig.savefig('K-Infinity-Error-TS.png')
 
 fig = plt.figure()
 for i, assembly in enumerate(assembly_list):
     mean_list = []
-    filename = assembly + '-numazim-errors.h5'
+    filename = assembly + '-trackspacing-errors.h5'
     if os.path.isfile('results/' + filename):
         f = h5py.File('results/' + filename, 'r')
     else:
@@ -68,19 +68,19 @@ for i, assembly in enumerate(assembly_list):
     plt.plot(x_axis,mean_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, 0, 1.5])
+plt.axis([max(x_axis), 0, 0, .4])
 plt.title('Mean Pin Power Error')
-plt.xlabel('Number of Azimuthal Angles')
+plt.xlabel('Track Spacing [cm]')
 plt.ylabel('Relative Percent Mean Pin Power Error')
 plt.grid()
 plt.legend(legend)
 plt.show()
-fig.savefig('Mean-Error-Azim.png')
+fig.savefig('Mean-Error-TS.png')
 
 fig = plt.figure()
 for i, assembly in enumerate(assembly_list):
     max_list = []
-    filename = assembly + '-numazim-errors.h5'
+    filename = assembly + '-trackspacing-errors.h5'
     if os.path.isfile('results/' + filename):
         f = h5py.File('results/' + filename, 'r')
     else:
@@ -93,11 +93,11 @@ for i, assembly in enumerate(assembly_list):
     plt.plot(x_axis,max_list, colors[i] + 'o-', ms = 10, lw = 2)
     f.close()
 
-plt.axis([0, 130, 0, 4])
+plt.axis([max(x_axis), 0, 0, 4])
 plt.title('Max Pin Power Error')
-plt.xlabel('Number of Azimuthal Angles')
+plt.xlabel('Track Spacing [cm]')
 plt.ylabel('Relative Percent Max Pin Power Error')
 plt.grid()
 plt.legend(legend)
 plt.show()
-fig.savefig('Max-Error-Azim.png')
+fig.savefig('Max-Error-TS.png')
