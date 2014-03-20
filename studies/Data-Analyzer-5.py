@@ -97,12 +97,14 @@ for assembly in assembly_list:
     fsr_max_error.append(max_array)
     f.close()
 
-
-'''plt.figure()
-plt.pcolor(numpy.linspace(0, 17, 17), numpy.linspace(0, 17, 17), normalizedPinPowers, edgecolors = 'k', linewidths = 1, vmin = normalizedPinPowers[:,:].min(), vmax = normalizedPinPowers[:,:].max())
-plt.colorbar()
-plt.axis([0,17,0,17])
-plt.title('Normalized Pin Powers')
-plt.gca().axes.get_xaxis().set_ticks([])
-plt.gca().axes.get_yaxis().set_ticks([])
-plt.show()'''
+for array in fsr_kinf_error:
+    nparray = numpy.array(array)
+    fig = plt.figure()
+    plt.pcolor(numpy.linspace(0,5,5),numpy.linspace(0,5,5), nparray, edgecolors = 'k', linewidths = 1, vmin = nparray[:,:].min(), vmax = nparray[:,:].max())
+    plt.colorbar()
+    plt.axis([0,4,0,4])
+    plt.title('FSR K-infinity')
+    plt.gca().axes.get_xaxis().set_ticks([])
+    plt.gca().axes.get_yaxis().set_ticks([])
+    plt.show()
+    fig.savefig('fsr.jpeg')
