@@ -59,6 +59,44 @@ for assembly in assembly_list:
     fsr_kinf_error.append(kinf_array)
     f.close()
 
+fsr_mean_error = []
+for assembly in assembly_list:
+    filename = assembly + '-ringssectors-errors.h5'
+    mean_array = []
+    if os.path.isfile('results/' + filename):
+        f = h5py.File('results/' + filename, 'r')
+    else:
+        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+    for ring_key in sorted_rings_keys:
+        mean_row = []
+        for sector_key in sorted_sectors_keys:
+            value_keys = f[test][ring_key][sector_key].keys()
+            for key in value_keys:
+                if 'Min' in key:
+                    mean_row.append(f[test][ring_key][sector_key][key][...]*10**2)
+        mean_array.append(mean_row)
+    fsr_mean_error.append(mean_array)
+    f.close()
+
+fsr_max_error = []
+for assembly in assembly_list:
+    filename = assembly + '-ringssectors-errors.h5'
+    max_array = []
+    if os.path.isfile('results/' + filename):
+        f = h5py.File('results/' + filename, 'r')
+    else:
+        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+    for ring_key in sorted_rings_keys:
+        max_row = []
+        for sector_key in sorted_sectors_keys:
+            value_keys = f[test][ring_key][sector_key].keys()
+            for key in value_keys:
+                if 'Max' in key:
+                    max_row.append(f[test][ring_key][sector_key][key][...]*10**2)
+        max_array.append(max_row)
+    fsr_max_error.append(max_array)
+    f.close()
+
 
 '''plt.figure()
 plt.pcolor(numpy.linspace(0, 17, 17), numpy.linspace(0, 17, 17), normalizedPinPowers, edgecolors = 'k', linewidths = 1, vmin = normalizedPinPowers[:,:].min(), vmax = normalizedPinPowers[:,:].max())
