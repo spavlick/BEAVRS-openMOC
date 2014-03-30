@@ -9,9 +9,9 @@ strip1 = 'Rings = '
 strip2 = 'Sectors = '
 
 assembly_list = ['pwru160c00','pwru240c00','pwru240w12','pwru310c00','pwru310w12']
-
-f = h5py.File('results/' + assembly_list[4] + '-ringssectors-errors.h5', 'r')
-
+assembly_name = assembly_list[4]
+print (assembly_name + '/' + 'results/' + assembly_name + '-ringssectors-errors.h5')
+f = h5py.File(assembly_name + '/' + 'results/' + assembly_name + '-ringssectors-errors.h5', 'r')
 keys = f[test].keys()
 rings = []
 sectors = []
@@ -102,9 +102,33 @@ for array in fsr_kinf_error:
     fig = plt.figure()
     plt.pcolor(numpy.linspace(0,5,5),numpy.linspace(0,5,5), nparray, edgecolors = 'k', linewidths = 1, vmin = nparray[:,:].min(), vmax = nparray[:,:].max())
     plt.colorbar()
-    plt.axis([0,4,0,4])
-    plt.title('FSR K-infinity')
+    plt.axis([0,5,0,5])
+    plt.title('FSR K-infinity Errors')
     plt.gca().axes.get_xaxis().set_ticks([])
     plt.gca().axes.get_yaxis().set_ticks([])
     plt.show()
-    fig.savefig('fsr.jpeg')
+    fig.savefig(assembly_list[fsr_kinf_error.index(array)] + '-fsr-kinf-errors.jpeg')
+
+for array in fsr_mean_error:
+    nparray = numpy.array(array)
+    fig = plt.figure()
+    plt.pcolor(numpy.linspace(0,5,5),numpy.linspace(0,5,5), nparray, edgecolors = 'k', linewidths = 1, vmin = nparray[:,:].min(), vmax = nparray[:,:].max())
+    plt.colorbar()
+    plt.axis([0,5,0,5])
+    plt.title('FSR Mean Errors')
+    plt.gca().axes.get_xaxis().set_ticks([])
+    plt.gca().axes.get_yaxis().set_ticks([])
+    plt.show()
+    fig.savefig(assembly_list[fsr_mean_error.index(array)] + '-fsr-mean-errors.jpeg')
+
+for array in fsr_max_error:
+    nparray = numpy.array(array)
+    fig = plt.figure()
+    plt.pcolor(numpy.linspace(0,5,5),numpy.linspace(0,5,5), nparray, edgecolors = 'k', linewidths = 1, vmin = nparray[:,:].min(), vmax = nparray[:,:].max())
+    plt.colorbar()
+    plt.axis([0,5,0,5])
+    plt.title('FSR Max Errors')
+    plt.gca().axes.get_xaxis().set_ticks([])
+    plt.gca().axes.get_yaxis().set_ticks([])
+    plt.show()
+    fig.savefig(assembly_list[fsr_max_error.index(array)] + '-fsr-max-errors.jpeg')

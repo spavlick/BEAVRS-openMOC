@@ -240,8 +240,8 @@ class Casmo(object):
     f = open(self._directory + self._filename, 'r')
 
     half_width = (self._width+1)/2
-    pin_power_array = numpy.zeros((self._width,self._width), dtype=numpy.int32)
-    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.int32)
+    pin_power_array = numpy.zeros((self._width,self._width), dtype=numpy.float32)
+    quadrant4 = numpy.zeros((half_width,half_width), dtype=numpy.float32)
 
     counter = 0
     for line in f:
