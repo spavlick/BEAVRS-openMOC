@@ -44,10 +44,10 @@ fsr_kinf_error = []
 for assembly in assembly_list:
     filename = assembly + '-ringssectors-errors.h5'
     kinf_array = []
-    if os.path.isfile('results/' + filename):
-        f = h5py.File('results/' + filename, 'r')
+    if os.path.isfile(assembly + '/' + 'results/' + filename):
+        f = h5py.File(assembly + '/' + 'results/' + filename, 'r')
     else:
-        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+        f = h5py.File(assembly + '/' + 'results/' + assembly + '-errors.h5', 'r')
     for ring_key in sorted_rings_keys:
         kinf_row = []
         for sector_key in sorted_sectors_keys:
@@ -63,10 +63,10 @@ fsr_mean_error = []
 for assembly in assembly_list:
     filename = assembly + '-ringssectors-errors.h5'
     mean_array = []
-    if os.path.isfile('results/' + filename):
-        f = h5py.File('results/' + filename, 'r')
+    if os.path.isfile(assembly + '/' + 'results/' + filename):
+        f = h5py.File(assembly + '/' + 'results/' + filename, 'r')
     else:
-        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+        f = h5py.File(assembly + '/' + 'results/' + assembly + '-errors.h5', 'r')
     for ring_key in sorted_rings_keys:
         mean_row = []
         for sector_key in sorted_sectors_keys:
@@ -82,10 +82,10 @@ fsr_max_error = []
 for assembly in assembly_list:
     filename = assembly + '-ringssectors-errors.h5'
     max_array = []
-    if os.path.isfile('results/' + filename):
-        f = h5py.File('results/' + filename, 'r')
+    if os.path.isfile(assembly + '/' + 'results/' + filename):
+        f = h5py.File(assembly + '/' + 'results/' + filename, 'r')
     else:
-        f = h5py.File('results/' + assembly + '-errors.h5', 'r')
+        f = h5py.File(assembly + '/' + 'results/' + assembly + '-errors.h5', 'r')
     for ring_key in sorted_rings_keys:
         max_row = []
         for sector_key in sorted_sectors_keys:
