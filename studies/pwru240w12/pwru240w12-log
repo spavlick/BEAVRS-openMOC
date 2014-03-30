@@ -1,0 +1,186 @@
+Current local time and date: Wed Mar 19 16:20:34 2014
+[  NORMAL ]  Importing materials data from HDF5...
+[  NORMAL ]  Creating Surfaces...
+[  NORMAL ]  Creating simple 4x4 lattice...
+[  NORMAL ]  Creating geometry...
+[  NORMAL ]  Number of flat source regions: 1203
+[  NORMAL ]  Initializing the track generator...
+[  NORMAL ]  Ray tracing for track segmentation...
+[  NORMAL ]  Converging the source...
+[  NORMAL ]  Iteration 0: 	k_eff = 1.000000	res = 0.000E+00
+[  NORMAL ]  Iteration 1: 	k_eff = 1.114616	res = 2.493E+06
+[  NORMAL ]  Iteration 2: 	k_eff = 1.106664	res = 1.783E-01
+[  NORMAL ]  Iteration 3: 	k_eff = 1.096659	res = 1.443E-01
+[  NORMAL ]  Iteration 4: 	k_eff = 1.086356	res = 9.996E-02
+[  NORMAL ]  Iteration 5: 	k_eff = 1.076762	res = 8.131E-02
+[  NORMAL ]  Iteration 6: 	k_eff = 1.068029	res = 6.567E-02
+[  NORMAL ]  Iteration 7: 	k_eff = 1.060215	res = 5.402E-02
+[  NORMAL ]  Iteration 8: 	k_eff = 1.053295	res = 4.473E-02
+[  NORMAL ]  Iteration 9: 	k_eff = 1.047215	res = 3.725E-02
+[  NORMAL ]  Iteration 10: 	k_eff = 1.041906	res = 3.115E-02
+[  NORMAL ]  Iteration 11: 	k_eff = 1.037293	res = 2.612E-02
+[  NORMAL ]  Iteration 12: 	k_eff = 1.033301	res = 2.195E-02
+[  NORMAL ]  Iteration 13: 	k_eff = 1.029857	res = 1.847E-02
+[  NORMAL ]  Iteration 14: 	k_eff = 1.026895	res = 1.557E-02
+[  NORMAL ]  Iteration 15: 	k_eff = 1.024353	res = 1.313E-02
+[  NORMAL ]  Iteration 16: 	k_eff = 1.022175	res = 1.108E-02
+[  NORMAL ]  Iteration 17: 	k_eff = 1.020312	res = 9.360E-03
+[  NORMAL ]  Iteration 18: 	k_eff = 1.018722	res = 7.909E-03
+[  NORMAL ]  Iteration 19: 	k_eff = 1.017364	res = 6.686E-03
+[  NORMAL ]  Iteration 20: 	k_eff = 1.016207	res = 5.654E-03
+[  NORMAL ]  Iteration 21: 	k_eff = 1.015221	res = 4.782E-03
+[  NORMAL ]  Iteration 22: 	k_eff = 1.014382	res = 4.046E-03
+[  NORMAL ]  Iteration 23: 	k_eff = 1.013669	res = 3.425E-03
+[  NORMAL ]  Iteration 24: 	k_eff = 1.013061	res = 2.899E-03
+[  NORMAL ]  Iteration 25: 	k_eff = 1.012546	res = 2.455E-03
+[  NORMAL ]  Iteration 26: 	k_eff = 1.012107	res = 2.079E-03
+[  NORMAL ]  Iteration 27: 	k_eff = 1.011734	res = 1.762E-03
+[  NORMAL ]  Iteration 28: 	k_eff = 1.011418	res = 1.493E-03
+[  NORMAL ]  Iteration 29: 	k_eff = 1.011149	res = 1.266E-03
+[  NORMAL ]  Iteration 30: 	k_eff = 1.010921	res = 1.074E-03
+[  NORMAL ]  Iteration 31: 	k_eff = 1.010727	res = 9.115E-04
+[  NORMAL ]  Iteration 32: 	k_eff = 1.010563	res = 7.739E-04
+[  NORMAL ]  Iteration 33: 	k_eff = 1.010423	res = 6.577E-04
+[  NORMAL ]  Iteration 34: 	k_eff = 1.010305	res = 5.591E-04
+[  NORMAL ]  Iteration 35: 	k_eff = 1.010204	res = 4.760E-04
+[  NORMAL ]  Iteration 36: 	k_eff = 1.010119	res = 4.055E-04
+[  NORMAL ]  Iteration 37: 	k_eff = 1.010046	res = 3.459E-04
+[  NORMAL ]  Iteration 38: 	k_eff = 1.009984	res = 2.956E-04
+[  NORMAL ]  Iteration 39: 	k_eff = 1.009932	res = 2.529E-04
+[  NORMAL ]  Iteration 40: 	k_eff = 1.009888	res = 2.168E-04
+[  NORMAL ]  Iteration 41: 	k_eff = 1.009850	res = 1.865E-04
+[  NORMAL ]  Iteration 42: 	k_eff = 1.009818	res = 1.606E-04
+[  NORMAL ]  Iteration 43: 	k_eff = 1.009791	res = 1.389E-04
+[  NORMAL ]  Iteration 44: 	k_eff = 1.009768	res = 1.203E-04
+[  NORMAL ]  Iteration 45: 	k_eff = 1.009749	res = 1.048E-04
+[  NORMAL ]  Iteration 46: 	k_eff = 1.009732	res = 9.161E-05
+[  NORMAL ]  Iteration 47: 	k_eff = 1.009718	res = 8.039E-05
+[  NORMAL ]  Iteration 48: 	k_eff = 1.009706	res = 7.093E-05
+[  NORMAL ]  Iteration 49: 	k_eff = 1.009696	res = 6.275E-05
+[  NORMAL ]  Iteration 50: 	k_eff = 1.009687	res = 5.590E-05
+[  NORMAL ]  Iteration 51: 	k_eff = 1.009680	res = 5.000E-05
+[  NORMAL ]  Iteration 52: 	k_eff = 1.009673	res = 4.493E-05
+[  NORMAL ]  Iteration 53: 	k_eff = 1.009668	res = 4.056E-05
+[  NORMAL ]  Iteration 54: 	k_eff = 1.009664	res = 3.678E-05
+[  NORMAL ]  Iteration 55: 	k_eff = 1.009660	res = 3.350E-05
+[  NORMAL ]  Iteration 56: 	k_eff = 1.009656	res = 3.062E-05
+[  NORMAL ]  Iteration 57: 	k_eff = 1.009654	res = 2.805E-05
+[  NORMAL ]  Iteration 58: 	k_eff = 1.009651	res = 2.578E-05
+[  NORMAL ]  Iteration 59: 	k_eff = 1.009649	res = 2.379E-05
+[  NORMAL ]  Iteration 60: 	k_eff = 1.009648	res = 2.197E-05
+[  NORMAL ]  Iteration 61: 	k_eff = 1.009646	res = 2.033E-05
+[  NORMAL ]  Iteration 62: 	k_eff = 1.009645	res = 1.886E-05
+[  NORMAL ]  Iteration 63: 	k_eff = 1.009644	res = 1.753E-05
+[  NORMAL ]  Iteration 64: 	k_eff = 1.009643	res = 1.627E-05
+[  NORMAL ]  Iteration 65: 	k_eff = 1.009642	res = 1.518E-05
+[  NORMAL ]  Iteration 66: 	k_eff = 1.009642	res = 1.413E-05
+[  NORMAL ]  Iteration 67: 	k_eff = 1.009641	res = 1.315E-05
+[  NORMAL ]  Iteration 68: 	k_eff = 1.009640	res = 1.229E-05
+[  NORMAL ]  Iteration 69: 	k_eff = 1.009640	res = 1.147E-05
+[  NORMAL ]  Iteration 70: 	k_eff = 1.009640	res = 1.069E-05
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                             TIMING REPORT                           
+[  TITLE  ]  *******************************************************************
+[  RESULT ]  Total time to solution...............................5.3287E-01 sec
+[  RESULT ]  Solution time per unknown............................2.2147E-04 sec
+[  RESULT ]  Solution time per iteration..........................7.5052E-03 sec
+[  RESULT ]  Integration time per segment integration.............1.5222E-08 sec
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]             # tracks          # segments          # FSRs
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]                608              41088              1203              
+[SEPARATOR]  -------------------------------------------------------------------
+[  NORMAL ]  Plotting the flat source region scalar fluxes...
+Current local time and date: Wed Mar 19 16:33:01 2014
+[  NORMAL ]  Importing materials data from HDF5...
+[  NORMAL ]  Creating Surfaces...
+[  NORMAL ]  Creating simple 4x4 lattice...
+[  NORMAL ]  Creating geometry...
+[  NORMAL ]  Number of flat source regions: 1203
+[  NORMAL ]  Initializing the track generator...
+[  NORMAL ]  Ray tracing for track segmentation...
+[  NORMAL ]  Converging the source...
+[  NORMAL ]  Iteration 0: 	k_eff = 1.000000	res = 0.000E+00
+[  NORMAL ]  Iteration 1: 	k_eff = 1.114616	res = 2.493E+06
+[  NORMAL ]  Iteration 2: 	k_eff = 1.106664	res = 1.783E-01
+[  NORMAL ]  Iteration 3: 	k_eff = 1.096659	res = 1.443E-01
+[  NORMAL ]  Iteration 4: 	k_eff = 1.086356	res = 9.996E-02
+[  NORMAL ]  Iteration 5: 	k_eff = 1.076762	res = 8.131E-02
+[  NORMAL ]  Iteration 6: 	k_eff = 1.068029	res = 6.567E-02
+[  NORMAL ]  Iteration 7: 	k_eff = 1.060215	res = 5.402E-02
+[  NORMAL ]  Iteration 8: 	k_eff = 1.053295	res = 4.473E-02
+[  NORMAL ]  Iteration 9: 	k_eff = 1.047215	res = 3.725E-02
+[  NORMAL ]  Iteration 10: 	k_eff = 1.041906	res = 3.115E-02
+[  NORMAL ]  Iteration 11: 	k_eff = 1.037293	res = 2.612E-02
+[  NORMAL ]  Iteration 12: 	k_eff = 1.033301	res = 2.195E-02
+[  NORMAL ]  Iteration 13: 	k_eff = 1.029857	res = 1.847E-02
+[  NORMAL ]  Iteration 14: 	k_eff = 1.026895	res = 1.557E-02
+[  NORMAL ]  Iteration 15: 	k_eff = 1.024353	res = 1.313E-02
+[  NORMAL ]  Iteration 16: 	k_eff = 1.022175	res = 1.108E-02
+[  NORMAL ]  Iteration 17: 	k_eff = 1.020312	res = 9.360E-03
+[  NORMAL ]  Iteration 18: 	k_eff = 1.018722	res = 7.909E-03
+[  NORMAL ]  Iteration 19: 	k_eff = 1.017364	res = 6.686E-03
+[  NORMAL ]  Iteration 20: 	k_eff = 1.016207	res = 5.654E-03
+[  NORMAL ]  Iteration 21: 	k_eff = 1.015221	res = 4.782E-03
+[  NORMAL ]  Iteration 22: 	k_eff = 1.014382	res = 4.046E-03
+[  NORMAL ]  Iteration 23: 	k_eff = 1.013669	res = 3.425E-03
+[  NORMAL ]  Iteration 24: 	k_eff = 1.013061	res = 2.899E-03
+[  NORMAL ]  Iteration 25: 	k_eff = 1.012546	res = 2.455E-03
+[  NORMAL ]  Iteration 26: 	k_eff = 1.012107	res = 2.079E-03
+[  NORMAL ]  Iteration 27: 	k_eff = 1.011734	res = 1.762E-03
+[  NORMAL ]  Iteration 28: 	k_eff = 1.011418	res = 1.493E-03
+[  NORMAL ]  Iteration 29: 	k_eff = 1.011149	res = 1.266E-03
+[  NORMAL ]  Iteration 30: 	k_eff = 1.010921	res = 1.074E-03
+[  NORMAL ]  Iteration 31: 	k_eff = 1.010727	res = 9.115E-04
+[  NORMAL ]  Iteration 32: 	k_eff = 1.010563	res = 7.739E-04
+[  NORMAL ]  Iteration 33: 	k_eff = 1.010423	res = 6.577E-04
+[  NORMAL ]  Iteration 34: 	k_eff = 1.010305	res = 5.591E-04
+[  NORMAL ]  Iteration 35: 	k_eff = 1.010204	res = 4.760E-04
+[  NORMAL ]  Iteration 36: 	k_eff = 1.010119	res = 4.055E-04
+[  NORMAL ]  Iteration 37: 	k_eff = 1.010046	res = 3.459E-04
+[  NORMAL ]  Iteration 38: 	k_eff = 1.009984	res = 2.956E-04
+[  NORMAL ]  Iteration 39: 	k_eff = 1.009932	res = 2.529E-04
+[  NORMAL ]  Iteration 40: 	k_eff = 1.009888	res = 2.168E-04
+[  NORMAL ]  Iteration 41: 	k_eff = 1.009850	res = 1.865E-04
+[  NORMAL ]  Iteration 42: 	k_eff = 1.009818	res = 1.606E-04
+[  NORMAL ]  Iteration 43: 	k_eff = 1.009791	res = 1.389E-04
+[  NORMAL ]  Iteration 44: 	k_eff = 1.009768	res = 1.203E-04
+[  NORMAL ]  Iteration 45: 	k_eff = 1.009749	res = 1.048E-04
+[  NORMAL ]  Iteration 46: 	k_eff = 1.009732	res = 9.161E-05
+[  NORMAL ]  Iteration 47: 	k_eff = 1.009718	res = 8.039E-05
+[  NORMAL ]  Iteration 48: 	k_eff = 1.009706	res = 7.093E-05
+[  NORMAL ]  Iteration 49: 	k_eff = 1.009696	res = 6.275E-05
+[  NORMAL ]  Iteration 50: 	k_eff = 1.009687	res = 5.590E-05
+[  NORMAL ]  Iteration 51: 	k_eff = 1.009680	res = 5.000E-05
+[  NORMAL ]  Iteration 52: 	k_eff = 1.009673	res = 4.493E-05
+[  NORMAL ]  Iteration 53: 	k_eff = 1.009668	res = 4.056E-05
+[  NORMAL ]  Iteration 54: 	k_eff = 1.009664	res = 3.678E-05
+[  NORMAL ]  Iteration 55: 	k_eff = 1.009660	res = 3.350E-05
+[  NORMAL ]  Iteration 56: 	k_eff = 1.009656	res = 3.062E-05
+[  NORMAL ]  Iteration 57: 	k_eff = 1.009654	res = 2.805E-05
+[  NORMAL ]  Iteration 58: 	k_eff = 1.009651	res = 2.578E-05
+[  NORMAL ]  Iteration 59: 	k_eff = 1.009649	res = 2.379E-05
+[  NORMAL ]  Iteration 60: 	k_eff = 1.009648	res = 2.197E-05
+[  NORMAL ]  Iteration 61: 	k_eff = 1.009646	res = 2.033E-05
+[  NORMAL ]  Iteration 62: 	k_eff = 1.009645	res = 1.886E-05
+[  NORMAL ]  Iteration 63: 	k_eff = 1.009644	res = 1.753E-05
+[  NORMAL ]  Iteration 64: 	k_eff = 1.009643	res = 1.627E-05
+[  NORMAL ]  Iteration 65: 	k_eff = 1.009642	res = 1.518E-05
+[  NORMAL ]  Iteration 66: 	k_eff = 1.009642	res = 1.413E-05
+[  NORMAL ]  Iteration 67: 	k_eff = 1.009641	res = 1.315E-05
+[  NORMAL ]  Iteration 68: 	k_eff = 1.009640	res = 1.229E-05
+[  NORMAL ]  Iteration 69: 	k_eff = 1.009640	res = 1.147E-05
+[  NORMAL ]  Iteration 70: 	k_eff = 1.009640	res = 1.069E-05
+[  TITLE  ]  *******************************************************************
+[  TITLE  ]                             TIMING REPORT                           
+[  TITLE  ]  *******************************************************************
+[  RESULT ]  Total time to solution...............................6.4022E-01 sec
+[  RESULT ]  Solution time per unknown............................2.6609E-04 sec
+[  RESULT ]  Solution time per iteration..........................9.0172E-03 sec
+[  RESULT ]  Integration time per segment integration.............1.8288E-08 sec
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]             # tracks          # segments          # FSRs
+[SEPARATOR]  -------------------------------------------------------------------
+[  RESULT ]                608              41088              1203              
+[SEPARATOR]  -------------------------------------------------------------------
+[  NORMAL ]  Plotting the flat source region scalar fluxes...

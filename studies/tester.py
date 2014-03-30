@@ -54,7 +54,6 @@ def createMaterials(directory, assembly_name):
 
     log.py_printf('NORMAL', 'Importing materials data from HDF5...')
 
-    print directory, assembly_name
     materials = materialize.materialize(directory + assembly_name + '-materials.hdf5')
     
     return materials
@@ -445,7 +444,6 @@ def computeKinfError(solver, pin_directory, assembly_name):
     f.close()
 
     kinf_error = abs((calculated_kinf - actual_kinf)/(actual_kinf))
-    print kinf_error
 
     return kinf_error
 

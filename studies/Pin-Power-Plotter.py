@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import h5py
 import numpy
 
-f = h5py.File('results/pwru310w12-fission-rates.h5', 'r')
+f = h5py.File('results/pwru160c00-fission-rates.h5', 'r')
 calculatedPinPowers = f['universe0']['fission-rates'][...]
 normalizedPinPowers = calculatedPinPowers/numpy.sum(calculatedPinPowers)
 f.close()
@@ -16,4 +16,4 @@ plt.title('Normalized Pin Powers')
 plt.gca().axes.get_xaxis().set_ticks([])
 plt.gca().axes.get_yaxis().set_ticks([])
 plt.show()
-fig.savefig('Pin Powers pwru310w12.png')
+fig.savefig('Pin Powers pwru160c00.png')
