@@ -26,6 +26,7 @@ class Casmo(object):
     self._cell_type_array = None 
     self._string_cell_type_array = None #this will be stored as an array of strings
 
+
   def setAssemblyName(self, assembly_name): self._assembly_name = assembly_name
   def getAssemblyname(self): return self._assembly_name
 
