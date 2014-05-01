@@ -1,6 +1,6 @@
 from openmoc.options import Options
 from tester import *
-from casmo import *
+from openmoc.compatible.casmo import Casmo
 import copy
 
 options = Options()
