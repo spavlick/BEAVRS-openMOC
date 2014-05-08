@@ -7,7 +7,7 @@ import openmoc.materialize as materialize
 import h5py
 import numpy
 import matplotlib.pyplot as plt
-from casmo import *
+from openmoc.compatible.casmo import *
 options = options.Options()
 
 
