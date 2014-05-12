@@ -9,9 +9,9 @@ strip1 = 'Rings = '
 strip2 = 'Sectors = '
 
 assembly_list = ['pwru160c00','pwru240c00','pwru240w12','pwru310c00','pwru310w12']
-assembly_name = assembly_list[4]
-print (assembly_name + '/' + 'results/' + assembly_name + '-ringssectors-errors.h5')
-f = h5py.File(assembly_name + '/' + 'results/' + assembly_name + '-ringssectors-errors.h5', 'r')
+assembly_name = assembly_list[0]
+print ('results/' + assembly_name + '-errors.h5')
+f = h5py.File('results/' + assembly_name + '-errors.h5', 'r')
 keys = f[test].keys()
 rings = []
 sectors = []
