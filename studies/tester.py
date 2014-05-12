@@ -30,9 +30,9 @@ def importxsFromCasmo(assembly_name):
     assembly.setCellTypes(1, 'fuel')
     assembly.setCellTypes(2, 'gt')
 
-    assembly.importFromCASMO('c4.' + assembly_name + '.out', '../../Cross-Section-Output/2-group/')
+    assembly.importFromCasmo('c4.' + assembly_name + '.out', '../../Cross-Section-Output/2-group/')
     f_temp = assembly.getXS('SIGF')
-    chi_temp = assembly.getXS('CHI')
+    chi_temp = numpy.zeros((assembly.getNumRegions(),2))
     fission_counter = 0
     for region in range(assembly._num_micro_regions):
         for group in range(assembly._energy_groups):
