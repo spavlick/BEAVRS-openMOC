@@ -27,8 +27,8 @@ def defineParameters(assembly_name, test_name):
 def importxsFromCasmo(assembly_name):
 
     assembly = Casmo()
-    assembly.setCellTypes(1, 'fuel')
-    assembly.setCellTypes(2, 'gt')
+    assembly.setCellType(1, 'fuel')
+    assembly.setCellType(2, 'gt')
 
     assembly.importFromCasmo('c4.' + assembly_name + '.out', '../../Cross-Section-Output/2-group/')
     f_temp = assembly.getXS('SIGF')
